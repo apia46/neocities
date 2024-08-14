@@ -8,7 +8,7 @@
 /* ####### */
 #dull-contrivance {
     padding: 15px 0px;
-    --spinspeed: 50px;
+    --spinspeed: 250ms;
 }
 
 body {
