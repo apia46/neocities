@@ -1,0 +1,40 @@
+/* fonts */
+@font-face {
+    font-family: 'daydream';
+    src: url('fonts/GrapeSoda.ttf') format('woff');
+}
+.daydream { font-family: daydream }
+
+/* ####### */
+#dull-contrivance {
+    padding: 15px 0px;
+    --spinspeed: 50px;
+}
+
+body {
+    background: #222244;
+    image-rendering: pixelated;
+}
+
+#header {
+    left: 0;
+    top: 0;
+    padding: 150px 0px 800px 0px;
+    width: 100%;
+    position: absolute;
+    background-image: url(assets/stars.gif), linear-gradient(#000000, #222244);
+    z-index: -1;
+    text-align: center;
+    color: #ffffff;
+    h1 {
+        font-size: 100px;
+    }
+}
+
+.eye {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 42px;
+    height: 42px;
+}
