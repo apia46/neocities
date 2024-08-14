@@ -1,5 +1,6 @@
 body {
-    background: url(https://corru.observer/img/textures/corrurippletran.gif), #000000
+    background: url(https://corru.observer/img/textures/corrurippletran.gif), #000000;
+    image-rendering: pixelated;
 }
 
 .eye {
