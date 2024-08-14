@@ -1,0 +1,14 @@
+body {
+    background: url(https://corru.observer/img/textures/corrurippletran.gif), #000000
+}
+
+.eye {
+    position: absolute;
+    display: inline-block;
+    top: 50px;
+    left: 50px;
+    img {
+        width: 42px;
+        height: 42px;
+    }
+}
