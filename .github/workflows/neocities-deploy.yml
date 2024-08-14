@@ -1,10 +1,10 @@
 name: Deploy to neocities
 
-# only run on changes to master
+# only run on changes to main
 on:
   push:
     branches:
-      - master
+      - main
 
 concurrency: # prevent concurrent deploys doing strange things
   group: deploy-to-neocities
@@ -19,7 +19,7 @@ jobs:
     # Set up any tools and build steps here
 
     - name: Deploy to neocities
-      uses: bcomnes/deploy-to-neocities@master # dont use master in production
+      uses: bcomnes/deploy-to-neocities@v2
       with:
         api_token: ${{ secrets.NEOCITIES_API_TOKEN }} # this is the proper way to put sensitive info like API creds in your actions
         cleanup: true
