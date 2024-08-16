@@ -1,6 +1,14 @@
+* {box-sizing: border-box}
+a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+::selection {
+	background-color: transparent;
+    color: inherit;
+}
+
 body {
     background: url(https://corru.observer/img/textures/corrurippletran.gif), #000000;
     image-rendering: pixelated;
+    font-size: 50px;
 }
 
 .eye {
@@ -11,5 +19,57 @@ body {
     img {
         width: 42px;
         height: 42px;
+    }
+}
+
+.reader {
+    text-align: center;
+    position: relative;
+    a {
+        img {
+            width: 256px;
+            height: 256px;
+        }
+    }
+}
+
+.reader:hover .desc {
+    opacity: 1;
+    top: -33%
+}
+
+.desc {
+    opacity: 0;
+    transition: 1s;
+    top: 0;
+    text-align: left;
+    border: 1px solid;
+    color: #ffff00;
+    background: #000000;
+    display: inline-block;
+    position: relative;
+    font-family: spacemono;
+    font-size: 9px;
+    padding: 9px 6px;
+    width: 300px;
+    img {
+        border: 1px solid;
+        width: 42px;
+        height: 42px;
+        margin-right: 6px;
+        float: left;
+        background-color: black;
+    }
+    h2 {
+        font-size: 2.5em;
+        line-height: 1em;
+        margin-bottom: 0.3rem;
+        border-bottom: 1px solid;
+        padding-bottom: 0.15em;
+        width: 102%;
+        font-family: barcodetext;
+        text-transform: uppercase;
+        white-space: nowrap;
+        letter-spacing: normal;
     }
 }

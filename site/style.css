@@ -1,16 +1,3 @@
-/* fonts */
-@font-face {
-    font-family: 'grapesoda';
-    src: url('fonts/GrapeSoda.ttf') format('woff');
-}
-.grapesoda { font-family: grapesoda }
-@font-face {
-    font-family: 'spacemono';
-    src: url('fonts/SpaceMono-Bold.woff') format('woff');
-}
-.spacemono { font-family: spacemono }
-
-/* ####### */
 #dull-contrivance {
     padding: 15px 0px;
     --spinspeed: 250ms;

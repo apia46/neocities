@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'grapesoda';
+    src: url('fonts/GrapeSoda.ttf') format('woff');
+}
+.grapesoda { font-family: grapesoda }
+
+@font-face {
+    font-family: 'spacemono';
+    src: url('fonts/SpaceMono-Regular.woff2') format('woff2'),
+        url('fonts/SpaceMono-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'spacemono';
+    src: url('fonts/SpaceMono-Bold.woff2') format('woff2'),
+    url('fonts/SpaceMono-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+.spacemono { font-family: spacemono }
+
+@font-face {
+    font-family: 'barcode';
+    src: url('fonts/LibreBarcode128-Regular.woff2') format('woff2'),
+        url('fonts/LibreBarcode128-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+.barcode { font-family: barcode, sans-serif }
+
+@font-face {
+    font-family: 'barcodetext';
+    src: url('fonts/LibreBarcode128Text-Regular.woff2') format('woff2'),
+        url('fonts/LibreBarcode128Text-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+.barcodetext { font-family: barcodetext, sans-serif }
