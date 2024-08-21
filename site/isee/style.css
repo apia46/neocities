@@ -5,6 +5,11 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
     color: inherit;
 }
 
+@keyframes BUDDYBOUNCE-Y {
+    0% { transform: translateY(5%) }
+    100% { transform: translateY(-5%) }
+}
+
 body {
     background: url(https://corru.observer/img/textures/corrurippletran.gif), #000000;
     image-rendering: pixelated;
@@ -27,6 +32,7 @@ body {
     position: relative;
     a {
         img {
+            animation: BUDDYBOUNCE-Y 5s ease-in-out infinite alternate;
             width: 512px;
             height: 512px;
         }
