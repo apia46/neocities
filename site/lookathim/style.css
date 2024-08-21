@@ -1,0 +1,8 @@
+body {
+    background: black;
+}
+#him {
+    position: fixed;
+    left: calc(50% - 256px);
+    top: calc(50% - 256px);
+}

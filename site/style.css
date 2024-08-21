@@ -22,8 +22,7 @@ body {
     h1 {
         font-size: 100px;
     }
-
-    .eye {
+    #eye {
         position: absolute;
         display: inline-block;
         top: 0;
@@ -33,7 +32,7 @@ body {
             height: 42px;
         }
     }
-    .forest {
+    #forest {
         position: absolute;
         left: 0;
         bottom: 0;
@@ -45,4 +44,11 @@ body {
     padding: 100px;
     color: #ffffff;
     font-family: spacemono;
+    text-align: center;
+    #lookathim {
+        img {
+            width: 384px;
+            height: 384px;
+        }
+    }
 }
