@@ -45,10 +45,15 @@ body {
     color: #ffffff;
     font-family: spacemono;
     text-align: center;
-    #lookathim {
-        img {
-            width: 384px;
-            height: 384px;
+    #scroll {
+        height: 500vh;
+        #lookathim {
+            img {
+                width: 384px;
+                height: 384px;
+                position: sticky;
+                top: 0;
+            }
         }
     }
 }
