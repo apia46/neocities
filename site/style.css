@@ -1,3 +1,12 @@
+@keyframes drift-x {
+    0% {background-position-x: 0}
+    100% {background-position-x: 1024px}
+}
+@keyframes drift-y {
+    0% {background-position-y: 0}
+    100% {background-position-y: 1024px}
+}
+
 #dull-contrivance {
     padding: 15px 0px;
     --spinspeed: 250ms;
@@ -8,6 +17,7 @@ body {
     background: #181a23;
     image-rendering: pixelated;
     margin: 0;
+    overflow-x: hidden;
 }
 
 #header {
@@ -41,14 +51,125 @@ body {
 }
 
 #body {
-    padding: 100px;
+    padding: 50px;
     color: #ffffff;
     font-family: spacemono;
     text-align: center;
-    #lookathim {
-        img {
-            width: 384px;
-            height: 384px;
+    --scroll-range: 0;
+    #scroll {
+        padding-top: calc(50vh - 192px);
+        height: 500vh;
+        --fadeout-range: 0;
+        #lookathim {
+            display: block;
+            height: 30vw;
+            width: 30vw;
+            position: sticky;
+            top: calc(50vh - 15vw);
+            --opacity: calc((var(--scroll-range) * 2));
+            --opacity2: calc(var(--scroll-range) * 0.4 - 0.16);
+            --opacity3: calc(var(--scroll-range) * 8 - 7);
+            --opacity4: calc(var(--scroll-range) * 2 - 1);
+            #black {
+                left: calc(35vw - 50px);
+                position: absolute;
+                width: 30vw;
+                height: 30vw;
+                background: url('assets/black.png');
+                background-size: 100%;
+                z-index: 2;
+                filter: brightness(calc(1 - 2 * var(--scroll-range)));
+            }
+            #red {
+                left: calc(35vw - 50px);
+                position: absolute;
+                width: 30vw;
+                height: 30vw;
+                background: url('assets/red.png');
+                background-size: 400%;
+                background-position-x: 0vw;
+            }
+            .white {
+                --offset: 0vw;
+                left: calc(35vw - (var(--offset) / 2) - 50px);
+                top: calc(var(--offset) / -2);
+                position: absolute;
+                width: calc(30vw + var(--offset));
+                height: calc(30vw + var(--offset));
+                background: url('assets/white.png');
+                background-size: 100%;
+                mix-blend-mode: lighten;
+                z-index: 1;
+                opacity: var(--opacity);
+            }
+            .white2 {
+                object-fit: fill;
+                left: calc(31.25vw - (var(--offset) / 2) - 50px);
+                top: calc(-3.75vw - var(--offset)/2);
+                width: calc(37.5vw + var(--offset));
+                height: calc(37.5vw + var(--offset));
+                background-image: url('assets/white2.png');
+                opacity: var(--opacity2);
+            }
+            .white3 {
+                background-image: url('assets/white3.png');
+                opacity: var(--opacity3);
+                height: calc(45vw + var(--offset) * 1.5);
+                top: calc(-5.625vw - var(--offset) * 3 / 4);
+            }
+            .white4 {
+                background-image: url('assets/white4.png');
+                opacity: var(--opacity4);
+                height: calc(45vw + var(--offset) * 1.5);
+                top: calc(-5.625vw - var(--offset) * 3 / 4);
+                
+            }
+            #link {
+                display: block;
+                position: absolute;
+                width: 7.5vw;
+                height: 7.5vw;
+                left: calc(46.25vw - 50px);
+                top: 10.25vw;
+                z-index: 2;
+            }
+        }
+        .overlay {
+            background-size: auto;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            pointer-events: none;
+        }
+        #noise1 {
+            background: url('assets/noise.png');
+            animation: drift-x 1s linear infinite, drift-y 5s linear infinite;
+            filter: hue-rotate(-120deg) brightness(calc(100% - var(--fadeout-range)));
+            opacity: var(--scroll-range);
+        }
+        #noise2 {
+            background: url('assets/noise.png');
+            animation: drift-x 7s linear infinite, drift-y 2s linear infinite;
+            filter: hue-rotate(120deg) brightness(calc(100% - var(--fadeout-range)));
+            opacity: var(--scroll-range);
+            mix-blend-mode: lighten;
+        }
+    }
+    #afterwards {
+        position: relative;
+        #line {
+            height: 500vh;
+            position: absolute;
+            top: 0;
+            width: 10vw;
+            background: #ffffff;
+            left: calc(45vw - 50px);
+        }
+        #body {
+            text-align: left;
+            padding-top: 150vh;
         }
     }
 }
