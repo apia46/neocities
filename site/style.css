@@ -51,7 +51,7 @@ body {
 }
 
 #body {
-    padding: 100px;
+    padding: 50px;
     color: #ffffff;
     font-family: spacemono;
     text-align: center;
@@ -66,16 +66,22 @@ body {
             width: 30vw;
             position: sticky;
             top: calc(50vh - 15vw);
+            --opacity: calc((var(--scroll-range) * 2));
+            --opacity2: calc(var(--scroll-range) * 0.4 - 0.16);
+            --opacity3: calc(var(--scroll-range) * 8 - 7);
+            --opacity4: calc(var(--scroll-range) * 2 - 1);
             #black {
-                left: calc(35vw - 100px);
+                left: calc(35vw - 50px);
                 position: absolute;
                 width: 30vw;
                 height: 30vw;
-                background: url('assets/black.gif');
+                background: url('assets/black.png');
                 background-size: 100%;
+                z-index: 2;
+                filter: brightness(calc(1 - 2 * var(--scroll-range)));
             }
             #red {
-                left: calc(35vw - 100px);
+                left: calc(35vw - 50px);
                 position: absolute;
                 width: 30vw;
                 height: 30vw;
@@ -85,30 +91,47 @@ body {
             }
             .white {
                 --offset: 0vw;
-                --opacity: 1;
-                left: calc(35vw - (var(--offset) / 2) - 100px);
+                left: calc(35vw - (var(--offset) / 2) - 50px);
                 top: calc(var(--offset) / -2);
                 position: absolute;
                 width: calc(30vw + var(--offset));
                 height: calc(30vw + var(--offset));
-                background: url('assets/white.gif');
+                background: url('assets/white.png');
                 background-size: 100%;
                 mix-blend-mode: lighten;
                 z-index: 1;
-                opacity: calc((var(--scroll-range) * 2 - 1 + var(--opacity)) * var(--opacity));
+                opacity: var(--opacity);
             }
             .white2 {
-                background-image: url('assets/white2.gif');
-                --opacity: 0.2;
+                object-fit: fill;
+                left: calc(31.25vw - (var(--offset) / 2) - 50px);
+                top: calc(-3.75vw - var(--offset)/2);
+                width: calc(37.5vw + var(--offset));
+                height: calc(37.5vw + var(--offset));
+                background-image: url('assets/white2.png');
+                opacity: var(--opacity2);
             }
             .white3 {
                 background-image: url('assets/white3.png');
-                --opacity: 0.1;
+                opacity: var(--opacity3);
+                height: calc(45vw + var(--offset) * 1.5);
+                top: calc(-5.625vw - var(--offset) * 3 / 4);
             }
             .white4 {
                 background-image: url('assets/white4.png');
-                --opacity: 0.4;
+                opacity: var(--opacity4);
+                height: calc(45vw + var(--offset) * 1.5);
+                top: calc(-5.625vw - var(--offset) * 3 / 4);
                 
+            }
+            #link {
+                display: block;
+                position: absolute;
+                width: 7.5vw;
+                height: 7.5vw;
+                left: calc(46.25vw - 50px);
+                top: 10.25vw;
+                z-index: 2;
             }
         }
         .overlay {
@@ -136,22 +159,17 @@ body {
     }
     #afterwards {
         position: relative;
-        #beforeline {
-            opacity: calc((var(--scroll-range) - 0.8) * 5);
-            height: 200vh;
-            position: relative;
-            top:-200vh;
-            width: 10vw;
-            background: #ffffff;
-            left: calc(45vw - 100px);
-        }
         #line {
             height: 500vh;
             position: absolute;
             top: 0;
             width: 10vw;
             background: #ffffff;
-            left: calc(45vw - 100px);
+            left: calc(45vw - 50px);
+        }
+        #body {
+            text-align: left;
+            padding-top: 150vh;
         }
     }
 }
