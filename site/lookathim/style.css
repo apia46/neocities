@@ -6,3 +6,27 @@ body {
     left: calc(50% - 256px);
     top: calc(50% - 256px);
 }
+.lookers {
+    visibility: hidden;
+    position: fixed;
+    left: calc(50% - 768px);
+    top: calc(50% - 256px);
+    width: 1536px;
+    height: 512px;
+}
+body[target="him"] #athim {
+    visibility: visible
+}
+body[target="you"] #atyou {
+    visibility: visible
+}
+
+img { 
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated;                 /* Universal support since 2021   */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+}

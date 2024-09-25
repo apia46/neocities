@@ -6,9 +6,13 @@
         <title>LOOK AT HIM</title>
         <link href="/fonts.css" rel="stylesheet" type="text/css" media="all">
         <link href="style.css" rel="stylesheet" type="text/css" media="all">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="index.js"></script>
     </head>
-    <body>
+    <body target="him">
+        <img id="athim" class="lookers" src="assets/lookathim.gif">
+        <img id="atyou" class="lookers" src="assets/lookatyou.png">
         <img id="him" src="assets/blank.png">
-        <script>document.getElementById("him").src=`assets/him/${Math.floor(Math.random()*51)}.png`</script>
+        <script>document.getElementById("him").src=`assets/him/${Math.floor(Math.random()*51)}.png`; him()</script>
     </body>
 </html>
