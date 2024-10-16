@@ -4,6 +4,7 @@ var grad2 = new Color("red").range("black")
 var redposition = 0
 $(()=>{
     eyeAnim()
+    $(window).scroll()
 })
 
 $(window).scroll(()=>{

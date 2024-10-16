@@ -1,0 +1,142 @@
+body {
+  image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: -moz-crisp-edges;          /* Firefox                        */
+  image-rendering: -o-crisp-edges;            /* Opera                          */
+  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+  image-rendering: pixelated;                 /* Universal support since 2021   */
+  image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+  -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+  margin: 0;
+  padding: 0;
+  background-color: #F66B17;
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-size: 100% 100%;
+    pointer-events: none;
+  }
+  #vignette {
+    background-image: url("assets/vignette.png");
+    opacity: 0.55;
+    
+  }
+  #parallax {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-perspective: 1px;
+    perspective: 1px;
+    position: relative;
+    .parallax {
+      position: absolute;
+      top: 0;
+      left: auto;
+      right: auto;
+      bottom: 0;
+      width: 100vw;
+      background-size: contain;
+    }
+    #bg0 {
+      transform: translateZ(-49px) scale(50);
+      background-image: url("assets/bg0.png");
+      top: calc(var(--height) * 0.49 - 49vh);
+      height: calc(var(--height) * 0.02 + 98vh);
+    }
+    #bg1 {
+      transform: translateZ(-9px) scale(10);
+      background-image: url("assets/bg1.png");
+      top: calc(var(--height) * 0.45 - 45vh);
+      height: calc(var(--height) * 0.1 + 90vh);
+      opacity: 0.8;
+    }
+    #fx0 {
+      transform: translateZ(calc(-7px / 3)) scale(calc(10/3));
+      background-image: url("assets/fx0.png");
+      top: calc(var(--height) * 0.35 - 35vh);
+      height: calc(var(--height) * 0.3 + 70vh);
+      mix-blend-mode: screen;
+      opacity: 0.1;
+    }
+    #bg2 {
+      transform: translateZ(-4px) scale(5);
+      background-image: url("assets/bg2.png");
+      top: calc(var(--height) * 0.4 - 40vh);
+      height: calc(var(--height) * 0.2 + 80vh);
+    }
+    #fx1 {
+      transform: translateZ(calc(-7px / 3)) scale(calc(10/3));
+      background-image: url("assets/fx0.png");
+      background-position: 3.125vw;
+      top: calc(var(--height) * 0.35 - 35vh);
+      height: calc(var(--height) * 0.3 + 70vh);
+      mix-blend-mode: screen;
+      opacity: 0.15;
+    }
+    #darkswamp {
+      transform: translateZ(-1px) scale(2);
+      background-image: url("assets/darkswamp.png");
+      top: calc((var(--height) - 100vh) * 0.25);
+      height: calc((var(--height) + 100vh) / 2);
+      mix-blend-mode: screen;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    #body {
+      color: white;
+      transform: translateZ(0);
+      position: relative;
+      height: auto;
+      padding: 25vh 0 100vh 0;
+      margin-left: 20vw;
+      font-family: renogare;
+      font-size: 1.2vw;
+      .panel {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: left;
+        margin-bottom: 25vw;
+        img {
+          grid-row-start: 1;
+          grid-column-start: 1;
+          width: 60vw;
+          z-index: -1;
+          pointer-events: none;
+        }
+        .content {
+          margin-top: 7.6vw;
+          margin-left: 5.2vw;
+          grid-row-start: 1;
+          grid-column-start: 1;
+          iframe {
+            position: absolute;
+            left: 33.9vw;
+            top: 7.8vw;
+            width: 20.9vw;
+            height: 13.1vw;
+          }
+          h1 {
+            display: inline-block;
+            margin: 0 0 8.5vw 0;
+          }
+          p {
+            width: 29vw;
+          }
+          #skull {
+            position: relative;
+            top: 0.4em;
+            width: 1.5em;
+          }
+        }
+      }
+    }
+  }
+  #unselectable { /* https://stackoverflow.com/questions/5983729/make-images-not-selectable */
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}

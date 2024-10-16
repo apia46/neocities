@@ -15,7 +15,13 @@
 
 body {
     background: #181a23;
-    image-rendering: pixelated;
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated;                 /* Universal support since 2021   */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
     margin: 0;
     overflow-x: hidden;
 }
@@ -23,7 +29,7 @@ body {
 #header {
     left: 0;
     top: 0;
-    padding: 10vw 0px 100vw 0px;
+    padding: 10vw 0px 60vw 0px;
     width: 100%;
     position: relative;
     background-image: url(assets/stars.gif), linear-gradient(#000000, #222244);
@@ -42,7 +48,18 @@ body {
             height: 42px;
         }
     }
+    #flag {
+        position: absolute;
+        display: inline-block;
+        bottom: 49vw;
+        left: 16.8vw;
+        img {
+            width: 48px;
+            height: 48px;
+        }
+    }
     #forest {
+        pointer-events: none;
         position: absolute;
         left: 0;
         bottom: 0;
