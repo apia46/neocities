@@ -1,0 +1,52 @@
+body {
+  image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: -moz-crisp-edges;          /* Firefox                        */
+  image-rendering: -o-crisp-edges;            /* Opera                          */
+  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+  image-rendering: pixelated;                 /* Universal support since 2021   */
+  image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+  -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+  margin: 0;
+  padding: 0;
+  #parallax {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-perspective: 1px;
+    perspective: 1px;
+    position: relative;
+    .parallax {
+      position: absolute;
+      top: 0;
+      left: auto;
+      right: auto;
+      bottom: 0;
+      width: 100vw;
+    }
+    #bg0 {
+      transform: translateZ(-4px) scale(5);
+      background: url("assets/bg0.png");
+      background-size: contain;
+      height: calc(var(--height)/4);
+    }
+    #bg1 {
+      transform: translateZ(-3px) scale(4);
+      background: url("assets/bg1.png");
+      background-size: contain;
+      height: calc(var(--height)/3 + 175vh);
+    }
+    #bg2 {
+      transform: translateZ(-2px) scale(3);
+      background: url("assets/bg2.png");
+      background-size: contain;
+      height: calc(var(--height)/2 + 50vh);
+    }
+    #body {
+      transform: translateZ(0);
+      position: relative;
+      height: auto;
+      padding: 16px;
+      font-family: spacemono;
+    }
+  }
+}
