@@ -41,3 +41,12 @@
     font-display: swap;
 }
 .barcodetext { font-family: barcodetext, sans-serif }
+
+@font-face {
+    font-family: 'renogare';
+    src: url('fonts/Renogare-Regular.otf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+.barcodetext { font-family: barcodetext, sans-serif }

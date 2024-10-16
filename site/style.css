@@ -29,7 +29,7 @@ body {
 #header {
     left: 0;
     top: 0;
-    padding: 10vw 0px 100vw 0px;
+    padding: 10vw 0px 60vw 0px;
     width: 100%;
     position: relative;
     background-image: url(assets/stars.gif), linear-gradient(#000000, #222244);
@@ -51,7 +51,7 @@ body {
     #flag {
         position: absolute;
         display: inline-block;
-        bottom: 108vh;
+        bottom: 49vw;
         left: 16.8vw;
         img {
             width: 48px;
