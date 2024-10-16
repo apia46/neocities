@@ -8,6 +8,7 @@ body {
   -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
   margin: 0;
   padding: 0;
+  opacity: 0;
   background-color: #F66B17;
   .overlay {
     position: fixed;
