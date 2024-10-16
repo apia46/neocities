@@ -118,6 +118,7 @@ body {
                 mix-blend-mode: lighten;
                 z-index: 1;
                 opacity: var(--opacity);
+                pointer-events: none;
             }
             .white2 {
                 object-fit: fill;
