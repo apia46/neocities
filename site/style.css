@@ -51,11 +51,11 @@ body {
     #flag {
         position: absolute;
         display: inline-block;
-        bottom: 49vw;
-        left: 16.8vw;
+        bottom: 49.2vw;
+        left: 17vw;
         img {
-            width: 48px;
-            height: 48px;
+            width: 2vw;
+            height: 2vw;
         }
     }
     #forest {
@@ -132,14 +132,14 @@ body {
             .white3 {
                 background-image: url('assets/white3.png');
                 opacity: var(--opacity3);
-                height: calc(45vw + var(--offset) * 1.5);
-                top: calc(-5.625vw - var(--offset) * 3 / 4);
+                height: calc(60vw + var(--offset) * 2);
+                top: calc(-7.5vw - var(--offset));
             }
             .white4 {
                 background-image: url('assets/white4.png');
                 opacity: var(--opacity4);
                 height: calc(45vw + var(--offset) * 1.5);
-                top: calc(-5.625vw - var(--offset) * 3 / 4);
+                top: calc(-5.625vw - var(--offset) * 0.75);
                 
             }
             #link {
@@ -177,17 +177,25 @@ body {
     }
     #afterwards {
         position: relative;
-        #line {
+        text-align: left;
+        padding-top: 50vh;
+        #line { /* https://stackoverflow.com/questions/1776915/how-can-i-center-an-absolutely-positioned-element-in-a-div */
             height: 500vh;
             position: absolute;
             top: 0;
-            width: 10vw;
+            left: 0;
+            right: 0;
+            width: 10.9vw;
             background: #ffffff;
-            left: calc(45vw - 50px);
+            margin-inline: auto;
         }
-        #body {
-            text-align: left;
-            padding-top: 150vh;
+        #wonder {
+            position: absolute;
+            right: 5vw;
+            top: 125vw;
+            img {
+                width: 25vw;
+            }
         }
     }
 }

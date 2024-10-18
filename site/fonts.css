@@ -44,7 +44,8 @@
 
 @font-face {
     font-family: 'renogare';
-    src: url('fonts/Renogare-Regular.otf') format('woff');
+    src: url('fonts/Renogare-Regular.otf') format('woff'),
+    url('fonts/Renogare-Regular.otf') format('otf');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
