@@ -1,0 +1,22 @@
+@keyframes drift-x {
+    0% {background-position-x: 0}
+    100% {background-position-x: 960px}
+}
+@keyframes drift-y {
+    0% {background-position-y: 0}
+    100% {background-position-y: 960px}
+}
+
+.overlay {
+    background-size: auto;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+}
+#clouds {
+    background: url('assets/clouds.png');
+    animation: drift-x 1s linear infinite, drift-y 5s linear infinite;
+}

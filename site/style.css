@@ -6,6 +6,10 @@
     0% {background-position-y: 0}
     100% {background-position-y: 1024px}
 }
+@keyframes float {
+    0% {transform: translateY(-5px)}
+    100% {transform: translateY(5px)}
+}
 
 #dull-contrivance {
     padding: 15px 0px;
@@ -51,12 +55,49 @@ body {
     #flag {
         position: absolute;
         display: inline-block;
-        bottom: 49.2vw;
+        bottom: 49vw;
         left: 17vw;
         img {
             width: 2vw;
             height: 2vw;
         }
+    }
+    #satelite {
+        position: absolute;
+        display: inline-block;
+        top: 6vw;
+        right: 32vw;
+        animation: float 5s 1s alternate infinite ease-in-out;
+        transform: translateY(-5px);
+        img {
+            width: 5vw;
+            height: 5vw;
+        }
+        #contact {
+            position: absolute;
+            padding: 2px;
+            bottom: -30px;
+            width: 92px;
+            height: 28px;
+            left: calc(2.5vw - 46px);
+            background-color: #181a23;
+            margin-inline: auto;
+            transform: translateY(-5px);
+            opacity: 0;
+            transition: 0.5s;
+            a {
+                font-size: 0;
+                img {
+                    margin: 2px;
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+        }
+    }
+    #satelite:hover #contact {
+        opacity: 1;
+        transform: none;
     }
     #forest {
         pointer-events: none;
@@ -74,7 +115,7 @@ body {
     text-align: center;
     --scroll-range: 0;
     #scroll {
-        padding-top: calc(50vh - 192px);
+        padding-top: calc(100vh - 192px);
         height: 500vh;
         --fadeout-range: 0;
         #lookathim {
@@ -179,15 +220,15 @@ body {
         position: relative;
         text-align: left;
         padding-top: 50vh;
-        #line { /* https://stackoverflow.com/questions/1776915/how-can-i-center-an-absolutely-positioned-element-in-a-div */
+        #line {
             height: 500vh;
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
+            left: calc(50vw - 50px);
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
             width: 10.9vw;
             background: #ffffff;
-            margin-inline: auto;
         }
         #wonder {
             position: absolute;
