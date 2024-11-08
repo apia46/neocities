@@ -41,6 +41,23 @@ body {
     color: #ffffff;
     h1 {
         font-size: 100px;
+        margin-bottom: 10px;
+    }
+    .dark {
+        color: #55555e;
+    }
+    #eyes {
+        position: relative;
+    }
+    #eyes:hover::after {
+        content: " ";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("assets/realeye.gif"), url("assets/dot.png");
+        background-size: contain;
     }
     #eye {
         position: absolute;
