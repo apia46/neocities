@@ -39,6 +39,9 @@ body {
     background-image: url(assets/stars.gif), linear-gradient(#000000, #222244);
     text-align: center;
     color: #ffffff;
+    a {
+        font-size: 0;
+    }
     h1 {
         font-size: 100px;
         margin-bottom: 10px;
@@ -72,7 +75,7 @@ body {
     #flag {
         position: absolute;
         display: inline-block;
-        bottom: 49vw;
+        bottom: 49.8vw;
         left: 17vw;
         img {
             width: 2vw;
@@ -102,13 +105,10 @@ body {
             transform: translateY(-5px);
             opacity: 0;
             transition: 0.5s;
-            a {
-                font-size: 0;
-                img {
-                    margin: 2px;
-                    width: 24px;
-                    height: 24px;
-                }
+            img {
+                margin: 2px;
+                width: 24px;
+                height: 24px;
             }
         }
     }
