@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'grapesoda';
-    src: url('assets/fonts/GrapeSoda.ttf') format('woff');
+    src: url('assets/fonts/GrapeSoda.ttf') format('truetype');
 }
 .grapesoda { font-family: grapesoda }
 
@@ -51,7 +51,7 @@
 @font-face {
     font-family: 'renogare';
     src: url('assets/fonts/Renogare-Regular.otf') format('woff'),
-        url('assets/fonts/Renogare-Regular.otf') format('otf');
+    url('assets/fonts/Renogare-Regular.otf') format('otf');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
