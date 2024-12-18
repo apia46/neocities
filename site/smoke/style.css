@@ -202,6 +202,9 @@ body {
     .leftgap {
         margin-left: 30px;
     }
+    .left {
+        text-align: left;
+    }
     .button-green-right:hover, .button-green-right:focus, .button-green-right.hover {
         color: #000;
         text-decoration: none;
@@ -242,6 +245,30 @@ body {
         background-position: 100% 0%;
         background-size: contain;
     }
+    .button-green-right.left:after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 24px;
+        left: -20px;
+        top: 0;
+        background: url("assets/buttongreenleft.png");
+        background-repeat: no-repeat;
+        background-position: 100% 0%;
+        background-size: contain;
+    }
+    .button-green-right:active.left:after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 24px;
+        left: -20px;
+        top: 0;
+        background: url("assets/buttongreenleftactive.png");
+        background-repeat: no-repeat;
+        background-position: 100% 0%;
+        background-size: contain;
+    }
 }
 #empty2 {
     position: absolute;
@@ -267,6 +294,9 @@ body {
     }
 }
 #pyanodons {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 1400px;
     margin-bottom: 50px;
 }
