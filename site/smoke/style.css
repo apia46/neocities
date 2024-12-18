@@ -12,6 +12,7 @@ body {
     font-family: 'titilliumweb', sans-serif;
     color: #ffffff;
     font-size: 16px;
+    line-height: 1.25;
 }
 .overlay {
     background-size: auto;
@@ -34,7 +35,7 @@ body {
     h2 {
         margin: 2px 0 8px 0;
         font-size: 120%;
-        font-weight: bolder;
+        font-weight: 900;
         color: #ffe6c0;
     }
 }
@@ -173,7 +174,7 @@ body {
     .button-green-right {
         box-sizing: border-box;
         background-color: #5eb663;
-        padding: 6px 12px 10px 12px;
+        padding: 8px 12px 8px 12px;
         font-size: 100%;
         color: #000;
         font-weight: 600;
@@ -205,6 +206,9 @@ body {
     .left {
         text-align: left;
     }
+    .pre {
+        white-space: pre;
+    }
     .button-green-right:hover, .button-green-right:focus, .button-green-right.hover {
         color: #000;
         text-decoration: none;
@@ -213,8 +217,7 @@ body {
     }
     .button-green-right:active, .button-green-right.active {
         position: relative;
-        padding-top: 9px;
-        padding-bottom: 8px;
+        padding-top: 10px;
         vertical-align: -2px;
         box-shadow: inset 0px 10px 2px -8px #000,inset 0px 9px 2px -8px #000,inset 8px 0px 4px -8px #3f5024,inset 8px 0px 4px -8px #3f5024,inset 0px 9px 2px -8px #3f5024,inset 0px -9px 2px -8px #3f5024,inset 0px -8.5px 0px -8px #3f5024,0px 0px 4px 0px #000;
         background-color: #cfdf93;
@@ -291,6 +294,21 @@ body {
         text-align: center;
         min-height: 64px;
         line-height: 1.3;
+    }
+}
+#deathworld {
+    position: absolute;
+    top: 1000px;
+    left: 60%;
+    iframe {
+        width: 32vw;
+        height: 18vw;
+    }
+    .box1 {
+        padding-bottom: 3px;
+    }
+    .box2 {
+        width: 32vw;
     }
 }
 #pyanodons {
