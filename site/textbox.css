@@ -1,0 +1,84 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2023 Code Boxx (https://codepen.io/code-boxx/pen/NWwJwbN)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+/* (A) SPEECH BOX */
+.speech {
+  border-radius: 10px;
+}
+
+/* (B) ADD SPEECH "CALLOUT TAIL" */
+/* (B1) USE ::AFTER TO CREATE THE "TAIL" */
+.speech::after {
+  /* (B1-1) ATTACH TRANSPARENT BORDERS */
+  content: "";
+  border: 10px solid transparent;
+ 
+  /* (B1-2) NECESSARY TO POSITION THE "TAIL" */
+  position: absolute;
+}
+ 
+/* (B2) BOTTOM "CALLOUT TAIL" */
+.bottom.speech::after {
+  /* (B2-1) DOWN TRIANGLE */
+  border-top-color: #a53d38;
+  border-bottom: 0;
+ 
+  /* (B2-2) POSITION AT BOTTOM */
+  bottom: -20px; left: 50%;
+  margin-left: -20px;
+}
+
+/* (C) DIFFERENT TAIL POSITIONS */
+/* (C1) TOP */
+.top.speech::after {
+  /* (C1-1) UP TRIANGLE */
+  border-bottom-color: #181a23;
+  border-top: 0;
+ 
+  /* (C1-2) POSITION AT TOP */
+  top: -9px; left: 50%;
+  margin-left: -10px;
+}
+ 
+/* (C2) LEFT */
+.left.speech::after {
+  /* (C2-1) LEFT TRIANGLE */
+  border-right-color: #a53d38;
+  border-left: 0;
+ 
+  /* (C2-2) POSITION AT LEFT */
+  left: -20px; top: 50%;
+  margin-top: -20px;
+}
+ 
+/* (C3) RIGHT */
+.right.speech::after {
+  /* (C3-1) RIGHT TRIANGLE */
+  border-left-color: #a53d38;
+  border-right: 0;
+ 
+  /* (C3-2) POSITION AT RIGHT */
+  right: -20px; top: 50%;
+  margin-top: -20px;
+}
