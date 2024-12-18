@@ -1,5 +1,5 @@
 window.onload = () => {
-    setTimeout(()=>{document.getElementById("parallax").scrollTo(0, document.getElementById("body").scrollHeight - 1); document.body.style.setProperty("opacity", 1)}, 1)
+    setTimeout(()=>{document.getElementById("parallax").scrollTo(0, document.getElementById("body").scrollHeight - 1)}, 10)
     window.onresize()
 }
 
