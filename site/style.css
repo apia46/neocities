@@ -116,6 +116,16 @@ body {
         opacity: 1;
         transform: none;
     }
+    #smoke {
+        z-index: 1;
+        position: absolute;
+        right: 7vw;
+        bottom: 30.2vw;
+        img {
+            width: 48px;
+            height: 48px;
+        }
+    }
     #forest {
         pointer-events: none;
         position: absolute;
