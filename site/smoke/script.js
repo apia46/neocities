@@ -1,17 +1,23 @@
-var indexes = {pyanodons: 0}
+var indexes = {pyanodons: 1}
 var maxIndexes = {pyanodons: 1}
+var focused = "pyanodons"
 
-function goLeft(id){
-    indexes[id] -= 1
-    changeIndex(id)
+function goBack(id){
+    if (indexes[id] > 0) {
+        indexes[id] -= 1
+        changeIndex(id)
+    }
 }
 
-function goRight(id){
-    indexes[id] += 1
-    changeIndex(id)
+function goForward(id){
+    if (indexes[id] < maxIndexes[id]) {
+        indexes[id] += 1
+        changeIndex(id)
+    }
 }
 
 function changeIndex(id){
+    focused = id
     var entries = document.querySelectorAll(`#${id} .box1`)
     entries.forEach(entry=>{
         entry.style.display = (entry.getAttribute("index") == indexes[id]) ? 'block' : 'none'
@@ -20,6 +26,17 @@ function changeIndex(id){
             entry.querySelector(".date").textContent = entry.getAttribute("date")
         }
     })
-    document.querySelector(`#${id} .goleft`).style.visibility = (indexes[id] <= 0) ? 'hidden' : 'visible'
-    document.querySelector(`#${id} .goright`).style.visibility = (indexes[id] >= maxIndexes[id]) ? 'hidden' : 'visible'
+    document.querySelector(`#${id} .goback`).style.visibility = (indexes[id] <= 0) ? 'hidden' : 'visible'
+    document.querySelector(`#${id} .goforward`).style.visibility = (indexes[id] >= maxIndexes[id]) ? 'hidden' : 'visible'
 }
+
+document.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case "ArrowLeft":
+            goBack(focused)
+            break
+        case "ArrowRight":
+            goForward(focused)
+            break
+    }
+})
