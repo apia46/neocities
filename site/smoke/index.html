@@ -6,6 +6,7 @@
         <title>I can't see</title>
         <link href="/fonts.css" rel="stylesheet" type="text/css" media="all">
         <link href="style.css" rel="stylesheet" type="text/css" media="all">
+        <script src="script.js"></script>
         <link rel="icon" type="image/png" href="/assets/icon.png">
     </head>
     <body>
@@ -15,7 +16,7 @@
             <div class="box1">.</div>
             <div class="box2" id="knowmore">
                 Would you like to know <a href="">more</a>?
-                <a class="button" href=""><i class="fas fa-eye"></i></a>
+                <a class="button right" href=""><i class="fas fa-eye"></i></a>
             </div>
         </div>
         <div class="box0" id="empty1"></div>
@@ -68,9 +69,25 @@
         <div class="box0" id="pyanodons">
             <h2>Pyanodons</h2>
             <div class="box2">
-                Last updated on 2024-12-19
+                Last updated on 2025-01-01
             </div>
-            <div class="box1">
+            <div class="box1" index="0" date="2025-01-01">
+                
+                <div class="box2 flex-space-between buttons">
+                    <a class="button goleft" onclick="goLeft('pyanodons')" style="visibility: hidden;"><i class="fas fa-angle-double-left"></i></a>
+                    <h3 class="date">2025-01-01</h3>
+                    <a class="button goright" onclick="goRight('pyanodons')"><i class="fas fa-angle-double-right"></i></a>
+                </div>
+                <img src="assets/pyanodons/2025-01-01.png" class="baseimg">
+                <p>
+                    Haven't played in a while due to a. specific other project., but <span class="strikethrough">I got distracted by</span> found time for this again, today.<br>
+                    I've uncapped logistics science and improved research throughput a bit, but it's still mostly waiting for research. Fast inserters are a thing now, which is nice. Quartz processing 2 just researched; I've finished the molten glass part but have yet to cast it into anything because it is 02:26am. Happy new year. I've also paved some more of the base, as you can tell.<br>
+                    I'm not sure what I'll do when the image inevitably needs to expand upwards. Maybe it'll be fine discontinuous.<br>
+                    Do you like the clean entry switching? I made that today, as this is the second entry. I guess the "last updated on" line doesn't really need to exist, with this system, but it looks nice.<br>
+                    Load times will probably become more and more of an issue with this. Maybe I can get it to only load the image when you click to that entry, but right now it's. Fine.
+                </p>
+            </div>
+            <div class="box1" index="1" date="2024-12-19" style="display: none;">
                 <img src="assets/pyanodons/2024-12-19.png" class="baseimg">
                 <p>
                     Development of the new base is going well. I recently set up batteries and circuits, and started making glass before realising the research for that is still a while away. I almost forgot to make way for the train line to continue further north; I had to move around some buildings after realising. The train lines are being less useful than I thought they would be. I guess the tradeoff is that this base will be quite hard to expand from when Py2 science comes.<br>

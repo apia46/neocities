@@ -8,6 +8,13 @@
     font-family: 'titilliumweb';
     src: url('assets/fonts/TitilliumWeb-Regular.ttf') format('truetype'),
         url('assets/fonts/titillumweb.woff2') format('woff2');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'titilliumweb';
+    src: url('assets/fonts/TitilliumWeb-Bold.ttf') format('truetype'),
+        url('assets/fonts/titillumweb.woff2') format('woff2');
+    font-weight: 700;
 }
 .titillium { font-family: titilliumweb }
 

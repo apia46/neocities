@@ -33,17 +33,36 @@ body {
     background-color: #313031;
     padding: 8px;
     h2 {
-        margin: 2px 0 8px 0;
+        margin: 4px 0 8px 0;
         font-size: 120%;
         font-weight: 900;
         color: #ffe6c0;
+    }
+    h3 {
+        margin: 4px 0 4px 0;
+        font-size: 116%;
+        font-weight: 900;
+        color: #ffe6c0;
+    }
+    h4 {
+        display: block;
+        font-size: 107%;
+        font-weight: bold;
+        margin-block: 0.5em;
+        color: #ffe6c0;
+    }
+    p {
+        margin-top: 8px;
+        .strikethrough {
+            text-decoration: line-through;
+        }
     }
 }
 .box1 {
     border-image: url('assets/box1.png') 16/8px repeat;
     border-image-outset: 4px;
     background-color: #414040;
-    padding: 8px;
+    padding: 12px;
 }
 .box2 {
     border-image: url('assets/box1.png') 16/8px repeat;
@@ -60,8 +79,7 @@ body {
         width: 32px;
         height: 32px;
         text-align: center;
-        margin-bottom: 0px;
-        margin-left: 4px;
+        margin: 0;
         background-color: #8e8e8e;
         color: #000000;
         border: none;
@@ -71,6 +89,9 @@ body {
         cursor: pointer;
         user-select: none;
     }
+    .button.right {
+        margin-left: 4px;
+    }
     .button:hover, .button:focus, .button.hover {
         color: #000000;
         text-decoration: none;
@@ -79,6 +100,18 @@ body {
         background-color: #e39827;
         filter: drop-shadow(0 0 2px #f9b44b);
     }
+    .button:active, .button.active {
+        position: relative;
+        vertical-align: -2px;
+        box-shadow: inset 0px 10px 2px -8px #000,inset 0px 9px 2px -8px #000,inset 8px 0px 4px -8px #563a10,inset 8px 0px 4px -8px #563a10,inset -8px 0px 4px -8px #563a10,inset -8px 0px 4px -8px #563a10,inset 0px 9px 2px -8px #563a10,inset 0px -9px 2px -8px #563a10,inset 0px -8.5px 0px -8px #563a10,0px 0px 4px 0px #000;
+        background-color: #f1be64;
+        filter: none;
+        outline: 0;
+    }
+}
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
 }
 #about {
     width: 423px;
@@ -319,6 +352,7 @@ body {
     margin-bottom: 50px;
 }
 .baseimg {
+    margin-top: 8px;
     max-width: 100%;
 }
 
