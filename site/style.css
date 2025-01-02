@@ -78,8 +78,8 @@ body {
         bottom: 49.8vw;
         left: 17vw;
         img {
-            width: 2vw;
-            height: 2vw;
+            width: 48px;
+            height: 48px;
         }
     }
     #satelite {
@@ -90,8 +90,8 @@ body {
         animation: float 5s 1s alternate infinite ease-in-out;
         transform: translateY(-5px);
         img {
-            width: 5vw;
-            height: 5vw;
+            width: 41px;
+            height: 41px;
         }
         #contact {
             position: absolute;
@@ -245,21 +245,27 @@ body {
     }
     #afterwards {
         position: relative;
-        text-align: left;
-        padding-top: 50vh;
+        font-size: large;
         #line {
             height: 500vh;
             position: absolute;
             top: 0;
+            padding-top: 90vw;
             left: calc(50vw - 50px);
             -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
             width: 10.9vw;
             background: #ffffff;
+            #linetext {
+                position: absolute;
+                width: calc(60vw - 100px);
+                left: calc(-24.55vw + 50px);
+                mix-blend-mode: difference;
+            }
         }
         #wonder {
             position: absolute;
-            right: 5vw;
+            right: 0;
             top: 125vw;
             img {
                 width: 25vw;
