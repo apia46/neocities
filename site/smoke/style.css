@@ -116,6 +116,10 @@ body {
     display: flex;
     justify-content: space-between;
 }
+.playtime {
+    font-weight: 600;
+    color: #ffffff;
+}
 #about {
     width: 423px;
     position: absolute;

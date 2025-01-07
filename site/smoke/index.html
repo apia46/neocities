@@ -69,9 +69,14 @@
         <div class="box0" id="pyanodons">
             <h2>Pyanodons</h2>
             <div class="box2">
-                Last updated on 2025-01-03
+                Last updated on 2025-01-08
             </div>
-            <div class="box1" index="0" date="2024-12-19" style="display: none;">
+            <div class="box2 flex-space-between header">
+                <a class="button goback" onclick="goBack('pyanodons')"><i class="fas fa-angle-double-left"></i></a>
+                <h3><span class="date">2025-01-08</span> - <span class="playtime">137:20:28</span></h3>
+                <a class="button goforward" onclick="goForward('pyanodons')" style="visibility: hidden;"><i class="fas fa-angle-double-right"></i></a>
+            </div>
+            <div class="box1" index="0" date="2024-12-19" playtime="110:XX:XX">
                 <img src="assets/pyanodons/2024-12-19.png" class="baseimg">
                 <p>
                     Development of the new base is going well. I recently set up batteries and circuits, and started making glass before realising the research for that is still a while away. I almost forgot to make way for the train line to continue further north; I had to move around some buildings after realising. The train lines are being less useful than I thought they would be. I guess the tradeoff is that this base will be quite hard to expand from when Py2 science comes.<br>
@@ -79,7 +84,7 @@
                     The old base is hanging on; coal is running out, so I might run a belt from the new coal patch. If it lasts long enough I might not have to.
                 </p>
             </div>
-            <div class="box1" index="1" date="2025-01-01" style="display: none;">
+            <div class="box1" index="1" date="2025-01-01" playtime="120:XX:XX">
                 <img src="assets/pyanodons/2025-01-01.png" class="baseimg">
                 <p>
                     Haven't played in a while due to a. specific other project., but I <span class="strikethrough">got distracted by</span> found time for this again, today.<br>
@@ -91,15 +96,18 @@
                     Also, arrow keys work! Isn't that nice.
                 </p>
             </div>
-            <div class="box1" index="2" date="2025-01-03">
-                <div class="box2 flex-space-between buttons">
-                    <a class="button goback" onclick="goBack('pyanodons')"><i class="fas fa-angle-double-left"></i></a>
-                    <h3 class="date">2025-01-03</h3>
-                    <a class="button goforward" onclick="goForward('pyanodons')" style="visibility: hidden;"><i class="fas fa-angle-double-right"></i></a>
-                </div>
+            <div class="box1" index="2" date="2025-01-03" playtime="127:XX:XX">
                 <img src="assets/pyanodons/2025-01-03.png" class="baseimg">
                 <p>
                     Just some small things. That project is still killing me. Slowly progressing towards making science from the new base. Planning on using the second seaweed recipe but it isn't researched yet.
+                </p>
+            </div>
+            <div class="box1" index="3" date="2025-01-08" playtime="137:20:28">
+                <img src="assets/pyanodons/2025-01-08.png" class="baseimg">
+                <p>
+                    Hello again. There's automation science and py1 -- except for the rubber. That's still two hours of research away. I've managed to get research to hover relatively stably around 5.5/min. This is kind of silly; I have no idea how I waited through all this last time, though I suppose a 300h playtime doesn't come from nowhere.<br>
+                    Speaking of, I added a playtime count; it seemed useful. Really should've added it earlier; as it is now I'm just approximating from the production statistics.
+                    I've also made js do the entries setup so I don't have to type in the same thing twice. Automation!
                 </p>
             </div>
         </div>

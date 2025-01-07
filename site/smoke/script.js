@@ -1,6 +1,14 @@
-var indexes = {pyanodons: 2}
-var maxIndexes = {pyanodons: 2}
+var indexes = {pyanodons: 3}
+var maxIndexes = {pyanodons: 3}
 var focused = "pyanodons"
+
+document.addEventListener("DOMContentLoaded", function(){
+    for (var index in indexes) {
+        if (Object.prototype.hasOwnProperty.call(indexes, index)) {
+            changeIndex(index)
+        }
+    }
+});
 
 function goBack(id){
     if (indexes[id] > 0) {
@@ -22,8 +30,9 @@ function changeIndex(id){
     entries.forEach(entry=>{
         entry.style.display = (entry.getAttribute("index") == indexes[id]) ? 'block' : 'none'
         if (entry.getAttribute("index") == indexes[id]){
-            entry.insertBefore(document.querySelector(`#${id} .buttons`), entry.querySelector(".baseimg"))
+            entry.insertBefore(document.querySelector(`#${id} .header`), entry.querySelector(".baseimg"))
             entry.querySelector(".date").textContent = entry.getAttribute("date")
+            entry.querySelector(".playtime").textContent = entry.getAttribute("playtime")
         }
     })
     document.querySelector(`#${id} .goback`).style.visibility = (indexes[id] <= 0) ? 'hidden' : 'visible'
