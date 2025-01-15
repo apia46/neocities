@@ -90,8 +90,8 @@ body {
         animation: float 5s 1s alternate infinite ease-in-out;
         transform: translateY(-5px);
         img {
-            width: 41px;
-            height: 41px;
+            width: 60px;
+            height: 60px;
         }
         #contact {
             position: absolute;
@@ -99,7 +99,7 @@ body {
             bottom: -30px;
             width: 92px;
             height: 28px;
-            left: calc(2.5vw - 46px);
+            left: -16px;
             background-color: #181a23;
             margin-inline: auto;
             transform: translateY(-5px);
