@@ -44,6 +44,25 @@ body {
     top: -33%
 }
 
+.analysis {
+    margin: 10vh 0 20vh 0;
+    text-align: center;
+    position: relative;
+    a {
+        margin-left: 5vw;
+        img {
+            animation: BUDDYBOUNCE-Y 7s ease-in-out infinite alternate;
+            width: 600px;
+            height: 400px;
+        }
+    }
+}
+
+.analysis:hover .desc {
+    opacity: 1;
+    top: -33%
+}
+
 .desc {
     opacity: 0;
     transition: 1s;
@@ -55,13 +74,16 @@ body {
     display: inline-block;
     position: relative;
     font-family: spacemono;
-    font-size: 9px;
+    font-size: 12px;
     padding: 9px 6px;
-    width: 300px;
+    width: 460px;
+    span {
+        color: #ffffff;
+    }
     img {
         border: 1px solid;
-        width: 42px;
-        height: 42px;
+        width: 56px;
+        height: 56px;
         margin-right: 6px;
         float: left;
         background-color: black;
