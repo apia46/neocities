@@ -77,9 +77,7 @@ body {
     font-size: 12px;
     padding: 9px 6px;
     width: 460px;
-    span {
-        color: #ffffff;
-    }
+    line-height: 1.25em;
     img {
         border: 1px solid;
         width: 56px;
@@ -100,4 +98,51 @@ body {
         white-space: nowrap;
         letter-spacing: normal;
     }
+}
+
+.magenta {
+    color: #ff00ff
+}
+.white {
+    color: #ffffff
+}
+
+/* tjamks corru*/
+/* definition box */
+#definition-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    max-width: 45vw;
+    z-index: 10000;
+    transform: 
+        translate(
+            calc(  (var(--x) * 1px)   +   ((var(--xFlip) * (100% + 2em)) + 1em)  ), 
+            calc(  (var(--y) * 1px)   +   ((var(--yFlip) * (100% + 2em)) + 1em)  )
+        );
+    pointer-events: none;
+    transition: opacity 400ms ease-in-out, transform 50ms linear;
+    background: #000000;
+    color: #ffffff;
+    padding: 0.63rem;
+    font-family: spacemono;
+    font-size: 0.75rem;
+    border: 1px dashed;
+    line-height: 1.2em;
+}
+
+#definition-box.slow {
+    transition: opacity 400ms ease-in-out, transform 250ms linear;
+}
+
+#definition-box:not(.active) {
+    opacity: 0;
+}
+
+span[definition] {
+    display: inline-block;
+    border-bottom: 1px dashed #ffffff;
+    padding-bottom: 2px;
+    margin-bottom: -2px;
+    cursor: alias;
 }

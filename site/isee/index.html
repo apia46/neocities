@@ -17,8 +17,8 @@
                 <img src="assets/reader.gif">
                 <h2>!!__READER__!!</h2>
                 ::CONNECTOR THOUGHTFORM<br>
-                ::DESTINATION::<span>'low dimensional thoughtspace';'external'</span><br>
-                ::INHERITED CONTEXT::<span style="color: #ff00ff;">'recollection storage';'reminder of past events'</span>
+                ::DESTINATION::<span class="white">'low dimensional thoughtspace';'external'</span><br>
+                ::INHERITED CONTEXT::<span class="magenta">'recollection storage';'reminder of past events'</span>
             </div>
         </div>
         <div class="analysis">
@@ -26,9 +26,37 @@
                 <img src="assets/analysis.gif">
                 <h2>!!__ANALYSIS__!!</h2>
                 ::EXPERIENTIAL THOUGHTFORM<br>
-                ::ALERT::<span>'contiguous stream';'external'</span><br>
-                ::INHERITED CONTEXT::<span style="color: #ff00ff;">'memory interpretation';'pieces of the future'</span>
+                ::ALERT::<span class="white">'contiguous stream';'external'</span><br>
+                ::INHERITED CONTEXT::<span class="magenta">'memory interpretation';'<span class="magenta" definition="INHERITED CONTEXT::'game elements';'partial meaning loss due to overlapping contexts'">pieces</span> of the future';'how little we knew'</span>
             </div>
             <a href="https://youtu.be/M7asR6d76ec"><img src="assets/gameboard.png"></a>
         </div>
+        <script> //thanks corru
+            //definition/tooltip hovering
+            var corru = { cursor: {} }
+            document.body.insertAdjacentHTML('beforeend', '<div id="definition-box"></div>')
+            setInterval(()=>{
+                try { 
+                    corru.hovering = document.elementFromPoint(corru.cursor.x, corru.cursor.y)
+                    corru.defbox = document.getElementById('definition-box')
+        
+                    if(corru.hovering.hasAttribute('definition')) {
+                        corru.defbox.style.setProperty("--x", corru.cursor.x)
+                        corru.defbox.style.setProperty("--y", corru.cursor.y)
+        
+                        if(corru.cursor.x < (window.innerWidth / 2)) corru.defbox.style.setProperty("--xFlip", 0); else corru.defbox.style.setProperty("--xFlip", -1)
+                        if(corru.cursor.y < (window.innerHeight / 2)) corru.defbox.style.setProperty("--yFlip", 0); else corru.defbox.style.setProperty("--yFlip", -1)
+        
+                        corru.defbox.classList.add('active')
+        
+                        corru.defbox.innerText = corru.hovering.getAttribute('definition')
+                    } else {
+                        corru.defbox.classList.remove('active')
+                    }
+                } catch(e) {/* don't care */}
+            }, 200)
+        
+            window.addEventListener('mousemove', e=> corru.cursor = { x: e.clientX, y: e.clientY })
+        </script>
     </body>
+</html>
