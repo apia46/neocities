@@ -1,5 +1,5 @@
-var indexes = {pyanodons: 4}
-var maxIndexes = {pyanodons: 4}
+var indexes = {pyanodons: 5}
+var maxIndexes = {pyanodons: 5}
 var focused = "pyanodons"
 
 document.addEventListener("DOMContentLoaded", function(){
