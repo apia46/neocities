@@ -126,6 +126,16 @@ body {
             height: 48px;
         }
     }
+    #spikes {
+        z-index: 1;
+        position: absolute;
+        left: 23vw;
+        bottom: 30vw;
+        img {
+            width: 48px;
+            height: 16px;
+        }
+    }
     #forest {
         pointer-events: none;
         position: absolute;
