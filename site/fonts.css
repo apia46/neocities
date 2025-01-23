@@ -81,3 +81,11 @@
 * Copyright 2024 Fonticons, Inc.
 */
 :host,:root{--fa-style-family-classic:"Font Awesome 6 Free";--fa-font-solid:normal 900 1em/1 "Font Awesome 6 Free"}@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;font-display:block;src:url(assets/fonts/fa-solid-900.woff2) format("woff2"),url(assets/fonts/fa-solid-900.ttf) format("truetype")}.fa-solid,.fas{font-weight:900}
+
+@font-face {
+    font-family: 'lato';
+    src: url('assets/fonts/Lato-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.lato { font-family: lato, sans-serif }

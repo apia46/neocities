@@ -1,0 +1,59 @@
+body {
+    background: #000000;
+    color: #ffffff;
+    font-family: lato;
+    text-align: center;
+    margin: 0;
+}
+h1 {
+    margin: 10vh 0 25px 0;
+    font-size: 50px;
+}
+.video {
+    margin: 10vh 0 30vh 0;
+    height: 20vw;
+    .overlay {
+        width: 80vw;
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+        text-shadow: 0px 2px 4px #000000;
+        p {
+            pointer-events: all;
+            font-size: 25px;
+            margin-top: 8px;
+            color: #bbbbbb
+        }
+        a {
+            font-size: 18px;
+        }
+    }
+    .holder {
+        height: 20vw;
+        transition: 0.5s;
+        overflow: hidden;
+        position: relative;
+        video {
+            transition: 0.5s;
+            position: relative;
+            top: -18.125vw;
+            width: 100vw;
+        }
+    }
+}
+.smaller {
+    margin: 12.5vh 0 32.5vh 0;
+    height: 15vw;
+    video {
+        top: -20.625vw;
+    }
+}
+.video:hover .holder {
+    transform: scale(1.2);
+    video {
+        filter: blur(4px);
+    }
+}
