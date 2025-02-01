@@ -27,7 +27,7 @@
                 <h2>!!__ANALYSIS__!!</h2>
                 ::EXPERIENTIAL THOUGHTFORM<br>
                 ::ALERT::<span class="white">'contiguous stream';'external'</span><br>
-                ::INHERITED CONTEXT::<span class="magenta">'memory interpretation';'<span class="magenta" definition="INHERITED CONTEXT::'game elements';'partial meaning loss due to overlapping contexts'">pieces</span> of the future';'how little we knew'</span>
+                ::INHERITED CONTEXT::<span class="magenta">'memory interpretation';'<span class="magenta" definition="INHERITED CONTEXT::'game elements';'partial meaning loss due to overlapping contexts'">pieces</span> of the future';'how little <span id="secret">we</span> knew'</span>
             </div>
             <a href="https://youtu.be/M7asR6d76ec"><img src="assets/gameboard.png"></a>
         </div>
@@ -57,6 +57,24 @@
             }, 200)
         
             window.addEventListener('mousemove', e=> corru.cursor = { x: e.clientX, y: e.clientY })
+        </script>
+        <script>
+            if(localStorage.getItem('secret2')) {
+                document.querySelector('#secret').classList.add('revealed')
+                document.querySelector('#secret').style.setProperty('background', ['#6b3fbd', '#347dde', '#31c69e', '#111111'][Number(localStorage.getItem('secret2'))])
+            } else {
+                var secretaudio = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/glitch.wav')
+                var secretaudio2 = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_creepyjingle.wav')
+                document.querySelector('#secret').addEventListener("click", function secret(){
+                    localStorage.setItem('secret2', localStorage.getItem('secret') || 0)
+                    localStorage.setItem('secret', Number(localStorage.getItem('secret') || 0) + 1)
+                    document.querySelector('#secret').classList.add('revealed')
+                    document.querySelector('#secret').style.setProperty('background', ['#6b3fbd', '#347dde', '#31c69e', '#111111'][Number(localStorage.getItem('secret2'))])
+                    document.querySelector('#secret').removeEventListener("click", secret)
+                    secretaudio.play()
+                    if (Number(localStorage.getItem('secret') || 0) == 4) { secretaudio2.play() }
+                })
+           }
         </script>
     </body>
 </html>

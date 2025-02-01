@@ -2,12 +2,12 @@ var scrollRange = 0
 var grad1 = new Color("#181a23").range("red", {space: "lch"})
 var grad2 = new Color("red").range("black")
 var redposition = 0
-$(()=>{
+window.onload = ()=>{
     eyeAnim()
-    $(window).scroll()
-})
+    scroll()
+}
 
-$(window).scroll(()=>{
+window.addEventListener('scroll', function scroll(){
     let scrollTop = document.getElementById("scroll").getBoundingClientRect().top + window.scrollY
     let scrollHeight = document.getElementById("scroll").offsetHeight-window.innerHeight
     scrollRange = Math.max(0, Math.min(1, (window.scrollY-scrollTop)/scrollHeight))

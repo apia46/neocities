@@ -1,11 +1,11 @@
 // https://www.youtube.com/watch?v=L1eu737bu70
 
-document.addEventListener("DOMContentLoaded", function(){
+window.onload = ()=>{
     scrollingVideo(document.querySelector('#slopeyslopes'))
     scrollingVideo(document.querySelector('#thechallenge'))
     scrollingVideo(document.querySelector('#thirtyfour'))
     scrollingVideo(document.querySelector('#thirtyfive'))
-});
+};
 
 function scrollingVideo(section) {
     var video = section.querySelector('video');

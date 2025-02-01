@@ -124,7 +124,7 @@ body {
             margin: 0 0 8.5vw 0;
           }
           p {
-            width: 29vw;
+            width: 28vw;
           }
           #skull {
             position: relative;
@@ -140,4 +140,26 @@ body {
     -webkit-user-select: none;
     user-select: none;
   }
+}
+@keyframes SECRET {
+  0% { text-shadow: 1px 2px #ff0000, -2px 0px #00ffff; }
+  19% { text-shadow: 1px 2px #ff0000, -2px 0px #00ffff; }
+  20% { text-shadow: 1px 0px #ff0000, 1px 2px #00ffff; }
+  66% { text-shadow: 1px 0px #ff0000, 1px 2px #00ffff; }
+  67% { text-shadow: 2px -1px #ff0000, -1px -1px #00ffff; }
+  100% { text-shadow: 2px -1px #ff0000, -1px -1px #00ffff; }
+}
+@keyframes SECRET2 {
+  0% { left: 1px; top: 2px; }
+  29% { left: 1px; top: 2px; }
+  30% { left: -1px; top: 2px; }
+  100% { left: -1px; top: 2px; }
+}
+#secret {
+  cursor: pointer;
+  position: relative;
+}
+#secret.revealed {
+  animation: SECRET 0.15s 1, SECRET2 0.2s 1;
+  cursor: default;
 }

@@ -9,29 +9,50 @@
         <link rel="icon" type="image/png" href="/assets/icon.png">
         <script src="index.js"></script>
     </head>
-    <div id="parallax">
-        <div id="bg0" class="parallax"></div>
-        <div id="bg1" class="parallax"></div>
-        <div id="fx0" class="parallax"></div>
-        <div id="bg2" class="parallax"></div>
-        <div id="fx1" class="parallax"></div>
-        <div id="body" class="parallax">
-            <div class="panel unselectable">
-                <img class="unselectable" src="assets/reflectionpanel1.png">
-                <div class="content">
-                    <h1>Starfruit Supernova</h1>
-                    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/9fYTK8vREig" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <p>This is probably the hardest celeste thing i will do for a while. This made me stop playing celeste for months</p>
-                    <p>Would recommend, we thought flags<br>4, 2, and 1 were really fun</p>
-                    <p>It's kind of a shame how short 7↓'s flag was</p>
-                    <p><img id="skull" src="assets/4-Expert.png"> x 11472</p>
+    <body>
+        <div id="parallax">
+            <div id="bg0" class="parallax"></div>
+            <div id="bg1" class="parallax"></div>
+            <div id="fx0" class="parallax"></div>
+            <div id="bg2" class="parallax"></div>
+            <div id="fx1" class="parallax"></div>
+            <div id="body" class="parallax">
+                <div class="panel unselectable">
+                    <img class="unselectable" src="assets/reflectionpanel1.png">
+                    <div class="content">
+                        <h1>Starfruit Supernova</h1>
+                        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/9fYTK8vREig" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <p>This is probably the hardest celeste thing <o>i</o> will do for a while. This made <o>me</o> stop playing celeste for months</p>
+                        <p>Would recommend, <span id="secret">we</span> thought flags<br>4, 2, and 1 were really fun</p>
+                        <p>It's kind of a shame how short 7↓'s flag was</p>
+                        <p><img id="skull" src="assets/4-Expert.png"> x 11472</p>
+                    </div>
+                </div>
+                <div class="panel unselectable">
+                    <img class="unselectable" src="assets/reflectionpanel0.png">
                 </div>
             </div>
-            <div class="panel unselectable">
-                <img class="unselectable" src="assets/reflectionpanel0.png">
-            </div>
+            <div id="darkswamp" class="parallax"></div>
         </div>
-        <div id="darkswamp" class="parallax"></div>
-    </div>
-    <div id="vignette" class="overlay"></div>
+        <div id="vignette" class="overlay"></div>
+        <script>
+            if(localStorage.getItem('secret4')) {
+                document.querySelector('#secret').classList.add('revealed')
+                document.querySelector('#secret').style.setProperty('background', ['#6b3fbd', '#347dde', '#31c69e', '#111111'][Number(localStorage.getItem('secret4'))])
+            } else {
+                var secretaudio = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/glitch.wav')
+                var secretaudio2 = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_creepyjingle.wav')
+                document.querySelector('#secret').addEventListener("click", function secret(){
+                    localStorage.setItem('secret4', localStorage.getItem('secret') || 0)
+                    localStorage.setItem('secret', Number(localStorage.getItem('secret') || 0) + 1)
+                    document.querySelector('#secret').classList.add('revealed')
+                    document.querySelector('#secret').style.setProperty('background', ['#6b3fbd', '#347dde', '#31c69e', '#111111'][Number(localStorage.getItem('secret4'))])
+                    document.querySelector('#secret').removeEventListener("click", secret)
+                    secretaudio.play()
+                    if (Number(localStorage.getItem('secret') || 0) == 4) { secretaudio2.play() }
+                })
+           }
+        </script>
+        <script src="/secret.js"></script>
+    </body>
 </html>

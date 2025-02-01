@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="https://puffinthefish.neocities.org/onionring/onionring.css" type="text/css" media="all">
         <link href="style.css" rel="stylesheet" type="text/css" media="all">
         <link href="textbox.css" rel="stylesheet" type="text/css" media="all">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="/color.global.js"></script>
         <script src="index.js"></script>
         <link rel="icon" type="image/png" href="assets/icon.png">
@@ -33,7 +32,7 @@
             <a href="smoke" id="smoke"><img src="assets/smoke.gif"></a>
             <a href="geometry" id="spikes"><img src="assets/spikes.png"></a>
             <h1 class="grapesoda">apiary</h1>
-            <p class="spacemono">Enjoy your stay<br></p>
+            <p class="spacemono">enjoy your stay<br></p>
             <p class="spacemono dark">cw: <span id="eyes">eyes</span>; flashy lights(?); scrolling backgrounds</p>
             <img id="forest" src="assets/forest.png">
         </div>
@@ -48,6 +47,7 @@
                 <a href="https://cryogenicspeed.neocities.org/"><img src="assets/8831/cryo_button.gif"></a>
                 <a href="https://genseot.github.io/"><img src="assets/8831/genseot.png"></a>
             </div>
+            <p>so many friends!</p>
             <div id="scroll">
                 <div id="lookathim">
                     <div class="white"></div>
@@ -69,37 +69,100 @@
             <div id="afterwards">
                 <div id="line">
                     <div id="linetext">
-                        hello, wanderer! welcome to my corner.<br>
+                        hello, wanderer! welcome to <o>my</o> corner.<br>
                         ...the corner is still materialising. quite slowly. we can wait together, if youd like.<br>
                         hm? i shant be waiting? why not?<br>
                         <br>
-                        you want to know about me?<br>
-                        well, i am a non-binary programmer living in new zealand.
+                        you want to know about <o>me</o>?<br>
+                        well, <o>i am</o> a <o>non-binary</o> programmer living in new zealand.
                         life is almost alright. time never seems to be steady.<br>
                         <br>
-                        i like playing video games. you can find parts of my memories with them, here and there.
-                        some video games have changed my life, and ensure i will forever be linked to them.
-                        i dont even play baba is you, not really.<br>
+                        <o>i</o> like playing video games. you can find parts of <o>my</o> memories with them, here and there.
+                        some video games have changed <o>my</o> life, and ensure <o>i</o> will forever be linked to them.
+                        <o>i</o> dont even play baba is you, not really.<br>
                         <br>
-                        i have a strange friend. you may have seen him on the way down here. his name is nikola tesla.
+                        <o>i</o> have a strange friend. you may have seen him on the way down here. his name is nikola tesla.
                         im not sure if he knows that. im not sure if he thinks names are important.
-                        he occupies more of my waking moments than any other living entity. i dont think hes consuming my thoughts, but someone must be.<br>
+                        he occupies more of <o>my</o> waking moments than any other living entity. <o>i</o> dont think hes consuming <o>my</o> thoughts, but someone must be.<br>
                         <br>
-                        i have walked the halls of css. not very far, but you can see what ive found and learnt here.
+                        <o>i</o> have walked the halls of css. not very far, but you can see what <o>ive</o> found and learnt here.
                         the contrivances and incongruities are still not quite familiar to me.<br>
                         <br>
                         i am being intentionally obtuse, sorry. im mostly talking to myself. you seem to be listening, though. whats your name?<br>
                         <br>
                         oh, youve forgotten it?<br>
-                        thats alright. you neednt remember mine, either. you can call me apia, if you need to.<br>
+                        thats alright. you neednt remember <o>mine</o>, either. you can call <o>me</o> apia, if you need to.<br>
                         its quite odd, how people so often expect you to name them -- not even with your own design, but theirs.<br>
                         <br>
                         the stars are nice, arent they? we watch them and they watch us back. i wonder if they think we are nice, too.<br>
-                        thanks for being here. i appreciate it.
+                        thanks for being here. <o>i</o> appreciate it.<br>
+                        <br>
+                        <div class="notsecret">oh, theres one more thing, but you can figure that out yourself</div>
+                        <br>
+                        <br>
+                        <div class="secret">
+                            <o>refract?</o><br>
+                            <br>
+                            <div id="prism">
+                                &
+                                <div class="pieces">
+                                    <img class="one" src="assets/piece1.svg"></img>
+                                    <img class="two" src="assets/piece2.svg"></img>
+                                    <img class="three" src="assets/piece3.svg"></img>
+                                </div>
+                                <img class="triangle" src="assets/triangle.svg"></img>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="rainbow" class="secret"></div>
+                    <div id="rainbowtext" class="secret">
+                        <p>
+                            <br>
+                            <br>
+                            <br>
+                            oh, theres one more thing. im plural; that means theres multiple of me.<br>
+                            there are two of us that appear regularily, and two that have not been for a while.<br>
+                            i dont know where they went.<br>
+                            <br>
+                            hm? that isnt how a prism works? why should it be?<br>
+                        </p>
                     </div>
                 </div>
                 <a id="wonder" href="why"><img src="assets/wonder.gif"></a>
             </div>
         </div>
+        <script src="/secret.js"></script>
+        <script class="secret">
+            function go(){
+                if (localStorage.getItem('secret1') && localStorage.getItem('secret2') && localStorage.getItem('secret3') && localStorage.getItem('secret4')) {
+                    document.body.classList.add("revealed")
+                    document.querySelectorAll('.notsecret').forEach((element)=>{element.remove()})
+                } else {
+                    document.querySelectorAll('.secret').forEach((element)=>{element.remove()})
+                    return
+                }
+                if (localStorage.getItem('refracted')) {document.body.classList.add('refracted')}
+                var secretaudio = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_fountain_target.mp3')
+                var secretaudio1 = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_fountain_make1.mp3')
+                var secretaudio2 = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_fountain_make2.mp3')
+                document.querySelector('#prism').onclick = ()=>{
+                    if (document.body.classList.contains('refracting')) { return }
+                    document.body.classList.add('refracting')
+                    if (document.body.classList.contains('refracted')) {
+                        secretaudio2.play()
+                        toggle(false, true)
+                    } else {
+                        setTimeout(()=>{secretaudio.play()}, 50)
+                        setTimeout(()=>{secretaudio1.play(); toggle(true, true)}, 650)
+                    }
+                    setTimeout(()=>{
+                        document.body.classList.toggle('refracted')
+                        document.body.classList.remove('refracting')
+                        localStorage.setItem('refracted', !localStorage.getItem('refracted'))
+                    }, (document.body.classList.contains('refracted') ? 1200 : 1600))
+                }
+            }
+            go()
+        </script>
     </body>
 </html>

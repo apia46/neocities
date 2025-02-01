@@ -257,17 +257,15 @@ body {
         position: relative;
         font-size: large;
         #line {
-            height: 500vh;
             position: absolute;
             top: 0;
             padding-top: 90vw;
-            left: calc(50vw - 50px);
-            -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+            left: calc(44.55vw - 50px);
             width: 10.9vw;
             background: #ffffff;
             #linetext {
-                position: absolute;
+                z-index: 1;
+                position: relative;
                 width: calc(60vw - 100px);
                 left: calc(-24.55vw + 50px);
                 mix-blend-mode: difference;
@@ -276,10 +274,196 @@ body {
         #wonder {
             position: absolute;
             right: 0;
-            top: 125vw;
+            top: 1500px;
             img {
                 width: 25vw;
             }
         }
     }
+}
+.secret {
+    visibility: hidden;
+    #prism {
+        display: inline-block;
+        margin-top: 40px;
+        font-family: lato;
+        font-size: 2.34100663vw;
+        position: relative;
+        cursor: pointer;
+        .pieces {
+            position: absolute;
+            width: 5.25296137vw;
+            height: 4.54935622vw;
+            mix-blend-mode: difference;
+            left: calc(50% - 2.62648069vw);
+            top: calc(50% - 2.80920796vw);
+            transition: 0.6s cubic-bezier(0.37, 0, 0.63, 1);
+            img {
+                filter: contrast(0%) brightness(200%);
+                position: absolute;
+                left: 0;
+                width: 5.25296137vw;
+                height: 4.54935622vw;
+                transition: 0.5s, filter 0s;
+                opacity: 0;
+            }
+            .one {
+                transition-delay: 0s;
+                transform: translate(0vw, -0.780335544vw);
+                animation: pulse1 linear 1s 1;
+            }
+            .two {
+                transition-delay: 0.15s;
+                transform: translate(-0.675790405vw, 0.390167772vw);
+                animation: pulse2 linear 1s 1;
+            }
+            .three {
+                transition-delay: 0.3s;
+                transform: translate(0.675790405vw, 0.390167772vw);
+                animation: pulse3 linear 1s 1;
+            }
+        }
+        .triangle {
+            position: absolute;
+            width: 5.25296137vw;
+            height: 4.54935622vw;
+            left: calc(50% - 2.62648069vw);
+            top: calc(50% - 2.80920796vw);
+            mix-blend-mode: difference;
+            opacity: 0;
+            scale: 0.9;
+            transition: 0.5s, rotate 0s;
+            transition-delay: 0.6s;
+            rotate: 360deg;
+        }
+    }
+    #prism:hover {
+        .pieces img {
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+body.revealed .secret {
+    visibility: visible;
+}
+body.refracting:not(.refracted), body.refracted:not(.refracting) {
+    #prism {
+        .pieces {
+            top: calc(50% + 0.468201327vw);
+            scale: 4;
+            rotate: 180deg;
+            img {
+                opacity: 1;
+                transform: none !important;
+            }
+        }
+        .triangle {
+            top: calc(50% + 0.312134218vw);
+            opacity: 1;
+            scale: 3.6;
+            rotate: 180deg;
+        }
+    }
+    #rainbow {
+        filter: none;
+        background-image: url('assets/rainbow.png');
+        --width: 100vw;
+        transition: 0.5s;
+        transition-delay: 0.7s;
+    }
+    #rainbowtext {
+        filter: none;
+        height: 400px;
+        transition: 0s, height 0.5s;
+        transition-delay: 1s;
+    }
+}
+body.refracted:not(.refracting) {
+    #prism .pieces {
+        transition: none;
+        rotate: -180deg !important;
+    }
+}
+body:not(.refracting), body.refracted {
+    #prism {
+        .pieces img {
+            animation: none !important;
+        }
+        .triangle {
+            transition: 0.6s cubic-bezier(0.37, 0, 0.63, 1) !important;
+            transition-delay: 0s;
+        }
+    }
+}
+@keyframes pulse1 {
+    0% {filter: none}
+    14.9999% {filter: none}
+    15% {filter: contrast(0%) brightness(200%)}
+    29.9999% {filter: contrast(0%) brightness(200%)}
+    30% {filter: none}
+    59.9999% {filter: none}
+    60% {filter: contrast(0%) brightness(200%)}
+}
+@keyframes pulse2 {
+    0% {filter: contrast(0%) brightness(200%)}
+    7.5% {filter: none}
+    22.4999% {filter: none}
+    22.5% {filter: contrast(0%) brightness(200%)}
+    37.4999% {filter: contrast(0%) brightness(200%)}
+    37.5% {filter: none}
+    59.9999% {filter: none}
+    60% {filter: contrast(0%) brightness(200%)}
+}
+@keyframes pulse3 {
+    0% {filter: contrast(0%) brightness(200%)}
+    15% {filter: none}
+    29.9999% {filter: none}
+    30% {filter: contrast(0%) brightness(200%)}
+    44.9999% {filter: contrast(0%) brightness(200%)}
+    45% {filter: none}
+    59.9999% {filter: none}
+    60% {filter: contrast(0%) brightness(200%)}
+}
+#rainbow {
+    box-sizing: border-box;
+    position: absolute;
+    background: #ffffff;
+    left: calc(var(--width) / -2 + 5.45vw);
+    --width: 10.9vw;
+    width: var(--width);
+    height: 30vw;
+    border-bottom: 30vw solid transparent;
+    border-left: calc(var(--width) / 2 - 5.45vw) solid #000000;
+    border-right: calc(var(--width) / 2 - 5.45vw) solid #000000;
+    transition: 0.2s;
+    transition-delay: 0.1s;
+    filter: saturate(0%) brightness(2500%);
+    background-size: var(--width) 30vw;
+    background-position-x: calc(var(--width) / -2 + 5.45vw);
+}
+#rainbowtext {
+    position: absolute;
+    background: url('assets/rainbowline.png');
+    background-size: 100vw;
+    left: -44.55vw;
+    transform: translateY(29.98vw);
+    width: 100vw;
+    height: 0;
+    overflow-y: hidden;
+    transition: 0s, height 0.1s;
+    filter: saturate(0%) brightness(3000%);
+    color: #000000;
+}
+@keyframes pulsetext {
+    0% {background: #ffffff; color: #000000;}
+}
+@keyframes pulsetext2 {
+    0% {background: #ffffff; color: #000000;}
+}
+body.revealed.refracted.refracting o:not(.switched) {
+    animation: pulsetext 0.5s linear 1;
+}
+body.revealed o.switched {
+    animation: pulsetext2 0.5s linear 1;
 }
