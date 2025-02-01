@@ -31,21 +31,21 @@
         </div></div>
         <script>
             if(localStorage.getItem('secret1')) {
-                document.querySelector('#secret').classList.add('revealed')
-                document.querySelector('#secret').style.setProperty('background', ['#6b3fbd', '#347dde', '#31c69e', '#111111'][Number(localStorage.getItem('secret1'))])
+                document.querySelector('#secret').classList.add('revealed');
+                document.querySelector('#secret').style.setProperty('background', ['#6b3fbd', '#347dde', '#31c69e', '#111111'][Number(localStorage.getItem('secret1'))]);
             } else {
-                var secretaudio = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/glitch.wav')
-                var secretaudio2 = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_creepyjingle.wav')
+                var secretaudio = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/glitch.wav');
+                var secretaudio2 = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_creepyjingle.wav');
                 document.querySelector('#secret').addEventListener("click", function secret(){
-                    localStorage.setItem('secret1', localStorage.getItem('secret') || 0)
-                    localStorage.setItem('secret', Number(localStorage.getItem('secret') || 0) + 1)
-                    document.querySelector('#secret').classList.add('revealed')
-                    document.querySelector('#secret').style.setProperty('background', ['#6b3fbd', '#347dde', '#31c69e', '#111111'][Number(localStorage.getItem('secret1'))])
-                    document.querySelector('#secret').removeEventListener("click", secret)
-                    secretaudio.play()
-                    if (Number(localStorage.getItem('secret') || 0) == 4) { secretaudio2.play() }
-                })
-           }
+                    localStorage.setItem('secret1', localStorage.getItem('secret') || 0);
+                    localStorage.setItem('secret', Number(localStorage.getItem('secret') || 0) + 1);
+                    document.querySelector('#secret').classList.add('revealed');
+                    document.querySelector('#secret').style.setProperty('background', ['#6b3fbd', '#347dde', '#31c69e', '#111111'][Number(localStorage.getItem('secret1'))]);
+                    document.querySelector('#secret').removeEventListener("click", secret);
+                    secretaudio.play();
+                    if (Number(localStorage.getItem('secret') || 0) == 4) { secretaudio2.play() };
+                });
+           };
         </script>
         <script src="/secret.js"></script>
     </body>

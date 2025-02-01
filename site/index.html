@@ -15,7 +15,7 @@
     <body>
         <div id='dull-contrivance'>
             <script type="text/javascript" src="https://puffinthefish.neocities.org/onionring/onionring-variables.js"></script>
-            <script>sites.push('http://127.0.0.1:5500/')</script>
+            <script>sites.push('http://127.0.0.1:5500/');</script>
             <script type="text/javascript" src="https://puffinthefish.neocities.org/onionring/onionring-widget.js"></script>
         </div>
         <div id="header">
@@ -135,34 +135,34 @@
         <script class="secret">
             function go(){
                 if (localStorage.getItem('secret1') && localStorage.getItem('secret2') && localStorage.getItem('secret3') && localStorage.getItem('secret4')) {
-                    document.body.classList.add("revealed")
-                    document.querySelectorAll('.notsecret').forEach((element)=>{element.remove()})
+                    document.body.classList.add("revealed");
+                    document.querySelectorAll('.notsecret').forEach((element)=>{element.remove()});
                 } else {
-                    document.querySelectorAll('.secret').forEach((element)=>{element.remove()})
-                    return
+                    document.querySelectorAll('.secret').forEach((element)=>{element.remove()});
+                    return;
                 }
-                if (localStorage.getItem('refracted')) {document.body.classList.add('refracted')}
-                var secretaudio = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_fountain_target.mp3')
-                var secretaudio1 = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_fountain_make1.mp3')
-                var secretaudio2 = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_fountain_make2.mp3')
+                if (localStorage.getItem('refracted')) {document.body.classList.add('refracted')};
+                var secretaudio = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_fountain_target.mp3');
+                var secretaudio1 = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_fountain_make1.mp3');
+                var secretaudio2 = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_fountain_make2.mp3');
                 document.querySelector('#prism').onclick = ()=>{
-                    if (document.body.classList.contains('refracting')) { return }
-                    document.body.classList.add('refracting')
+                    if (document.body.classList.contains('refracting')) { return };
+                    document.body.classList.add('refracting');
                     if (document.body.classList.contains('refracted')) {
-                        secretaudio2.play()
-                        toggle(false, true)
+                        secretaudio2.play();
+                        toggle(false, true);
                     } else {
-                        setTimeout(()=>{secretaudio.play()}, 50)
-                        setTimeout(()=>{secretaudio1.play(); toggle(true, true)}, 650)
+                        setTimeout(()=>{secretaudio.play()}, 50);
+                        setTimeout(()=>{secretaudio1.play(); toggle(true, true)}, 650);
                     }
                     setTimeout(()=>{
-                        document.body.classList.toggle('refracted')
-                        document.body.classList.remove('refracting')
-                        localStorage.setItem('refracted', !localStorage.getItem('refracted'))
-                    }, (document.body.classList.contains('refracted') ? 1200 : 1600))
-                }
-            }
-            go()
+                        document.body.classList.toggle('refracted');
+                        document.body.classList.remove('refracting');
+                        localStorage.setItem('refracted', !localStorage.getItem('refracted'));
+                    }, (document.body.classList.contains('refracted') ? 1200 : 1600));
+                };
+            };
+            go();
         </script>
     </body>
 </html>
