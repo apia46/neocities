@@ -438,7 +438,7 @@ body:not(.refracting), body.refracted {
     border-right: calc(var(--width) / 2 - 5.45vw) solid #000000;
     transition: 0.2s;
     transition-delay: 0.1s;
-    filter: saturate(0%) brightness(2500%);
+    filter: saturate(0%) brightness(2700%);
     background-size: var(--width) 30vw;
     background-position-x: calc(var(--width) / -2 + 5.45vw);
 }
@@ -452,7 +452,7 @@ body:not(.refracting), body.refracted {
     height: 0;
     overflow-y: hidden;
     transition: 0s, height 0.1s;
-    filter: saturate(0%) brightness(3000%);
+    filter: saturate(0%) brightness(2700%);
     color: #000000;
 }
 @keyframes pulsetext {
