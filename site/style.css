@@ -27,6 +27,7 @@ body {
     image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
     -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
     margin: 0;
+    overflow-x: hidden;
 }
 
 #header {
@@ -442,7 +443,7 @@ body:not(.refracting), body.refracted {
 #rainbowtext {
     background: url('assets/rainbowline.png');
     background-size: 100vw;
-    transform: translateX(-50px);
+    transform: translate(-50px, -1px);
     width: 100vw;
     padding-bottom: 50px;
     display: grid; /* https://keithjgrant.com/posts/2023/04/transitioning-to-height-auto/ */
