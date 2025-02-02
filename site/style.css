@@ -372,10 +372,11 @@ body.refracting:not(.refracted), body.refracted:not(.refracting) {
         transition-delay: 0.7s;
     }
     #rainbowtext {
-        transition: filter 0s, grid-template-rows 0.5s;
+        transition: filter 0s, grid-template-rows 0.5s, padding-bottom 0.5s;
         transition-delay: 1s;
         filter: none;
         grid-template-rows: 1fr;
+        padding-bottom: 50px;
     }
 }
 body.refracted:not(.refracting) {
@@ -445,7 +446,7 @@ body:not(.refracting), body.refracted {
     background-size: 100vw;
     transform: translate(-50px, -1px);
     width: 100vw;
-    padding-bottom: 50px;
+    padding-bottom: 0px;
     display: grid; /* https://keithjgrant.com/posts/2023/04/transitioning-to-height-auto/ */
     grid-template-rows: 0fr;
     transition: 0.2s;
