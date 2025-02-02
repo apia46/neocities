@@ -27,7 +27,6 @@ body {
     image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
     -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
     margin: 0;
-    overflow-x: hidden;
 }
 
 #header {
@@ -147,6 +146,7 @@ body {
 
 #body {
     padding: 50px;
+    padding-bottom: 0;
     color: #ffffff;
     font-family: spacemono;
     text-align: center;
@@ -257,10 +257,8 @@ body {
         position: relative;
         font-size: large;
         #line {
-            position: absolute;
-            top: 0;
             padding-top: 90vw;
-            left: calc(44.55vw - 50px);
+            transform: translateX(calc(44.55vw - 50px));
             width: 10.9vw;
             background: #ffffff;
             #linetext {
@@ -373,10 +371,10 @@ body.refracting:not(.refracted), body.refracted:not(.refracting) {
         transition-delay: 0.7s;
     }
     #rainbowtext {
-        filter: none;
-        height: 400px;
-        transition: 0s, height 0.5s;
+        transition: filter 0s, grid-template-rows 0.5s;
         transition-delay: 1s;
+        filter: none;
+        grid-template-rows: 1fr;
     }
 }
 body.refracted:not(.refracting) {
@@ -427,9 +425,8 @@ body:not(.refracting), body.refracted {
 }
 #rainbow {
     box-sizing: border-box;
-    position: absolute;
     background: #ffffff;
-    left: calc(var(--width) / -2 + 5.45vw);
+    transform: translateX(calc(var(--width) / -2 + 5.45vw));
     --width: 10.9vw;
     width: var(--width);
     height: 30vw;
@@ -437,23 +434,25 @@ body:not(.refracting), body.refracted {
     border-left: calc(var(--width) / 2 - 5.45vw) solid #000000;
     border-right: calc(var(--width) / 2 - 5.45vw) solid #000000;
     transition: 0.2s;
-    transition-delay: 0.1s;
+    transition-delay: 0.2s;
     filter: saturate(0%) brightness(2700%);
     background-size: var(--width) 30vw;
     background-position-x: calc(var(--width) / -2 + 5.45vw);
 }
 #rainbowtext {
-    position: absolute;
     background: url('assets/rainbowline.png');
     background-size: 100vw;
-    left: -44.55vw;
-    transform: translateY(29.98vw);
+    transform: translateX(-50px);
     width: 100vw;
-    height: 0;
-    overflow-y: hidden;
-    transition: 0s, height 0.1s;
-    filter: saturate(0%) brightness(2700%);
+    padding-bottom: 50px;
+    display: grid; /* https://keithjgrant.com/posts/2023/04/transitioning-to-height-auto/ */
+    grid-template-rows: 0fr;
+    transition: 0.2s;
     color: #000000;
+    filter: saturate(0%) brightness(2700%);
+    .wrapper {
+        overflow-y: hidden;
+    }
 }
 @keyframes pulsetext {
     0% {background: #ffffff; color: #000000;}
