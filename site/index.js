@@ -24,7 +24,7 @@ function eyeAnim(){
 }
 
 function scrolldo(){
-    console.log(wrapper.scrollLeft)
+    //console.log(wrapper.scrollLeft)
     // eye stuff
     let scrollTop = document.querySelector("#scroll").getBoundingClientRect().top + wrapper.scrollTop;
     let scrollHeight = document.querySelector("#scroll").offsetHeight-window.innerHeight;
@@ -37,31 +37,31 @@ function scrolldo(){
     // sideways stuff
     let canhorizontal = false;
     let canvertical = true;
-    //completely fucked
+    // completely fucked
     if ((Math.abs(document.querySelector("#sideways").getBoundingClientRect().top) < 200)) {
         canhorizontal = true;
     }
     if (wrapper.scrollLeft > 0 && !timer2) {
-        //sidewaysing
+        // sidewaysing
         wrapper.classList.remove("toggletop")
         maxhorizscroll = Math.max(maxhorizscroll, wrapper.scrollLeft);
         canvertical = false;
         if (Math.abs(document.querySelector("#nonsideways").getBoundingClientRect().left) < 200) {
-            //vertically aligned
+            // vertically aligned
             canvertical = true;
             if (wrapper.scrollTop > 0) {
-                //verticalling
+                // verticalling
                 canhorizontal = false;
                 fixHorizontalScroll(document.querySelector("#nonsideways").getBoundingClientRect().left + wrapper.scrollLeft, ()=>{return wrapper.scrollTop == 0}, ()=>{document.querySelector("#nonsideways").scrollIntoView({block:"nearest"});});
                 if (wrapper.classList.contains("onlysideways") && wrapper.scrollTop > window.innerHeight * 2) {
-                    console.log("here1")
+                    //console.log("here1")
                     teleport2(true)
                 }
             }
             teleport1(true)
             document.body.style.backgroundColor = '#000000';
         } else {
-            //everywhere else
+            // everywhere else
             if (document.querySelector("#nonsideways").getBoundingClientRect().left >= 200) {
                 teleport1(false)
             }
@@ -72,7 +72,7 @@ function scrolldo(){
     } else {
         maxhorizscroll = window.innerWidth * 4;
         if (wrapper.classList.contains("toggletop") && wrapper.scrollTop < window.innerHeight * 1.5) {
-            console.log("here")
+            //console.log("here")
             teleport2(false)
         }
     }
@@ -124,7 +124,7 @@ function fixHorizontalScroll(xpos, cancel, end=null) {
 
 function teleport1(toggle, move=true) {
     if (toggle == wrapper.classList.contains("onlysideways") || wrapper.classList.contains("toggletop")) { return }
-    console.log(wrapper.classList.contains("onlysideways"), "here")
+    //console.log(wrapper.classList.contains("onlysideways"), "here")
     if (toggle) {document.querySelector("#nonsideways").style.setProperty('--bodyheight', wrapper.scrollHeight)};
     wrapper.classList.toggle("onlysideways");
     if (toggle) {
@@ -145,7 +145,7 @@ function teleport2(toggle) {
         document.querySelector("#afterwards").insertBefore(document.querySelector("#sideways"), document.querySelector("#line"));
         document.querySelector("#hook").scrollIntoView();
         timer2 = setTimeout(()=>{document.querySelector("#hook").scrollIntoView(); timer2 = false}, 500);
-        console.log(wrapper.scrollLeft);
+        //console.log(wrapper.scrollLeft);
     } else {
         wrapper.insertBefore(document.querySelector("#sideways"), document.querySelector("#top"));
         wrapper.classList.add("onlysideways");
