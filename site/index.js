@@ -66,7 +66,7 @@ function scrolldo(){
                 teleport1(false)
             }
             if (!wrapper.classList.contains("onlysideways")) {
-                fixVerticalScroll(document.querySelector("#sideways").getBoundingClientRect().top + wrapper.scrollTop, ()=>{return wrapper.scrollLeft == 0}, ()=>{document.querySelector("#sideways").scrollIntoView();}); // i cannot explain why this is necessary. the js gods just want a non-integer sacrifice, i suppose? and why does this function turn things non-integer?
+                fixVerticalScroll(document.querySelector("#sideways").getBoundingClientRect().top + wrapper.scrollTop, ()=>{return wrapper.scrollLeft == 0}, ()=>{document.querySelector("#sideways").scrollIntoView();}); // i cannot explain why this is necessary. the js gods just want a non-integer sacrifice, i suppose? and why does scrollIntoView turn things non-integer?
             }
         }
     } else {
