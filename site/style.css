@@ -496,6 +496,7 @@ body.revealed o.switched {
     background-image: url("assets/sideways/space.png");
     background-size: 179.6875vh 125vh;
     white-space: nowrap;
+    overflow-y: hidden;
     .fadein {
         left: 0;
         top: 0;
@@ -515,16 +516,22 @@ body.revealed o.switched {
     #nonsideways {
         --bodyheight: 0;
         position: relative;
-        top: 125vh;
         margin-left: 200px;
         width: 100vw;
         display: inline-block;
         text-align: center;
-        background-image: url("assets/sideways/space2.png");
-        background-size: 137.5vh 275vh;
+        height: 400vh;
+        .background {
+            top: 125vh;
+            position: absolute;
+            background-image: url("assets/sideways/space2.png");
+            background-size: 137.5vh 275vh;
+            width: 100vw;
+            height: 275vh;
+        }
         span {
             position: relative;
-            top: calc(-75vh - 13px);
+            top: calc(50vh - 13px);
         }
     }
 }
@@ -535,6 +542,7 @@ body.revealed o.switched {
 #wrapper.onlysideways #sideways {
     top: 0;
     left: 0;
+    overflow-y: visible;
     #nonsideways {
         height: calc(var(--bodyheight) * 1px + 400vh);
     }

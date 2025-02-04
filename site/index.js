@@ -52,7 +52,7 @@ function scrolldo(){
             if (wrapper.scrollTop > 0) {
                 //verticalling
                 canhorizontal = false;
-                fixHorizontalScroll(document.querySelector("#nonsideways").getBoundingClientRect().left + wrapper.scrollLeft, ()=>{return wrapper.scrollTop == 0}, ()=>{document.querySelector("#nonsideways").scrollIntoView();});
+                fixHorizontalScroll(document.querySelector("#nonsideways").getBoundingClientRect().left + wrapper.scrollLeft, ()=>{return wrapper.scrollTop == 0}, ()=>{document.querySelector("#nonsideways").scrollIntoView({block:"nearest"});});
                 if (wrapper.classList.contains("onlysideways") && wrapper.scrollTop > window.innerHeight * 2) {
                     console.log("here1")
                     teleport2(true)
@@ -122,7 +122,6 @@ function fixHorizontalScroll(xpos, cancel, end=null) {
     }
 }
 
-var bodyHeight;
 function teleport1(toggle, move=true) {
     if (toggle == wrapper.classList.contains("onlysideways") || wrapper.classList.contains("toggletop")) { return }
     console.log(wrapper.classList.contains("onlysideways"), "here")
