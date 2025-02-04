@@ -14,6 +14,9 @@
     </head>
     <body>
         <div id="wrapper">
+            <div id="top">
+                <div id="hook"></div>
+            </div>
             <div id='dull-contrivance'>
                 <script type="text/javascript" src="https://puffinthefish.neocities.org/onionring/onionring-variables.js"></script>
                 <script>sites.push('http://127.0.0.1:5500/');</script>
@@ -33,7 +36,8 @@
                 <a href="smoke" id="smoke"><img src="assets/smoke.gif"></a>
                 <a href="geometry" id="spikes"><img src="assets/spikes.png"></a>
                 <h1 class="grapesoda">apiary</h1>
-                <p class="spacemono">enjoy your stay<br></p>
+                <p class="spacemono nontop">enjoy your stay<br></p>
+                <p class="spacemono top">so below<br></p>
                 <p class="spacemono dark">cw: <span id="eyes">eyes</span>; flashy lights(?); scrolling backgrounds</p>
                 <img id="forest" src="assets/forest.png">
             </div>
@@ -70,10 +74,15 @@
                 </div>
                 <div id="afterwards">
                     <div id="sideways">
-                        <img class="fadein" src="assets/sideways/spacefadein.png"></img>
-                        <p>
-                            hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii welcome to space
-                        </p>
+                        <div class="fadein">
+                            <span>
+                                hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii welcome to space
+                            </span>
+                        </div>
+                        <div id="nonsideways" style="--bodyheight: 9604;">
+                            <span>as above...</span>
+                        </div>
+                        
                     </div>
                     <div id="line">
                         <div id="linetext">
@@ -152,28 +161,28 @@
                     document.querySelectorAll('.secret').forEach((element)=>{element.remove()});
                     return;
                 }
-                if (localStorage.getItem('refracted') == "true") {document.body.classList.add('refracted')};
+                if (localStorage.getItem('refracted') == "true") {document.body.classList.add('refracted')}
                 var secretaudio = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_fountain_target.mp3');
                 var secretaudio1 = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_fountain_make1.mp3');
                 var secretaudio2 = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/snd_fountain_make2.mp3');
                 document.querySelector('#prism').onclick = ()=>{
-                    if (document.body.classList.contains('refracting')) { return };
+                    if (document.body.classList.contains('refracting')) { return }
                     document.body.classList.add('refracting');
                     if (document.body.classList.contains('refracted')) {
                         secretaudio2.play();
-                        toggle(false, true);
+                        toggleText(false, true);
                     } else {
                         setTimeout(()=>{secretaudio.play()}, 50);
-                        setTimeout(()=>{secretaudio1.play(); toggle(true, true)}, 650);
+                        setTimeout(()=>{secretaudio1.play(); toggleText(true, true)}, 650);
                     }
                     setTimeout(()=>{
                         document.body.classList.toggle('refracted');
                         document.body.classList.remove('refracting');
                         localStorage.setItem('refracted', !(localStorage.getItem('refracted') == "true"));
                     }, (document.body.classList.contains('refracted') ? 1200 : 1600));
-                };
-                toggle(localStorage.getItem('refracted') == "true");
-            };
+                }
+                toggleText(localStorage.getItem('refracted') == "true");
+            }
             go();
         </script>
     </body>

@@ -483,27 +483,79 @@ body.revealed o.switched {
 }
 
 #sideways {
+    color: #ffffff;
+    font-family: spacemono;
+    font-size: 18px;
     margin-left: 100vw;
-    padding-left: 500px;
     top: 70vw;
     left: -50px;
     position: absolute;
-    height: 100vh;
+    height: 125vh;
     width: calc(var(--maxhorizscroll) * 2px);
     text-align: left;
-    display: flex;
-    align-items: center;
     background-image: url("assets/sideways/space.png");
-    background-size: contain;
-    * {
-        z-index: 1;
-        display: inline-block;
-    }
+    background-size: 179.6875vh 125vh;
+    white-space: nowrap;
     .fadein {
         left: 0;
+        top: 0;
+        position: relative;
         pointer-events: none;
-        z-index: 0;
-        position: absolute;
-        height: 100vh;
+        height: 125vh;
+        width: 359.375vh;
+        background-image: url("assets/sideways/spacefadein.png");
+        background-size: 359.375vh 125vh;
+        display: inline-block;
+        span {
+            position: relative;
+            top: calc(50vh - 13px);
+            margin-left: 500px;
+        }
     }
+    #nonsideways {
+        --bodyheight: 0;
+        position: relative;
+        top: 125vh;
+        margin-left: 200px;
+        width: 100vw;
+        display: inline-block;
+        text-align: center;
+        background-image: url("assets/sideways/space2.png");
+        background-size: 137.5vh 275vh;
+        span {
+            position: relative;
+            top: calc(-75vh - 13px);
+        }
+    }
+}
+
+#wrapper.onlysideways *:not(#sideways, #sideways *) {
+    display: none;
+}
+#wrapper.onlysideways #sideways {
+    top: 0;
+    left: 0;
+    #nonsideways {
+        height: calc(var(--bodyheight) * 1px + 400vh);
+    }
+}
+#top {
+    height: 275vh;
+    margin-top: 125vh;
+    background-image: url("assets/sideways/space2.png");
+    background-size: 137.5vh 275vh;
+    display: none;
+    #hook {
+        position: sticky;
+        top: 0;
+    }
+}
+#wrapper.onlysideways #top, #wrapper.toggletop #top {
+    display: block;
+}
+#wrapper.toggletop {
+    .nontop { display: none; }
+}
+#wrapper:not(.toggletop) {
+    .top { display: none; }
 }
