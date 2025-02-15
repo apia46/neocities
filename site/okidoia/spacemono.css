@@ -1,15 +1,15 @@
 @font-face {
     font-family: 'spacemono';
-    src: url('assets/SpaceMono-Regular.woff2') format('woff2'),
-        url('assets/SpaceMono-Regular.woff') format('woff');
+    src: url('spacemono/SpaceMono-Regular.woff2') format('woff2'),
+        url('spacemono/SpaceMono-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'spacemono';
-    src: url('assets/SpaceMono-Bold.woff2') format('woff2'),
-        url('assets/SpaceMono-Bold.woff') format('woff');
+    src: url('spacemono/SpaceMono-Bold.woff2') format('woff2'),
+        url('spacemono/SpaceMono-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
