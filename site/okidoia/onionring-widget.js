@@ -30,7 +30,7 @@ if (thisIndex == null) {
   tag.insertAdjacentHTML('afterbegin', `
 <table>
   <tr>
-    <td>This site isn't part of the ${ringName} webring yet. You should talk to the manager to have your site added to the list!</td>
+    <td>This site has not yet been subsumed into the Okidoia. You should go ask Vekoa about it or something.</td>
   </tr>
 </table>
   `);
@@ -59,7 +59,7 @@ else {
   <table>
     <tr>
       <td class='webring-prev'><a href='${sitesOkidoia[previousIndex]}'>← prev.</a></td>
-      <td class='webring-info'><span>This site is part of the ${ringName} webring</span></br>
+      <td class='webring-info'><span>This site is possessed by the Okidoia</span></br>
       <span class='webring-links'>
         ${randomText}
         ${indexText}
