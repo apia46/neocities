@@ -16,7 +16,7 @@
   background-position: 0px -10px;
   margin: 0 auto; /* centers the widget */
   border:2px #ffffff; border-style:solid;
-  font-family: spacemono;
+  font-family: 'Space Mono';
   color: #ffffff;
   text-shadow: #ffffff 0px 0px 4px;
   a {
