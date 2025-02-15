@@ -12,8 +12,11 @@
 }
 
 #dull-contrivance {
-    padding: 15px 0px;
+    padding: 15px 0px !important;
     --spinspeed: 250ms;
+    background-color: #000000;
+}
+#okidoia {
     background-color: #000000;
 }
 

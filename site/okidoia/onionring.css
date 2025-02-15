@@ -1,0 +1,60 @@
+/* onionring.js is made up of four files - onionring-widget.js, onionring-index.js, onionring-variables.js and onionring.css (this one!)
+// it's licensed under the cooperative non-violent license (CNPL) v4+ (https://thufie.lain.haus/NPL.html)
+// it was originally made by joey + mord of allium house, last updated 2020-10-24 */
+
+/* === ONIONRING.CSS === */
+/* this file affects the style of the widget. remember to replace all instances of #webringid with whatever value you have for ringID in the onionring-widget.js file. make sure it still has the # at the front, though! probably easiest to use find+replace to do it */
+
+#okidoia {
+  margin: 0 auto;
+  padding: 15px 0px; /* creates some space around the widget */
+}
+
+#okidoia table {
+  background: url('assets/abberwobble.gif');
+  background-size: 1000px;
+  background-position: 0px -10px;
+  margin: 0 auto; /* centers the widget */
+  border:2px #ffffff; border-style:solid;
+  font-family: spacemono;
+  color: #ffffff;
+  text-shadow: #ffffff 0px 0px 4px;
+  a {
+    color: #ffffff;
+    text-shadow: #ff00ff 1px 1px;
+  }
+}
+
+#okidoia table tr td {
+  padding: 15px; /* creates some space between the links and text inside the widget */
+}
+
+#okidoia .webring-prev {
+  text-align: right;
+}
+
+#okidoia .webring-info {
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  span {
+    mix-blend-mode: difference;
+  }
+}
+#okidoia .webring-info::after {
+  content: 'This site is part of the Okidoia webring';
+  position: absolute;
+  mix-blend-mode: normal;
+  left: 15px;
+  top: 15px;
+  text-shadow: none;
+  width: calc(100% - 30px);
+}
+
+#okidoia .webring-next {
+  text-align: left;
+}
+
+#okidoia .webring-links {
+  font-size: small;
+}

@@ -1,0 +1,31 @@
+body {
+    background: #000000 url('assets/wiggly.gif');
+    background-size: cover;
+    color: #ffffff;
+    font-family: spacemono;
+    text-align: center;
+
+    a { color: #00ffff; }
+    a:visited { color: #ff00ff; }
+
+    #info {
+        display: inline-block;
+        padding: 20px;
+        max-width: 800px;
+        width: 80vw;
+        border: #ffffff 4px solid;
+        background: #000000;
+        
+        h1 {
+            margin: 10px;
+        }
+
+        #index {
+            display: inline-block;
+            padding: 20px;
+            width: 400px;
+            border: #ffffff 4px solid;
+            background: #000000;
+        }
+    }
+}
