@@ -19,7 +19,7 @@ for (i = 0; i < sitesOkidoia.length; i++) {
 }
 
 function randomSite() {
-  otherSites = sites.slice(); //create a copy of the sites list
+  otherSites = sitesOkidoia.slice(); //create a copy of the sites list
   otherSites.splice(thisIndex, 1); //remove the current site so we don't just land on it again
   randomIndex = Math.floor(Math.random() * otherSites.length);
   location.href = otherSites[randomIndex];
