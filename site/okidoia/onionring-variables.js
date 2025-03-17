@@ -10,7 +10,7 @@ var sitesOkidoia = [
     'https://apia46.neocities.org',
     'https://vangare.neocities.org',
     'https://omnicrumb.neocities.org',
-    'https://diomedea-epomophora.neocities.org',
+    'https://puffinthefish.neocities.org',
     'https://genseot.github.io',
     'https://noobogonis.neocities.org'
 ];
