@@ -9,7 +9,7 @@
   box-sizing: border-box;
   width: 100%;
   margin: 0 auto;
-  padding: 15px 0px; /* creates some space around the widget */
+  padding: 15px; /* creates some space around the widget */
 }
 
 #okidoia table {
