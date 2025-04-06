@@ -78,7 +78,6 @@ body {
     }
     #eye {
         position: absolute;
-        display: inline-block;
         top: 0;
         right: 50px;
         img {
@@ -88,7 +87,6 @@ body {
     }
     #flag {
         position: absolute;
-        display: inline-block;
         bottom: 49.8vw;
         left: 17vw;
         img {
@@ -98,7 +96,6 @@ body {
     }
     #satelite {
         position: absolute;
-        display: inline-block;
         top: 6vw;
         right: 32vw;
         animation: float 5s 1s alternate infinite ease-in-out;
@@ -573,5 +570,5 @@ body.revealed o.switched {
     .nontop { display: none; }
 }
 #wrapper:not(.toggletop) {
-    .top { display: none; }
+    .yestop { display: none; }
 }
