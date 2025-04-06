@@ -8,6 +8,10 @@ var maxhorizscroll = window.innerWidth * 4;
 var stopscroll = false;
 
 window.onload = ()=>{
+    let friends = document.querySelector('#friends');
+    friends.childNodes.forEach((child)=>{friends.appendChild(child.cloneNode(true))});
+    friends.childNodes.forEach((child)=>{friends.appendChild(child.cloneNode(true))});
+
     eyeAnim();
 
     const wrapper = document.querySelector("#wrapper");

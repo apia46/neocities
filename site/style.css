@@ -2,6 +2,10 @@
     0% {background-position-x: 0}
     100% {background-position-x: 1024px}
 }
+@keyframes marquee {
+    0% {transform: translateX(0)}
+    100% {transform: translateX(-25%)}
+}
 @keyframes drift-y {
     0% {background-position-y: 0}
     100% {background-position-y: 1024px}
@@ -162,6 +166,13 @@ body {
     font-family: spacemono;
     text-align: center;
     --scroll-range: 0;
+    #friends {
+        animation: marquee 10s linear infinite;
+        position: relative;
+        left: -50px;
+        display: inline-block;
+        white-space: nowrap;
+    }
     #scroll {
         padding-top: calc(100vh - 192px);
         height: 500vh;
