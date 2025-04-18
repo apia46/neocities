@@ -205,7 +205,7 @@ window.onload = () => {
         timeDisplay.innerText = displayTime(timeElapsed)
 
         digitsDisplay.innerText = digits;
-        digitsPerStrikeDisplay.innerText = Math.floor(digits/strikes);
+        digitsPerStrikeDisplay.innerText = (digits/strikes).toFixed(1);
         digitsSinceStrikeDisplay.innerText = digitsSinceStrike;
         timeSinceStrikeDisplay.innerText = displayTime(timeElapsed - lastStrike);
         digitsperMinuteWithDisplay.innerText = (digits/timeElapsed * 60).toFixed(1);
