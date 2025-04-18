@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>✧ Remember ✧</title>
+        <link href="/fonts.css" rel="stylesheet">
+        <link href="forgetmenot.css" rel="stylesheet" >
+        <script src="/color.global.js"></script>
+        <script src="forgetmenot.js"></script>
+        <link rel="icon" type="image/png" href="/assets/icon.png">
+    </head>
+    <body>
+        <h1>Forget Me Not</h1>
+        <a href="https://ktane.timwi.de/HTML/Forget%20Me%20Not.html" target="_blank">manual</a>
+        <a href="..">go back</a>
+        <br><br>
+        <div id="timer">
+            <div id="strikes">...</div>
+            <div id="time">00:12</div>
+        </div>
+        <button onclick="generateBomb()">New Bomb</button>
+        <br>
+        <br>
+        <table id="edgework">
+            <tbody>
+                <tr><th>Serial</th><th>Batteries</th><th colspan="2">Indicators</th><th colspan="2">Port Plates</th></tr>
+                <tr><td>SS4105</td><td>2/1</td><td>snd</td><td>SIG</td><td>[RJ-45 DVI-D]</td><td>[PARA]</td></tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <br>
+        <h2>Received</h2>
+        <div id="received">
+            <div class="text"></div>
+        </div>
+        <h2>Calculated</h2>
+        <div id="calculated">
+            <div class="text"></div>
+            <input oninput="handleInput()"></input>
+        </div>
+        <br>
+        <br>
+        <br>
+        <h2>Stats</h2>
+        <table id="stats">
+            <tr><th>Digits</th><td class="digits">0</td><th>Digits per Strike</th><td class="digits-per-strike">NaN</td></tr>
+            <tr><th>Digits since Strike</th><td class="digits-since-strike">0</td><th>Time since Strike</th><td class="time-since-strike">0.00</td></tr>
+            <tr><th>Digits per Minute (with first 2)</th><td class="digits-per-minute-with">0.0</td><th>Digits per Minute (without first 2)</th><td class="digits-per-minute-without">0.0</td></tr>
+        </table>
+        <script>generateBomb()</script>
+    </body>
+</html>

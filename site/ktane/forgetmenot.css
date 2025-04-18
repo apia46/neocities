@@ -1,0 +1,128 @@
+a { color: #00ffff; }
+a:visited { color: #ff00ff; }
+u { text-decoration-style: dashed; }
+body {
+    --highlight: #929DC2;
+    --background: #0F141A;
+    background-color: var(--background);
+    font-family: spacemono;
+    color: #ffffff;
+    text-align: center;
+    width: 100vw;
+    margin: 0;
+    overflow-x: hidden;
+}
+button {
+    color: #0F141A;
+    font-weight: bold;
+    font-family: titilliumweb;
+    font-size: 16px;
+    background-color: var(--highlight);
+    border: 2px solid transparent;
+    padding: 6px;
+    transition-duration: 0.4s;
+    vertical-align: middle;
+}
+button:hover {
+    background-color: var(--background);
+    color: var(--highlight);
+    border: 2px solid var(--highlight);
+}
+table {
+    display: inline-block;
+    max-width: 100vw;
+    overflow-x: scroll;
+    tbody {
+        text-align: center;
+        th {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+}
+#timer {
+    display: inline-block;
+    min-width: 70px;
+    vertical-align: middle;
+    border: 2px solid var(--highlight);
+    padding: 4px 10px;
+    #strikes {
+        background-color: var(--highlight);
+        color: var(--background);
+    }
+}
+h2 {
+    margin: 0;
+}
+#received, #calculated {
+    font-size: 100px;
+    position: relative;
+    height: 95px;
+    width: 100vw;
+}
+#received {
+    .current {
+        color: #ffffff;
+    }
+    .text {
+        right: calc(50vw - 459px);
+    }
+}
+#calculated {
+    .text {
+        right: calc(50vw + 30.5px);
+    }
+    input {
+        position: absolute;
+        font: inherit;
+        line-height: 95px;
+        height: 95px;
+        width: 61px;
+        left: calc(50vw - 30.5px);
+        background: #ffffff;
+        cursor: text;
+        border: none;
+        border-bottom: #ffffff solid 8px;
+        padding: 0;
+    }
+    input:focus {
+        background: var(--background);
+        color: #ffffff;
+        outline: none;
+    }
+}
+.text {
+    position: absolute;
+    line-height: 95px;
+    color: var(--highlight);
+    height: 95px;
+    overflow-y: hidden;
+}
+#received::before, #calculated::before {
+    z-index: 1;
+    position: absolute;
+    content: " ";
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--background) 0%, #00000000 calc(50vw - 152.5px), #00000000 calc(50vw + 30.5px), var(--background) calc(50vw + 457.5px));
+    pointer-events: none;
+}
+
+body.strike {
+    --highlight: #C1626A;
+    --background: #190B0C;
+}
+#stats {
+    color: var(--highlight);
+    tbody {
+        text-align: left;
+        th {
+            padding-left: 45px;
+        }
+        td {
+            padding-right: 25px;
+        }
+    }
+}
