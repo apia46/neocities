@@ -152,7 +152,7 @@ function generateForgetMeNotDigit() {
         else if (parseInt(answer[0]) % 2 == 0) chartNumber = parseInt(answer[0]) + 1;
         else chartNumber = parseInt(answer[0]) - 1;
     } else {
-        if (answer[received.length-2] == "0" || answer[received.length-1] == "0") chartNumber = largestDigit;
+        if (answer[received.length-3] == "0" || answer[received.length-2] == "0") chartNumber = largestDigit;
         else if (parseInt(answer[received.length-3]) % 2 == 0 && parseInt(answer[received.length-2]) % 2 == 0) chartNumber = smallestOddDigit;
         else chartNumber = parseInt(String(parseInt(answer[received.length-3]) + parseInt(answer[received.length-2]))[0]);
     }
