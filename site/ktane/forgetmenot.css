@@ -71,6 +71,10 @@ h2 {
     }
 }
 #calculated {
+    .struck {
+        background-color: #ffffff;
+        color: var(--background);
+    }
     .text {
         right: calc(50vw + 30.5px);
     }
@@ -108,7 +112,7 @@ h2 {
     top: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, var(--background) 0%, #00000000 calc(50vw - 152.5px), #00000000 calc(50vw + 30.5px), var(--background) calc(50vw + 457.5px));
+    background: linear-gradient(90deg, var(--background) calc(50vw - 457.5px), #00000000 calc(50vw - 152.5px), #00000000 calc(50vw + 30.5px), var(--background) calc(50vw + 457.5px));
     pointer-events: none;
 }
 
@@ -127,4 +131,85 @@ body.strike {
             padding-right: 25px;
         }
     }
+}
+#settings {
+    color: var(--highlight);
+    overflow: visible;
+    th, td {
+        vertical-align: middle;
+        position: relative;
+    }
+}
+
+input[type="range"] {
+    display: inline-block;
+    vertical-align: middle;
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--highlight);
+    height: 4px;
+    border: 0;
+    border-radius: 2px;
+}
+input[type="range"]::-webkit-slider-thumb, input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--highlight);
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:hover::-moz-range-thumb {
+    background: #ffffff;
+}
+td:has(input[type="range"]) {
+    --value: "0";
+}
+td:has(input[type="range"])::after {
+    box-sizing: border-box;
+    content: var(--value);
+    position: absolute;
+    left: calc(50% - 18px);
+    top: -20px;
+    width: 36px;
+    height: 20px;
+    background: var(--highlight);
+    color: var(--background);
+    border: 0;
+    border-radius: 8px;
+    opacity: 0;
+    transition: 0s, opacity 0.4s ease-in, transform 0.4s ease-in;
+    line-height: 20px;
+    pointer-events: none;
+}
+td:has(input[type="range"])::before {
+    box-sizing: border-box;
+    content: " ";
+    position: absolute;
+    left: calc(50% - 8px);
+    top: -0.2px;
+    width: 16px;
+    height: 8px;
+    background: transparent;
+    border: 8px solid transparent;
+    border-top: 8px solid var(--highlight);
+    opacity: 0;
+    transition: opacity 0.4s ease-in, transform 0.4s ease-in;
+    pointer-events: none;
+}
+td:has(input[type="range"]:hover)::after, td:has(input[type="range"]:hover)::before {
+    opacity: 1;
+    transform: translateY(-4px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+td:has(input[type="range"]:active)::after {
+    background-color: var(--background);
+    color: var(--highlight);
+    border: 2px solid  var(--highlight);
+    line-height: 16px;
+}
+td:has(input[type="range"]:active)::before {
+    border-top-color: var(--background);
 }

@@ -121,21 +121,29 @@ function generateBomb() {
     received = "";
     answer = "";
     calculated = "";
-    for (let i = 0; i < 8; i++) generateForgetMeNotDigit();
+    for (let i = 0; i < LOOKAHEADVISIBLE + 1; i++) generateForgetMeNotDigit();
+
+    revealedStrikeIndex = -1;
 
     setStrikesText();
     updateTexts();
 }
 
-const LOOKAHEAD = 7; // remember to set this in css too!
+const LOOKAHEADVISIBLE = 7; // remember to set this in css too!
+const LOOKBEHINDVISIBLE = 7; // remember to set this in css too!
+CHECKBEHIND = -2;
 
 let received = "";
 let answer = "";
 let calculated = "";
 
 function updateTexts() {
-    document.querySelector("#received .text").innerHTML = `${received.substring(0,calculated.length)}<span class="current">${received[calculated.length]}</span>${received.substring(calculated.length+1)}`;
-    document.querySelector("#calculated .text").innerHTML = calculated;
+    if (revealedStrikeIndex >= calculated.length) revealedStrikeIndex = -1;
+
+    document.querySelector("#received .text").innerHTML = `${received.substring(calculated.length-LOOKBEHINDVISIBLE,calculated.length)}<span class="current">${received[calculated.length]}</span>${received.substring(calculated.length+1, calculated.length+LOOKAHEADVISIBLE+1)}`;
+    
+    if (revealedStrikeIndex == -1) document.querySelector("#calculated .text").innerHTML = calculated.substring(calculated.length-LOOKBEHINDVISIBLE);
+    else document.querySelector("#calculated .text").innerHTML = `${calculated.substring(calculated.length-LOOKBEHINDVISIBLE, revealedStrikeIndex)}<span class="struck">${calculated[revealedStrikeIndex]}</span>${calculated.substring(revealedStrikeIndex+1)}`;
 }
 
 function generateForgetMeNotDigit() {
@@ -160,27 +168,35 @@ function generateForgetMeNotDigit() {
     answer += (thisReceived + chartNumber) % 10;
 }
 
+let revealedStrikeIndex = -1;
+
 const strikeSound = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/strike.wav');
 function handleInput() {
     let input = document.querySelector("#calculated input");
-    let value = parseInt(String(input.value)[input.value.length - 1]);
-    if (value == answer[calculated.length]) {
-        calculated += value;
-        generateForgetMeNotDigit();
-        input.value = '';
-        digits++;
+    input.value = (input.value)[input.value.length - 1] || "";
+    if (!input.value) return;
+
+    let checkValue = CHECKBEHIND?parseInt(calculated[calculated.length + CHECKBEHIND]):parseInt(input.value);
+    if (calculated.length < -CHECKBEHIND || checkValue == answer[calculated.length + CHECKBEHIND]) {
         digitsSinceStrike++;
-        if (digits == 2) timeAfterTwo = Date.now()
-    } else {
+        if (digits == 2) timeAfterTwo = Date.now();
+    } else if (revealedStrikeIndex == -1) {
+        revealedStrikeIndex = calculated.length + CHECKBEHIND;
         strikes++;
         digitsSinceStrike = 0;
         lastStrike = timeElapsed;
 
         strikeSound.play();
         document.body.classList.add("strike");
-        setTimeout(()=>{document.body.classList.remove("strike"); input.value = '';}, 200);
+        setTimeout(()=>{document.body.classList.remove("strike");}, 200);
         setStrikesText();
     }
+    if (revealedStrikeIndex == -1) {
+        calculated += input.value;
+        input.value = '';
+        digits++;
+    }
+    if (answer.length - calculated.length <= LOOKAHEADVISIBLE) generateForgetMeNotDigit();
     updateTexts();
 }
 
@@ -189,7 +205,33 @@ function setStrikesText() {
 }
 
 window.onload = () => {
-    document.querySelector("#calculated input").value = '';
+    let strikeDelaySlider = document.querySelector("#strike-delay");
+    let volumeSlider = document.querySelector("#volume");
+    strikeDelaySlider.parentElement.style.setProperty('--value', `'${-strikeDelaySlider.value}'`);
+    volumeSlider.parentElement.style.setProperty('--value', `'${volumeSlider.value}'`);
+    CHECKBEHIND = parseInt(strikeDelaySlider.value);
+    strikeSound.volume = parseInt(volumeSlider.value)/100;
+    strikeDelaySlider.onchange = ()=>{
+        CHECKBEHIND = parseInt(strikeDelaySlider.value);
+    }
+    volumeSlider.onchange = ()=>{
+        strikeSound.volume = parseInt(volumeSlider.value)/10;
+        strikeSound.play();
+    }
+
+    let input = document.querySelector("#calculated input")
+    input.value = '';
+    input.addEventListener('keydown', event=>{
+        if (event.key === "Backspace" || event.key === "Delete") {
+            if (calculated.length == 0) return;
+            if (input.value) return;
+            if (revealedStrikeIndex == -1) return;
+            calculated = calculated.slice(0, -1);
+            updateTexts();
+            digits--;
+            digitsSinceStrike = Math.max(digitsSinceStrike - 1, 0);
+        }
+    });
 
     let timeDisplay = document.querySelector("#time");
 
