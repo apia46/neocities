@@ -33,7 +33,7 @@ button:hover {
 table {
     display: inline-block;
     max-width: 100vw;
-    overflow-x: scroll;
+    overflow-x: auto;
     tbody {
         text-align: center;
         th {
