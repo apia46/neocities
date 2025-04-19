@@ -8,8 +8,10 @@ body {
     font-family: spacemono;
     color: #ffffff;
     text-align: center;
-    width: 100vw;
     margin: 0;
+}
+html, body {
+    width: 100vw;
     overflow-x: hidden;
 }
 button {
