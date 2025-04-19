@@ -225,7 +225,6 @@ window.onload = () => {
         if (event.key === "Backspace" || event.key === "Delete") {
             if (calculated.length == 0) return;
             if (input.value) return;
-            if (revealedStrikeIndex == -1) return;
             calculated = calculated.slice(0, -1);
             updateTexts();
             digits--;
