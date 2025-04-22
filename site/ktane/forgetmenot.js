@@ -1,5 +1,5 @@
-const CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const CHARACTERS = "ABCDEEFGHIJKLMNPQRSTUVWXZ0123456789";
+const LETTERS = "ABCDEEFGHIJKLMNPQRSTUVWXZ";
 const DIGITS = "0123456789";
 const INDICATORS = ["SND", "CLR", "CAR", "IND", "FRQ", "SIG", "NSA", "MSA", "TRN", "BOB", "FRK"];
 const PORTS = [["Serial", "Parallel"], ["DVI-D", "RJ-45", "PS/2", "Stereo RCA"]];
@@ -44,7 +44,7 @@ function generateBomb() {
     timeStarted = Date.now();
     timeAtTwo = Date.now();
     
-    serial = CHARACTERS[rInt(36)] + CHARACTERS[rInt(36)] + DIGITS[rInt(10)] + LETTERS[rInt(26)] + LETTERS[rInt(26)] + DIGITS[rInt(10)];
+    serial = CHARACTERS[rInt(35)] + CHARACTERS[rInt(35)] + DIGITS[rInt(10)] + LETTERS[rInt(25)] + LETTERS[rInt(25)] + DIGITS[rInt(10)];
     batteries = 0;
     holders = 0;
     indicators = [];
