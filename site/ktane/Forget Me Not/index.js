@@ -9,9 +9,16 @@ let received = "";
 let answer = "";
 let calculated = "";
 
+let digits;
+let digitsSinceStrike;
+
 let timeAtTwo;
 
 function moduleSetup() {
+    console.log("New Forget Me Not");
+
+    timeAtTwo = Date.now();
+
     digits = 0;
     digitsSinceStrike = 0;
     lastStrike = 0;
@@ -36,22 +43,19 @@ function moduleSetup() {
     updateTexts();
 }
 
-function onload() {
-    let strikeDelaySlider = document.querySelector("#strike-delay");
-    let volumeSlider = document.querySelector("#volume");
-    strikeDelaySlider.parentElement.style.setProperty('--value', `'${-strikeDelaySlider.value}'`);
-    volumeSlider.parentElement.style.setProperty('--value', `'${volumeSlider.value}'`);
-    CHECKBEHIND = parseInt(strikeDelaySlider.value);
-    strikeSound.volume = parseInt(volumeSlider.value)/100;
-    strikeDelaySlider.onchange = ()=>{
-        CHECKBEHIND = parseInt(strikeDelaySlider.value);
-    }
-    volumeSlider.onchange = ()=>{
-        strikeSound.volume = parseInt(volumeSlider.value)/10;
-        strikeSound.play();
-    }
+function settingsModule() {
+    if (!(localStorage.ktane_settings_MemoryV2_strikeDelay-1)) localStorage.ktane_settings_MemoryV2_strikeDelay = -1;
+    return `
+    <tr><th colspan="2" class="section">Forget Me Not</th></tr>
+    <tr>
+        <th><u title="Number of extra digits calculated before an incorrect one is revealed">Strike delay</u></th>
+        <td><span>5 <input id="strike-delay" type="range" min="-5" max="0" value="${localStorage.ktane_settings_MemoryV2_strikeDelay}" class="slider" oninput="this.parentElement.style.setProperty('--value', \`'\${-this.value}'\`)"> 0</span></td>
+    </tr>
+    `;
+}
 
-    let input = document.querySelector("#calculated input")
+function moduleOnload() {
+    let input = document.querySelector("#calculated input");
     input.value = '';
     input.addEventListener('keydown', event=>{
         if (event.key === "Backspace" || event.key === "Delete") {
@@ -64,6 +68,7 @@ function onload() {
         }
     });
 
+    /* stats */
     let digitsDisplay = document.querySelector("#stats .digits");
     let digitsPerStrikeDisplay = document.querySelector("#stats .digits-per-strike");
     let digitsSinceStrikeDisplay = document.querySelector("#stats .digits-since-strike");
@@ -78,7 +83,17 @@ function onload() {
         timeSinceStrikeDisplay.innerText = displayTime(timeElapsed - lastStrike);
         digitsperMinuteWithDisplay.innerText = (digits/timeElapsed * 60).toFixed(1);
         digitsperMinuteWithoutDisplay.innerText = ((digits - 2)/(Date.now() - timeAtTwo) * 60000).toFixed(1);
-    }, 0)
+    }, 0);
+    
+    /* settings */
+    let strikeDelaySlider = document.querySelector("#strike-delay");
+    strikeDelaySlider.parentElement.style.setProperty('--value', `'${-strikeDelaySlider.value}'`);
+    CHECKBEHIND = parseInt(strikeDelaySlider.value);
+    strikeDelaySlider.onchange = ()=>{
+        localStorage.ktane_settings_MemoryV2_strikeDelay = parseInt(strikeDelaySlider.value);
+        CHECKBEHIND = parseInt(strikeDelaySlider.value);
+    }
+
 }
 
 function updateTexts() {
@@ -114,7 +129,6 @@ function generateForgetMeNotDigit() {
 
 let revealedStrikeIndex = -1;
 
-const strikeSound = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/strike.wav');
 function handleInput() {
     let input = document.querySelector("#calculated input");
     input.value = (input.value)[input.value.length - 1] || "";
@@ -128,7 +142,6 @@ function handleInput() {
         revealedStrikeIndex = calculated.length + CHECKBEHIND;
         strike();
         digitsSinceStrike = 0;
-        lastStrike = timeElapsed;
     }
     if (revealedStrikeIndex == -1) {
         calculated += input.value;

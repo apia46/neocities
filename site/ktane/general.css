@@ -1,0 +1,155 @@
+a { color: #00ffff; }
+a:visited { color: #ff00ff; }
+u { text-decoration-style: dashed; }
+body.strike {
+    --highlight: #e9757f;
+    --background: #1d1112;
+}
+
+body {
+    --highlight: #929292;
+    --background: #0F0F0F;
+    background-color: var(--background);
+    font-family: spacemono;
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+}
+html, body {
+    width: 100vw;
+    overflow-x: hidden;
+}
+h2 {
+    margin: 0;
+}
+button {
+    color: #0F141A;
+    font-weight: bold;
+    font-family: titilliumweb;
+    font-size: 16px;
+    background-color: var(--highlight);
+    border: 2px solid transparent;
+    padding: 6px;
+    transition-duration: 0.4s;
+    vertical-align: middle;
+}
+button:hover {
+    background-color: var(--background);
+    color: var(--highlight);
+    border: 2px solid var(--highlight);
+}
+table {
+    display: inline-block;
+    max-width: 100vw;
+    overflow-x: auto;
+    tbody {
+        text-align: center;
+        th {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+}
+
+#timer {
+    display: inline-block;
+    min-width: 70px;
+    vertical-align: middle;
+    border: 2px solid var(--highlight);
+    padding: 4px 10px;
+    #strikes {
+        background-color: var(--highlight);
+        color: var(--background);
+    }
+}
+
+/* RANGE INPUT */
+input[type="range"] {
+    display: inline-block;
+    vertical-align: middle;
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--highlight);
+    height: 4px;
+    border: 0;
+    border-radius: 2px;
+    max-width: 300px;
+}
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--highlight);
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+input[type="range"]:hover::-webkit-slider-thumb,
+input[type="range"]:hover::-moz-range-thumb {
+    background: #ffffff;
+}
+span:has(input[type="range"]) {
+    --value: "0";
+    overflow-y: visible;
+    position: relative;
+}
+span:has(input[type="range"])::after {
+    text-align: center;
+    box-sizing: border-box;
+    content: var(--value);
+    position: absolute;
+    left: calc(50% - 18px);
+    top: -20px;
+    width: 36px;
+    height: 20px;
+    background: var(--highlight);
+    color: var(--background);
+    border: 0;
+    border-radius: 8px;
+    opacity: 0;
+    transition: 0s, opacity 0.4s ease-in, transform 0.4s ease-in;
+    line-height: 20px;
+    pointer-events: none;
+}
+span:has(input[type="range"])::before {
+    box-sizing: border-box;
+    content: " ";
+    position: absolute;
+    left: calc(50% - 8px);
+    top: -0.2px;
+    width: 16px;
+    height: 8px;
+    background: transparent;
+    border: 8px solid transparent;
+    border-top: 8px solid var(--highlight);
+    opacity: 0;
+    transition: opacity 0.4s ease-in, transform 0.4s ease-in;
+    pointer-events: none;
+}
+span:has(input[type="range"]:hover)::after,
+td:has(input[type="range"]:hover)::before {
+    opacity: 1;
+    transform: translateY(-4px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+span:has(input[type="range"]:active)::after {
+    background-color: var(--background);
+    color: var(--highlight);
+    border: 2px solid var(--highlight);
+    line-height: 16px;
+}
+span:has(input[type="range"]:active)::before {
+    border-top-color: var(--background);
+}
+
+/* NUMBER INPUT */
+input[type="number"] {
+    width: 40px;
+    border: 2px solid var(--highlight);
+    border-radius: 8px;
+    font-family: spacemono;
+    background-color: var(--background);
+    color: #ffffff;
+}

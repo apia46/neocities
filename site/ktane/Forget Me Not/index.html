@@ -5,29 +5,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>✧ Forget Me Not ✧</title>
         <link href="/fonts.css" rel="stylesheet">
+        <link href="../general.css" rel="stylesheet" >
         <link href="style.css" rel="stylesheet" >
-        <script src="../module.js"></script>
+        <script src="../general.js"></script>
+        <script src="../edgework.js"></script>
         <script src="index.js"></script>
         <link rel="icon" type="image/png" href="/assets/icon.png">
     </head>
     <body>
         <h1>Forget Me Not</h1>
-        <a href="https://ktane.timwi.de/HTML/Forget%20Me%20Not.html" target="_blank">manual</a>
+        <a href="https://ktane.timwi.de/HTML/Forget%20Me%20Not.html" target="_blank">manual<i class="fa fa-external-link fa-xs" aria-hidden="true"></i></a>
         <a href="..">go back</a>
         <br><br>
+        <button id="new-bomb" onclick="generateBomb()">New Bomb</button>
         <div id="timer">
             <div id="strikes">...</div>
             <div id="time">00:12</div>
         </div>
-        <button onclick="generateBomb()">New Bomb</button>
         <br>
-        <br>
-        <table id="edgework">
-            <tbody>
-                <tr><th>Serial</th><th>Batteries</th><th colspan="2">Indicators</th><th colspan="2">Port Plates</th></tr>
-                <tr><td>SS4105</td><td>2/1</td><td>snd</td><td>SIG</td><td>[RJ-45 DVI-D]</td><td>[PARA]</td></tr>
-            </tbody>
-        </table>
+        <table id="edgework"></table>
         <br>
         <br>
         <br>
@@ -42,25 +38,15 @@
             <!-- supposedly that pattern thing helps but it doesnt seem to work on my phone. dunno-->
         </div>
         <br>
-        <table id="settings">
-            <tr>
-                <th><u title="Number of extra digits calculated before an incorrect one is revealed">Strike delay</u></th>
-                <td>5</td>
-                <td><input type="range" min="-5" max="0" value="-1" class="slider" id="strike-delay" oninput="this.parentElement.style.setProperty('--value', `'${-this.value}'`)"></td>
-                <td>0</td>
-                <th>Volume</th>
-                <td>0</td>
-                <td><input type="range" min="0" max="10" value="5" class="slider" id="volume" oninput="this.parentElement.style.setProperty('--value', `'${this.value}'`)"></td>
-                <td>10</td>
-            </tr>
-        </table>
-        <br>
         <h2>Stats</h2>
         <table id="stats">
             <tr><th>Digits</th><td class="digits">0</td><th>Digits per Strike</th><td class="digits-per-strike">NaN</td></tr>
             <tr><th>Digits since Strike</th><td class="digits-since-strike">0</td><th>Time since Strike</th><td class="time-since-strike">0.00</td></tr>
             <tr><th>Digits per Minute (with first 2)</th><td class="digits-per-minute-with">0.0</td><th>Digits per Minute (without first 2)</th><td class="digits-per-minute-without">0.0</td></tr>
         </table>
+        <br>
+        <h2>Settings</h2>
+        <table id="settings"><th>loading...</th></table>
         <script>generateBomb()</script>
     </body>
 </html>

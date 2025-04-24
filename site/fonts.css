@@ -64,7 +64,17 @@
     font-style: normal;
     font-display: swap;
 }
-.barcodetext { font-family: barcodetext, sans-serif }
+.renogare { font-family: renogare, sans-serif }
+
+@font-face {
+    font-family: 'ostrichsans';
+    src: url('assets/fonts/OstrichSans-Heavy.otf') format('woff'),
+    url('assets/fonts/OstrichSans-Heavy.otf') format('otf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+.ostrichsans { font-family: ostrichsans, sans-serif }
 
 /*!
 * Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com
