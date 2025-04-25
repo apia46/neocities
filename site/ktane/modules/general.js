@@ -31,7 +31,9 @@ function settings() {
     `;
 }
 
-window.onload = () => {
+function load() {
+    generateBomb();
+
     let timeDisplay = document.querySelector("#time");
     setInterval(()=>{
         timeElapsed = (Date.now() - timeStarted) / 1000;

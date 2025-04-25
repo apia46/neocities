@@ -5,9 +5,9 @@ CHECKBEHIND = -2;
 let largestDigit;
 let smallestOddDigit;
 
-let received = "";
-let answer = "";
-let calculated = "";
+let received;
+let answer;
+let calculated;
 
 let digits;
 let digitsSinceStrike;
@@ -82,7 +82,7 @@ function moduleOnload() {
         digitsSinceStrikeDisplay.innerText = digitsSinceStrike;
         timeSinceStrikeDisplay.innerText = displayTime(timeElapsed - lastStrike);
         digitsperMinuteWithDisplay.innerText = (digits/timeElapsed * 60).toFixed(1);
-        digitsperMinuteWithoutDisplay.innerText = ((digits - 2)/(Date.now() - timeAtTwo) * 60000).toFixed(1);
+        digitsperMinuteWithoutDisplay.innerText = ((Math.max(digits - 2, 0))/(Date.now() - timeAtTwo) * 60000).toFixed(1);
     }, 0);
     
     /* settings */
