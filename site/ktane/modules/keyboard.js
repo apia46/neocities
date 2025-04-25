@@ -1,34 +1,31 @@
 function keyboardSetup() {
-
-}
-
-function keyboardOnload() {
     document.querySelector("#keyboard").innerHTML = `
-        <button>Q</button>
-        <button>W</button>
-        <button>E</button>
-        <button>R</button>
-        <button>T</button>
-        <button>Y</button>
-        <button>U</button>
-        <button>I</button>
-        <button>O</button>
-        <button>P</button><br>
-        <button>A</button>
-        <button>S</button>
-        <button>D</button>
-        <button>F</button>
-        <button>G</button>
-        <button>H</button>
-        <button>J</button>
-        <button>K</button>
-        <button>L</button><br>
-        <button>Z</button>
-        <button>X</button>
-        <button>C</button>
-        <button>V</button>
-        <button>B</button>
-        <button>N</button>
-        <button>M</button>
-    `
+        <button id="keyboard-Q" onclick="keyboardInput('Q')">Q</button>
+        <button id="keyboard-W" onclick="keyboardInput('W')">W</button>
+        <button id="keyboard-E" onclick="keyboardInput('E')">E</button>
+        <button id="keyboard-R" onclick="keyboardInput('R')">R</button>
+        <button id="keyboard-T" onclick="keyboardInput('T')">T</button>
+        <button id="keyboard-Y" onclick="keyboardInput('Y')">Y</button>
+        <button id="keyboard-U" onclick="keyboardInput('U')">U</button>
+        <button id="keyboard-I" onclick="keyboardInput('I')">I</button>
+        <button id="keyboard-O" onclick="keyboardInput('O')">O</button>
+        <button id="keyboard-P" onclick="keyboardInput('P')">P</button><br>
+        <button id="keyboard-A" onclick="keyboardInput('A')">A</button>
+        <button id="keyboard-S" onclick="keyboardInput('S')">S</button>
+        <button id="keyboard-D" onclick="keyboardInput('D')">D</button>
+        <button id="keyboard-F" onclick="keyboardInput('F')">F</button>
+        <button id="keyboard-G" onclick="keyboardInput('G')">G</button>
+        <button id="keyboard-H" onclick="keyboardInput('H')">H</button>
+        <button id="keyboard-J" onclick="keyboardInput('J')">J</button>
+        <button id="keyboard-K" onclick="keyboardInput('K')">K</button>
+        <button id="keyboard-L" onclick="keyboardInput('L')">L</button>
+        <button id="keyboard-Enter" onclick="keyboardInput('Enter')">↵</button><br>
+        <button id="keyboard-Z" onclick="keyboardInput('Z')">Z</button>
+        <button id="keyboard-X" onclick="keyboardInput('X')">X</button>
+        <button id="keyboard-C" onclick="keyboardInput('C')">C</button>
+        <button id="keyboard-V" onclick="keyboardInput('V')">V</button>
+        <button id="keyboard-B" onclick="keyboardInput('B')">B</button>
+        <button id="keyboard-N" onclick="keyboardInput('N')">N</button>
+        <button id="keyboard-M" onclick="keyboardInput('M')">M</button>
+    `;
 }

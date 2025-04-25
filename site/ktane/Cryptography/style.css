@@ -2,42 +2,61 @@ body {
     --highlight: #929dc2;
     --background: #12171d;
 }
-#display::selection,
+#text::selection,
 #keyboard::selection {
     background: none;
 }
 
+.yellow { --highlight: #fbfeb1; }
+.red { --highlight: #e5b0ad; }
+.green { --highlight: #65b86f; }
+.purple { --highlight: #ad87be; }
+.white { --highlight: #ffffff; }
+
 #display {
     box-sizing: border-box;
     display: inline-block;
+    position: relative;
     text-align: left;
+    cursor: text;
     font-family: ostrichsans;
     font-size: 49px;
     line-height: 43.5px;
     padding: 8px 14px;
     width: 416px;
     height: 416px;
-    --background: #000000;
-    background: var(--background);
+    background: #000000;
     border: 8px solid var(--highlight);
-    span {
-        color: var(--highlight);
-        height: 43.5px;
-        display: inline-block;
-        overflow: hidden;
-        vertical-align: top;
+    #text span {
+            color: var(--highlight);
+            height: 43.5px;
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: top;
     }
-    span.yellow { --highlight: #fbfeb1; }
-    span.red { --highlight: #e5b0ad; }
-    span.green { --highlight: #65b86f; }
-    span.purple { --highlight: #ad87be; }
-    span.white { --highlight: #ffffff; }
-    span.selected {
-        position: relative;
-        left: -2px;
-        padding-left: 2px;
-        margin-right: -2px;
-        color: var(--background);
+    input {
+        --width: 20;
+        --x: 14;
+        --y: 8;
+        position: absolute;
+        font: inherit;
+        line-height: 43.5px;
+        height: 43.5px;
+        width: calc(var(--width) * 1px);
+        left: calc(var(--x) * 1px);
+        top: calc(var(--y) * 1px);
         background: var(--highlight);
+        cursor: text;
+        border: none;
+        padding: 0;
+    }
+    input::placeholder {
+        color: var(--background);
+        opacity: 1;
+    }
+    input:focus {
+        --background: #000000;
+        background: #ffffff;
+        outline: none;
     }
 }

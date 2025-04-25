@@ -43,8 +43,8 @@ function moduleSetup() {
     updateTexts();
 }
 
-function settingsModule() {
-    if (!(localStorage.ktane_settings_MemoryV2_strikeDelay-1)) localStorage.ktane_settings_MemoryV2_strikeDelay = -1;
+function moduleSettings() {
+    if (typeof(localStorage.ktane_settings_MemoryV2_strikeDelay) == "undefined") localStorage.ktane_settings_MemoryV2_strikeDelay = -1;
     return `
     <tr><th colspan="2" class="section">Forget Me Not</th></tr>
     <tr>

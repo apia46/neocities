@@ -83,8 +83,8 @@ function edgeworkSetup() {
         </tbody>`;
 }
 
-function settingsEdgework() {
-    if (!localStorage.ktane_settings_edgework_widgets) localStorage.ktane_settings_edgework_widgets = 5;
+function edgeworkSettings() {
+    if (typeof(localStorage.ktane_settings_edgework_widgets) == "undefined") localStorage.ktane_settings_edgework_widgets = 5;
     return `
     <tr><th colspan="2" class="section">Edgework</th></tr>
     <tr>

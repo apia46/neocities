@@ -20,8 +20,8 @@ function generateBomb() {
     setStrikesText();
 }
 
-function settings() {
-    if (!localStorage.ktane_settings_general_volume) localStorage.ktane_settings_general_volume = 5;
+function generalSettings() {
+    if (typeof(localStorage.ktane_settings_general_volume) == "undefined") localStorage.ktane_settings_general_volume = 5;
     return `
     <tr><th colspan="2" class="section">General</th></tr>
     <tr>
@@ -32,6 +32,13 @@ function settings() {
 }
 
 function load() {
+    document.querySelector("#general").innerHTML = `
+        <div id="timer">
+            <div id="strikes">...</div>
+            <div id="time">00:12</div>
+        </div>
+        <button onclick="generateBomb()">New Bomb</button>`
+
     generateBomb();
 
     let timeDisplay = document.querySelector("#time");
@@ -43,9 +50,9 @@ function load() {
     /* settings */
     document.querySelector('#settings').innerHTML = `
     <tbody>
-        ${settings()}
-        ${this.settingsEdgework?.()||""}
-        ${this.settingsModule?.()||""}
+        ${generalSettings()}
+        ${this.edgeworkSettings?.()||""}
+        ${this.moduleSettings?.()||""}
     </tbody>`;
 
     let volumeSlider = document.querySelector("#volume");

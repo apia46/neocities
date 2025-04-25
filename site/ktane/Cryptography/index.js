@@ -41,15 +41,19 @@ const MESSAGES = [
     "IT WAS THE VERY THING HE LIKED",
     "TO EDGE HIS WAY ALONG THE CROWDED PATHS OF LIFE WARNING ALL HUMAN SYMPATHY TO KEEP ITS DISTANCE WAS WHAT THE KNOWING ONES CALL NUTS TO SCROOGE",
 ];
+REPLACE_LETTERS = true;
 
 let message;
 let encryptedMessage;
 let substitution;
 let ordering;
+let index;
+
+const PRACTICE_POOL_IMAGE_DIRECTORY = "Cryptography/assets";
+const PRACTICE_POOL_IMAGE_FILETYPE = "png";
+const PRACTICE_POOL_SYMBOLS = [...Array(MESSAGES.length).keys()];
 
 function moduleSetup() {
-    keyboardSetup();
-
     newInstance();
 }
 
@@ -57,15 +61,16 @@ function newInstance() {
     console.log("New Cryptography");
 
     message = MESSAGES[rInt(MESSAGES.length)];
+    console.log(message);
     encryptedMessage = "";
 
     substitution = derangement("ABCDFGHIJKLMNOPQRSTUVWXYZ".split(""));
+    console.log(substitution.join(""));
     substitution.splice(4,0,"E");
-
     ordering = [];
+    index = 0;
 
     message.split(" ").forEach(word=>{
-        console.log('word');
         let color = "yellow";
         if (word.includes("Q")) color = "purple";
         else if ((word.match(/T/g)||[]).length >= 2) color = "green";
@@ -83,16 +88,80 @@ function newInstance() {
         })
         encryptedMessage += "</span> ";
     })
+    encryptedMessage += "<span class='white first'>↵</span>";
 
+    keyboardSetup();
     updateTexts();
 }
 
-function updateTexts() {
-    document.querySelector("#display").innerHTML = encryptedMessage;
+function moduleSettings() {
+    if (typeof(localStorage.ktane_settings_CryptModule_replaceLetters) == "undefined") localStorage.ktane_settings_CryptModule_replaceLetters = true;
+    return `
+    <tr><th colspan="2" class="section">Cryptography</th></tr>
+    <tr>
+        <th>Replace Letters</th>
+        <td><input id="replace-letters" type="checkbox" ${localStorage.ktane_settings_CryptModule_replaceLetters=="true"?"checked":""}></td>
+    </tr>
+    `
 }
 
 function moduleOnload() {
-    keyboardOnload();
+    let input = document.querySelector("#display input")
+    input.value = '';
+    input.addEventListener('keydown', event=>{
+        if (event.key == "Enter") {
+            if (index == ordering.length) newInstance();
+        }
+    });
+    
+    let replaceLettersSwitch = document.querySelector("#replace-letters");
+    REPLACE_LETTERS = replaceLettersSwitch.checked;
+    replaceLettersSwitch.onchange = ()=>{
+        localStorage.ktane_settings_CryptModule_replaceLetters = replaceLettersSwitch.checked;
+        REPLACE_LETTERS = replaceLettersSwitch.checked;
+    }
+
+    practicePoolOnload();
+}
+
+function updateTexts() {
+    document.querySelector("#display #text").innerHTML = encryptedMessage;
+    let selected = document.querySelectorAll("#display .first")[index];
+    let input = document.querySelector("#display input");
+    input.style.setProperty('--width', selected.offsetWidth);
+    input.style.setProperty('--x', selected.offsetLeft);
+    input.style.setProperty('--y', selected.offsetTop);
+    input.setAttribute("placeholder", selected.innerText);
+    input.className = selected.parentElement.className;
+}
+
+function handleInput() {
+    let input = document.querySelector("#display input");
+    inputCharacter(input.value.toUpperCase());
+    input.value = "";
+}
+function keyboardInput(char) {
+    if (char == "ENTER") {
+        if (index == ordering.length) newInstance();
+    } else inputCharacter(char);
+}
+
+function inputCharacter(char) {
+    let button;
+    if ("ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(char)) {
+        button = document.querySelector(`#keyboard-${char}`);
+        button.classList.add("press");
+        setTimeout(()=>{button.classList.remove("press")}, 20);
+    }
+    if (!ordering.slice(index).includes(char)) { return }
+    if (char == ordering[index]) {
+        index++;
+        button.setAttribute("disabled", "true");
+        encryptedMessage = encryptedMessage.replaceAll(substitution[char.charCodeAt(0) - 65], `<span class="white">${(REPLACE_LETTERS?char:substitution[char.charCodeAt(0) - 65]).toLowerCase()}</span>`);
+        updateTexts();
+    } else {
+        strike();
+    }
 }
 
 function derangement(s) { // Randomly shuffles the array until it is a derangement. Could be better https://codegolf.stackexchange.com/questions/103536/generate-a-random-derangement
