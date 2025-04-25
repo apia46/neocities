@@ -155,12 +155,12 @@ function moduleOnload() {
 function updateTexts() {
     document.querySelector("#text").innerHTML = "<span>" + workingMessage.split('').map( (char, thisIndex) =>
         char==" "?
-                `${displayInputAdditions[thisIndex]?`<span class="endfound">${displayInputAdditions[thisIndex].replaceAll(" ", "</span></span> <span><span>")}</span>`:""
+                `${displayInputAdditions[thisIndex]?`<span>${displayInputAdditions[thisIndex].replaceAll(" ", "</span></span> <span><span>")}</span>`:""
             }</span>${
             colors[thisIndex]=="hidden"?"":" "
             }<span>${
-                displayInputAdditions[thisIndex+1]?`<span class="startfound">${displayInputAdditions[thisIndex+1].slice(displayInputAdditions[thisIndex+1].lastIndexOf(" ")+1)}</span>`:""}`
-        :`${displayInputAdditions[thisIndex] && (thisIndex == 0 || workingMessage[thisIndex-1] !=" ")?`<span class="betweenfound">${displayInputAdditions[thisIndex].replaceAll(" ", "</span></span> <span><span>")}</span>`:""
+                displayInputAdditions[thisIndex+1]?`<span>${displayInputAdditions[thisIndex+1].slice(displayInputAdditions[thisIndex+1].lastIndexOf(" ")+1)}</span>`:""}`
+        :`${displayInputAdditions[thisIndex] && (thisIndex == 0 || workingMessage[thisIndex-1] !=" ")?`<span>${displayInputAdditions[thisIndex].replaceAll(" ", "</span></span> <span><span>")}</span>`:""
         }<span
             class="
                 ${colors[thisIndex]}
