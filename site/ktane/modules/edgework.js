@@ -86,7 +86,7 @@ function edgeworkSetup() {
 function edgeworkSettings() {
     if (typeof(localStorage.ktane_settings_edgework_widgets) == "undefined") localStorage.ktane_settings_edgework_widgets = 5;
     return `
-    <tr><th colspan="2" class="section">Edgework</th></tr>
+    <tr><th colspan="100%" class="section">Edgework</th></tr>
     <tr>
         <th>Widgets</th>
         <td><span><input id="widgets" type="number" min="0" value="${localStorage.ktane_settings_edgework_widgets}" pattern="[0-9]" oninput="if(this.value!==''&&!parseInt(this.value)) this.value=5"></span></td>

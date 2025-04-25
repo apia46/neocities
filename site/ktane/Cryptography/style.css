@@ -27,12 +27,20 @@ body {
     height: 416px;
     background: #000000;
     border: 8px solid var(--highlight);
-    #text span {
+    #text {
+        span {
             color: var(--highlight);
             height: 43.5px;
             display: inline-block;
             overflow: hidden;
             vertical-align: top;
+        }
+        span.hidden { display: none; }
+        span.pre { white-space: pre; }
+        .selected {
+            background: var(--highlight);
+            color: #000000;
+        }
     }
     input {
         --width: 20;
@@ -51,11 +59,10 @@ body {
         padding: 0;
     }
     input::placeholder {
-        color: var(--background);
+        color: #000000;
         opacity: 1;
     }
     input:focus {
-        --background: #000000;
         background: #ffffff;
         outline: none;
     }

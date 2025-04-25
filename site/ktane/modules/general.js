@@ -23,7 +23,7 @@ function generateBomb() {
 function generalSettings() {
     if (typeof(localStorage.ktane_settings_general_volume) == "undefined") localStorage.ktane_settings_general_volume = 5;
     return `
-    <tr><th colspan="2" class="section">General</th></tr>
+    <tr><th colspan="100%" class="section">General</th></tr>
     <tr>
         <th>Volume</th>
         <td><span>0 <input id="volume" type="range" min="0" max="10" value="${localStorage.ktane_settings_general_volume}" class="slider" oninput="this.parentElement.style.setProperty('--value', \`'\${this.value}'\`)"> 10</span></td>

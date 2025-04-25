@@ -41,13 +41,21 @@ const MESSAGES = [
     "IT WAS THE VERY THING HE LIKED",
     "TO EDGE HIS WAY ALONG THE CROWDED PATHS OF LIFE WARNING ALL HUMAN SYMPATHY TO KEEP ITS DISTANCE WAS WHAT THE KNOWING ONES CALL NUTS TO SCROOGE",
 ];
-REPLACE_LETTERS = true;
+REPLACE_AHEAD = true;
+DISPLAY_INPUT = false;
+let displayInputAdditions;
+let displayInputIndex;
 
 let message;
-let encryptedMessage;
 let substitution;
 let ordering;
+let colors;
+let firsts;
+let workingMessage;
 let index;
+
+let nextFirstIndex;
+let nextFirst;
 
 const PRACTICE_POOL_IMAGE_DIRECTORY = "Cryptography/assets";
 const PRACTICE_POOL_IMAGE_FILETYPE = "png";
@@ -62,45 +70,59 @@ function newInstance() {
 
     message = MESSAGES[rInt(MESSAGES.length)];
     console.log(message);
-    encryptedMessage = "";
 
     substitution = derangement("ABCDFGHIJKLMNOPQRSTUVWXYZ".split(""));
     console.log(substitution.join(""));
     substitution.splice(4,0,"E");
     ordering = [];
-    index = 0;
+    colors = [];
+    firsts = [];
 
+    index = 0;
+    workingMessage = "";
     message.split(" ").forEach(word=>{
         let color = "yellow";
         if (word.includes("Q")) color = "purple";
         else if ((word.match(/T/g)||[]).length >= 2) color = "green";
         else if ((word.match(/[AEIOU]/g)||[]).length == 1) color = "red";
 
-        encryptedMessage += `<span class="${color}">`
         word.split("").forEach(char=>{
-            let substituted = substitution[char.charCodeAt(0) - 65];
+            workingMessage += substitution[char.charCodeAt(0) - 65];
+            colors.push(color);
             if (!ordering.includes(char)) {
                 ordering.push(char);
-                encryptedMessage += `<span class="first">${substituted}</span>`
-            } else {
-                encryptedMessage += substituted;
+                firsts.push(index);
             }
-        })
-        encryptedMessage += "</span> ";
+            index++;
+        });
+        index++;
+        colors.push("white");
+        workingMessage += " ";
     })
-    encryptedMessage += "<span class='white first'>↵</span>";
+    colors.push("white");
+    workingMessage += "↵"
+
+    index = 0;
+    nextFirstIndex = 0;
+    nextFirst = 0;
+    displayInputIndex = 0;
+
+    displayInputAdditions = {};
 
     keyboardSetup();
     updateTexts();
 }
 
 function moduleSettings() {
-    if (typeof(localStorage.ktane_settings_CryptModule_replaceLetters) == "undefined") localStorage.ktane_settings_CryptModule_replaceLetters = true;
+    if (typeof(localStorage.ktane_settings_CryptModule_replaceAhead) == "undefined") localStorage.ktane_settings_CryptModule_replaceAhead = true;
+    if (typeof(localStorage.ktane_settings_CryptModule_replaceAhead) == "undefined") localStorage.ktane_settings_CryptModule_displayInput = false;
     return `
-    <tr><th colspan="2" class="section">Cryptography</th></tr>
+    <tr><th colspan="100%" class="section">Cryptography</th></tr>
     <tr>
-        <th>Replace Letters</th>
-        <td><input id="replace-letters" type="checkbox" ${localStorage.ktane_settings_CryptModule_replaceLetters=="true"?"checked":""}></td>
+        <th><u title="Replaces all future occurences of decrypted characters with their plaintext versions. This is information you technically have access to, but perhaps a little unrealistic to do at a reasonable speed.">Replace Ahead</u></th>
+        <td><input id="replace-ahead" type="checkbox" ${localStorage.ktane_settings_CryptModule_replaceAhead=="true"?"checked":""}></td>
+        <th><u title="Alters display to better reflect your input. Helps to make sure you dont lose your place if you're inputting an altered version of the text.">Display Input</u></th>
+        <td><input id="display-input" type="checkbox" ${localStorage.ktane_settings_CryptModule_displayInput=="true"?"checked":""}></td>
     </tr>
     `
 }
@@ -110,29 +132,53 @@ function moduleOnload() {
     input.value = '';
     input.addEventListener('keydown', event=>{
         if (event.key == "Enter") {
-            if (index == ordering.length) newInstance();
+            if (typeof(nextFirst) == "undefined") newInstance();
         }
     });
     
-    let replaceLettersSwitch = document.querySelector("#replace-letters");
-    REPLACE_LETTERS = replaceLettersSwitch.checked;
-    replaceLettersSwitch.onchange = ()=>{
-        localStorage.ktane_settings_CryptModule_replaceLetters = replaceLettersSwitch.checked;
-        REPLACE_LETTERS = replaceLettersSwitch.checked;
+    let replaceAheadSwitch = document.querySelector("#replace-ahead");
+    REPLACE_AHEAD = replaceAheadSwitch.checked;
+    replaceAheadSwitch.onchange = ()=>{
+        localStorage.ktane_settings_CryptModule_replaceAhead = replaceAheadSwitch.checked;
+        REPLACE_AHEAD = replaceAheadSwitch.checked;
+    }
+    let displayInputSwitch = document.querySelector("#display-input");
+    DISPLAY_INPUT = displayInputSwitch.checked;
+    displayInputSwitch.onchange = ()=>{
+        localStorage.ktane_settings_CryptModule_displayInput = displayInputSwitch.checked;
+        DISPLAY_INPUT = displayInputSwitch.checked;
     }
 
     practicePoolOnload();
 }
 
 function updateTexts() {
-    document.querySelector("#display #text").innerHTML = encryptedMessage;
-    let selected = document.querySelectorAll("#display .first")[index];
+    document.querySelector("#text").innerHTML = "<span>" + workingMessage.split('').map( (char, thisIndex) =>
+        char==" "?
+                `${displayInputAdditions[thisIndex]?`<span class="endfound">${displayInputAdditions[thisIndex].replaceAll(" ", "</span></span> <span><span>")}</span>`:""
+            }</span>${
+            colors[thisIndex]=="hidden"?"":" "
+            }<span>${
+                displayInputAdditions[thisIndex+1]?`<span class="startfound">${displayInputAdditions[thisIndex+1].slice(displayInputAdditions[thisIndex+1].lastIndexOf(" ")+1)}</span>`:""}`
+        :`${displayInputAdditions[thisIndex] && (thisIndex == 0 || workingMessage[thisIndex-1] !=" ")?`<span class="betweenfound">${displayInputAdditions[thisIndex].replaceAll(" ", "</span></span> <span><span>")}</span>`:""
+        }<span
+            class="
+                ${colors[thisIndex]}
+                ${thisIndex > index && (typeof(nextFirst) == "undefined" || thisIndex <= nextFirst) ? "selected" : ""}
+                ${char == " " ? "space" : ""}
+            "
+            ${thisIndex == index ? 'id="pointer"' : ""}
+            >${char
+        }</span>`
+    ).join('') + "</span>";
+
+    let selected = document.querySelector("#pointer");
     let input = document.querySelector("#display input");
     input.style.setProperty('--width', selected.offsetWidth);
     input.style.setProperty('--x', selected.offsetLeft);
     input.style.setProperty('--y', selected.offsetTop);
     input.setAttribute("placeholder", selected.innerText);
-    input.className = selected.parentElement.className;
+    input.className = selected.className;
 }
 
 function handleInput() {
@@ -142,25 +188,55 @@ function handleInput() {
 }
 function keyboardInput(char) {
     if (char == "ENTER") {
-        if (index == ordering.length) newInstance();
+        if (typeof(nextFirst) == "undefined") newInstance();
     } else inputCharacter(char);
 }
 
 function inputCharacter(char) {
-    let button;
-    if ("ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(char)) {
-        button = document.querySelector(`#keyboard-${char}`);
-        button.classList.add("press");
-        setTimeout(()=>{button.classList.remove("press")}, 20);
+    if (!"ABCDEFGHIJKLMNOPQRSTUVWXYZ".includes(char)) {
+        if (DISPLAY_INPUT) {
+            if (!displayInputAdditions[displayInputIndex]) displayInputAdditions[displayInputIndex] = "";
+            displayInputAdditions[displayInputIndex] += char;
+            updateTexts();
+        }
+        return;
     }
-    if (!ordering.slice(index).includes(char)) { return }
-    if (char == ordering[index]) {
-        index++;
+
+    let button;
+    button = document.querySelector(`#keyboard-${char}`);
+    button.classList.add("press");
+    setTimeout(()=>{button.classList.remove("press")}, 20);
+
+    let workingRange = message.slice(index, typeof(nextFirst) == "undefined"? nextFirst : nextFirst+1);
+    if ((foundIndex = workingRange.indexOf(char)) != -1) {
         button.setAttribute("disabled", "true");
-        encryptedMessage = encryptedMessage.replaceAll(substitution[char.charCodeAt(0) - 65], `<span class="white">${(REPLACE_LETTERS?char:substitution[char.charCodeAt(0) - 65]).toLowerCase()}</span>`);
+        let newWorkingMessage = workingMessage.slice(0, index);
+        for (let i = index; i < index+foundIndex+1; i++) {
+            newWorkingMessage += message[i].toLowerCase();
+            colors[i] = DISPLAY_INPUT && i < index+foundIndex ? "hidden" : "white"; // probably make this actually modify the message but idk if thats a good idea
+        }
+        if (DISPLAY_INPUT && workingMessage[index-1] == " ") colors[index-1] = "hidden";
+        newWorkingMessage += workingMessage.slice(index+foundIndex+1);
+        workingMessage = newWorkingMessage;
+        if (REPLACE_AHEAD) {
+            workingMessage.split("").forEach((thisChar,index)=>{
+                if (thisChar == substitution[char.charCodeAt(0) - 65]) colors[index] = "white";
+            });
+            workingMessage = workingMessage.replaceAll(substitution[char.charCodeAt(0) - 65], char.toLowerCase());
+        }
+        index += foundIndex + 1;
+        displayInputIndex = index;
+        if (workingMessage[index] == " ") index++; // but not display input index
+        nextFirstIndex = firsts.findIndex(checkIndex=>checkIndex >= index);
+        nextFirst = firsts[nextFirstIndex];
         updateTexts();
     } else {
-        strike();
+        if ((nextFirstIndex==-1?[]:ordering.slice(nextFirstIndex+1)).includes(char)) strike();
+        else if (DISPLAY_INPUT) {
+            if (!displayInputAdditions[displayInputIndex]) displayInputAdditions[displayInputIndex] = "";
+            displayInputAdditions[displayInputIndex] += char;
+            updateTexts();
+        }
     }
 }
 

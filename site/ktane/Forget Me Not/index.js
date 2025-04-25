@@ -46,7 +46,7 @@ function moduleSetup() {
 function moduleSettings() {
     if (typeof(localStorage.ktane_settings_MemoryV2_strikeDelay) == "undefined") localStorage.ktane_settings_MemoryV2_strikeDelay = -1;
     return `
-    <tr><th colspan="2" class="section">Forget Me Not</th></tr>
+    <tr><th colspan="100%" class="section">Forget Me Not</th></tr>
     <tr>
         <th><u title="Number of extra digits calculated before an incorrect one is revealed">Strike delay</u></th>
         <td><span>5 <input id="strike-delay" type="range" min="-5" max="0" value="${localStorage.ktane_settings_MemoryV2_strikeDelay}" class="slider" oninput="this.parentElement.style.setProperty('--value', \`'\${-this.value}'\`)"> 0</span></td>
