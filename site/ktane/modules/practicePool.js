@@ -73,7 +73,7 @@ function practicePoolOnload() {
     streakRequiredSlider.parentElement.style.setProperty('--value', `'${streakRequiredSlider.value}'`);
     STREAK_REQUIRED = parseInt(streakRequiredSlider.value);
     streakRequiredSlider.onchange = ()=>{
-        localStorage.ktane_settings_practicePool_streakRequired = parseInt(streakRequiredSlider.value);;
+        localStorage.ktane_settings_practicePool_streakRequired = parseInt(streakRequiredSlider.value);
         STREAK_REQUIRED = parseInt(streakRequiredSlider.value);
     }
 }

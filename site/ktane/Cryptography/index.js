@@ -42,7 +42,8 @@ const MESSAGES = [
     "TO EDGE HIS WAY ALONG THE CROWDED PATHS OF LIFE WARNING ALL HUMAN SYMPATHY TO KEEP ITS DISTANCE WAS WHAT THE KNOWING ONES CALL NUTS TO SCROOGE",
 ];
 REPLACE_AHEAD = true;
-MAX_TIME = 4000;
+STRIKE_TIME = 4000;
+PENALTY_TIME = 1000;
 MODULE_ID = "CryptModule";
 
 let message;
@@ -135,7 +136,10 @@ function newInstance() {
 
 function moduleSettings() {
     if (typeof(localStorage.ktane_settings_CryptModule_replaceAhead) == "undefined") localStorage.ktane_settings_CryptModule_replaceAhead = true;
-    if (typeof(localStorage.ktane_settings_CryptModule_replaceAhead) == "undefined") localStorage.ktane_settings_CryptModule_displayInput = false;
+    if (typeof(localStorage.ktane_settings_CryptModule_displayInput) == "undefined") localStorage.ktane_settings_CryptModule_displayInput = false;
+    if (typeof(localStorage.ktane_settings_CryptModule_strikeTime) == "undefined") localStorage.ktane_settings_CryptModule_strikeTime = 2;
+    if (typeof(localStorage.ktane_settings_CryptModule_penaltyTime) == "undefined") localStorage.ktane_settings_CryptModule_penaltyTime = 0;
+    
     return `
     <tr><th colspan="100%" class="section">Cryptography</th></tr>
     <tr>
@@ -143,6 +147,12 @@ function moduleSettings() {
         <td><input id="replace-ahead" type="checkbox" ${localStorage.ktane_settings_CryptModule_replaceAhead=="true"?"checked":""}></td>
         <th><u title="Alters display to better reflect your input. Helps to make sure you dont lose your place if you're inputting an altered version of the text.">Display Input</u></th>
         <td><input id="display-input" type="checkbox" ${localStorage.ktane_settings_CryptModule_displayInput=="true"?"checked":""}></td>
+    </tr>
+    <tr>
+        <th><u title="The time you are allowed per character until the module strikes">Strike Time</u></th>
+        <td><span style="--after-width: 48px">0.5s <input id="strike-time" type="range" min="-1" max="4.333333333" step="0.333333333" value="${localStorage.ktane_settings_CryptModule_strikeTime}" class="slider" oninput="this.parentElement.style.setProperty('--value', \`'\${this.value>4.1?'∞':(2**this.value).toPrecision(2).slice(0,3)}s'\`)"> 16s/∞s</span></td>
+        <th><u title="The time penalty given for inputting incorrect characters.">Penalty Time</u></th>
+        <td><span style="--after-width: 48px">0s/0.1s <input id="penalty-time" type="range" min="-3.5" max="4" step="0.5" value="${localStorage.ktane_settings_CryptModule_penaltyTime}" class="slider" oninput="this.parentElement.style.setProperty('--value', \`'\${this.value<-3.1?'0':(2**this.value).toPrecision(2).slice(0,3)}s'\`)"> 16s</span></td>
     </tr>
     `
 }
@@ -169,10 +179,26 @@ function moduleOnload() {
         DISPLAY_INPUT = displayInputSwitch.checked;
     }
 
+    let strikeTimeSlider = document.querySelector("#strike-time");
+    strikeTimeSlider.parentElement.style.setProperty('--value', `'${strikeTimeSlider.value>4?'∞':(2**strikeTimeSlider.value).toPrecision(2).slice(0,3)}s'`);
+    STRIKE_TIME = strikeTimeSlider.value>4.1?-1:2**parseFloat(strikeTimeSlider.value) * 1000;
+    strikeTimeSlider.onchange = ()=>{
+        localStorage.ktane_settings_CryptModule_strikeTime = parseFloat(strikeTimeSlider.value);
+        STRIKE_TIME = strikeTimeSlider.value>4.1?-1:2**parseFloat(strikeTimeSlider.value) * 1000;
+    }
+
+    let penaltyTimeSlider = document.querySelector("#penalty-time");
+    penaltyTimeSlider.parentElement.style.setProperty('--value', `'${penaltyTimeSlider.value==-3?'0':(2**penaltyTimeSlider.value).toPrecision(2).slice(0,3)}s'`);
+    PENALTY_TIME = penaltyTimeSlider.value<-3.1?0:2**parseFloat(penaltyTimeSlider.value) * 1000;
+    penaltyTimeSlider.onchange = ()=>{
+        localStorage.ktane_settings_CryptModule_penaltyTime = parseFloat(penaltyTimeSlider.value);
+        PENALTY_TIME = penaltyTimeSlider.value<-3.1?0:2**parseFloat(penaltyTimeSlider.value) * 1000;
+    }
+
     let displayTimer = document.querySelector("#display-timer");
     setInterval(()=>{
         if (focused && result) {
-            let progress = Math.min((Date.now() - pausedTime - progressStart)/MAX_TIME, 1);
+            let progress = STRIKE_TIME == -1 ? 0 : Math.min((Date.now() - pausedTime - progressStart)/STRIKE_TIME, 1);
             displayTimer.style.setProperty('--progress', progress);
             if (progress == 1) {
                 result = false;
@@ -284,7 +310,7 @@ function inputCharacter(char) {
 }
 
 function bip() {
-    progressStart -= 1000;
+    progressStart -= PENALTY_TIME;
     let displayTimer = document.querySelector("#display-timer");
     bipSound.play();
     displayTimer.classList.add("flash");
