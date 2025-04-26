@@ -92,3 +92,26 @@ function strike() {
     setTimeout(()=>{document.body.classList.remove("strike");}, 200);
     setStrikesText();
 }
+
+function resetStrikes() {
+    strikes = 0;
+    setStrikesText();
+}
+
+function derangement(s) { // Randomly shuffles the array until it is a derangement. Could be better https://codegolf.stackexchange.com/questions/103536/generate-a-random-derangement
+    return ShuffleFisherYates((r=[...s])).some((e,i)=>s[i]==e)?derangement(s):r;
+}
+
+function ShuffleFisherYates(array)
+{
+    var i = array.length;
+    while (i > 1)
+    {
+        var index = Math.floor(Math.random() * i);
+        i--;
+        var value = array[index];
+        array[index] = array[i];
+        array[i] = value;
+    }
+    return array;
+}

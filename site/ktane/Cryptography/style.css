@@ -36,7 +36,6 @@ body {
             vertical-align: top;
         }
         span.hidden { display: none; }
-        span.pre { white-space: pre; }
         .selected {
             background: var(--highlight);
             color: #000000;
@@ -65,5 +64,20 @@ body {
     input:focus {
         background: #ffffff;
         outline: none;
+    }
+    #display-timer {
+        --progress: 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 8px;
+        width: calc(var(--progress) * 100%);
+        background: #ffffff;
+        transition: background 0.5s;
+    }
+    #display-timer[style*="--progress: 1"],
+    #display-timer.flash {
+        background-color: #e9757f;
+        transition: none;
     }
 }

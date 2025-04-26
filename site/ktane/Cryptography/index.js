@@ -42,9 +42,7 @@ const MESSAGES = [
     "TO EDGE HIS WAY ALONG THE CROWDED PATHS OF LIFE WARNING ALL HUMAN SYMPATHY TO KEEP ITS DISTANCE WAS WHAT THE KNOWING ONES CALL NUTS TO SCROOGE",
 ];
 REPLACE_AHEAD = true;
-DISPLAY_INPUT = false;
-let displayInputAdditions;
-let displayInputIndex;
+MAX_TIME = 4000;
 
 let message;
 let substitution;
@@ -57,18 +55,34 @@ let index;
 let nextFirstIndex;
 let nextFirst;
 
+DISPLAY_INPUT = false;
+let displayInputAdditions;
+let displayInputIndex;
+
+let messageIndex;
+let result;
+
+let progressStart;
+let pauseStart;
+let pausedTime;
+
 const PRACTICE_POOL_IMAGE_DIRECTORY = "Cryptography/assets";
 const PRACTICE_POOL_IMAGE_FILETYPE = "png";
 const PRACTICE_POOL_SYMBOLS = [...Array(MESSAGES.length).keys()];
 
 function moduleSetup() {
+    practicePoolSetup();
+
+    pauseStart = Date.now();
+
     newInstance();
 }
 
 function newInstance() {
     console.log("New Cryptography");
 
-    message = MESSAGES[rInt(MESSAGES.length)];
+    messageIndex = practicePoolQuery();
+    message = MESSAGES[messageIndex];
     console.log(message);
 
     substitution = derangement("ABCDFGHIJKLMNOPQRSTUVWXYZ".split(""));
@@ -105,9 +119,13 @@ function newInstance() {
     index = 0;
     nextFirstIndex = 0;
     nextFirst = 0;
-    displayInputIndex = 0;
 
+    displayInputIndex = 0;
     displayInputAdditions = {};
+
+    result = true;
+    progressStart = Date.now();
+    pausedTime = 0;
 
     keyboardSetup();
     updateTexts();
@@ -132,7 +150,7 @@ function moduleOnload() {
     input.value = '';
     input.addEventListener('keydown', event=>{
         if (event.key == "Enter") {
-            if (typeof(nextFirst) == "undefined") newInstance();
+            if (typeof(nextFirst) == "undefined") solve();
         }
     });
     
@@ -149,12 +167,26 @@ function moduleOnload() {
         DISPLAY_INPUT = displayInputSwitch.checked;
     }
 
+    let displayTimer = document.querySelector("#display-timer");
+    setInterval(()=>{
+        if (input === document.activeElement && result) {
+            let progress = Math.min((Date.now() - pausedTime - progressStart)/MAX_TIME, 1);
+            displayTimer.style.setProperty('--progress', progress);
+            if (progress == 1) {
+                result = false;
+                strike();
+            }
+        }
+    }, 0);
+
+    updateTexts();
+
     practicePoolOnload();
 }
 
 function updateTexts() {
     document.querySelector("#text").innerHTML = "<span>" + workingMessage.split('').map( (char, thisIndex) =>
-        char==" "?
+        char==" "? /* fuck this code man why does displayinput have to exist */
                 `${displayInputAdditions[thisIndex]?`<span>${displayInputAdditions[thisIndex].replaceAll(" ", "</span></span> <span><span>")}</span>`:""
             }</span>${
             colors[thisIndex]=="hidden"?"":" "
@@ -188,8 +220,13 @@ function handleInput() {
 }
 function keyboardInput(char) {
     if (char == "ENTER") {
-        if (typeof(nextFirst) == "undefined") newInstance();
+        if (typeof(nextFirst) == "undefined") solve();
     } else inputCharacter(char);
+}
+
+function solve() {
+    practicePoolResult(result, messageIndex);
+    newInstance();
 }
 
 function inputCharacter(char) {
@@ -210,6 +247,8 @@ function inputCharacter(char) {
     let workingRange = message.slice(index, typeof(nextFirst) == "undefined"? nextFirst : nextFirst+1);
     if ((foundIndex = workingRange.indexOf(char)) != -1) {
         button.setAttribute("disabled", "true");
+        progressStart = Date.now();
+        pausedTime = 0;
         let newWorkingMessage = workingMessage.slice(0, index);
         for (let i = index; i < index+foundIndex+1; i++) {
             newWorkingMessage += message[i].toLowerCase();
@@ -231,7 +270,9 @@ function inputCharacter(char) {
         nextFirst = firsts[nextFirstIndex];
         updateTexts();
     } else {
-        if ((nextFirstIndex==-1?[]:ordering.slice(nextFirstIndex+1)).includes(char)) strike();
+        if ((nextFirstIndex==-1?[]:ordering.slice(nextFirstIndex+1)).includes(char)) {
+            bip();
+        }
         else if (DISPLAY_INPUT) {
             if (!displayInputAdditions[displayInputIndex]) displayInputAdditions[displayInputIndex] = "";
             displayInputAdditions[displayInputIndex] += char;
@@ -240,6 +281,9 @@ function inputCharacter(char) {
     }
 }
 
-function derangement(s) { // Randomly shuffles the array until it is a derangement. Could be better https://codegolf.stackexchange.com/questions/103536/generate-a-random-derangement
-    return (r=[...s]).sort(_=>Math.random()-.5).some((e,i)=>s[i]==e)?derangement(s):r;
+function bip() {
+    progressStart -= 1000;
+    let displayTimer = document.querySelector("#display-timer");
+    displayTimer.classList.add("flash");
+    setTimeout(()=>{displayTimer.classList.remove("flash")}, 50);
 }
