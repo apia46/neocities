@@ -323,10 +323,8 @@ function keyboardUnfocus() {unfocusInput()}
 function focusInput() {
     pausedTime += Date.now() - pauseStart;
     focused = true;
-    console.log(focused)
 }
 function unfocusInput() {
     pauseStart = Date.now();
     focused = false;
-    console.log(focused)
 }

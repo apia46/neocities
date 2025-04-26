@@ -21,7 +21,7 @@ function practicePoolSetup() {
         let retrieved = JSON.parse(string);
         unlearntPool = retrieved.unlearnt;
         learntPool = retrieved.learnt;
-        practicePoolSymbolIndex = unlearntPool.length + learntPool.length - 1;
+        practicePoolSymbolIndex = unlearntPool.length + learntPool.length;
     } else {
         console.log("practicePool: loading new");
 
@@ -102,9 +102,9 @@ function newUnlearnt() {
 }
 
 function practicePoolQuery() {
-    if (unlearntPool.length < CONCURRENT_UNLEARNTS && PRACTICE_POOL_SYMBOLS.length >= unlearntPool.length) newUnlearnt();
+    if (unlearntPool.length < CONCURRENT_UNLEARNTS && PRACTICE_POOL_SYMBOLS.length > practicePoolSymbolIndex) newUnlearnt();
     let toReturn;
-    if (unlearntPool.length < PRACTICE_POOL_SYMBOLS.length && (practicePoolQueryIndex % (Math.max(Math.floor(learntBag.length / 4), 2)) == 0 || !learntPool.length)) {
+    if (learntPool.length < PRACTICE_POOL_SYMBOLS.length && (practicePoolQueryIndex % (Math.max(Math.floor(Math.sqrt(learntBag.length) * 0.75), 2)) == 0 || !learntPool.length)) {
         // unlearnt
         console.log("practicePool: pulling from unlearnt bag")
         if (!unlearntBag.length) [].push.apply(unlearntBag, ShuffleFisherYates(unlearntPool.slice()));
