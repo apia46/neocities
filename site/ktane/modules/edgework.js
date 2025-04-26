@@ -23,7 +23,7 @@ let plates;
 let ports;
 
 function edgeworkSetup() {
-    console.log("New edgework");
+    console.log("edgework: loading new");
     
     serial = CHARACTERS[rInt(35)] + CHARACTERS[rInt(35)] + DIGITS[rInt(10)] + LETTERS[rInt(25)] + LETTERS[rInt(25)] + DIGITS[rInt(10)];
     batteries = 0;

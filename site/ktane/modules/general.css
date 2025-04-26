@@ -166,11 +166,11 @@ input[type="number"] {
         border: 2px solid var(--background);
         transition: 0s;
     }
-    button[disabled].press {
+    button[greyed].press {
         border: 2px solid var(--highlight);
         transition: 0s;
     }
-    button[disabled] {
+    button[greyed] {
         color: var(--highlight);
         background: none;
         border: 2px solid var(--background);

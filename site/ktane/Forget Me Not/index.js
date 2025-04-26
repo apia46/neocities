@@ -15,7 +15,7 @@ let digitsSinceStrike;
 let timeAtTwo;
 
 function moduleSetup() {
-    console.log("New Forget Me Not");
+    console.log("MemoryV2: loading new");
 
     timeAtTwo = Date.now();
 
@@ -123,7 +123,7 @@ function generateForgetMeNotDigit() {
         else if (parseInt(answer[received.length-3]) % 2 == 0 && parseInt(answer[received.length-2]) % 2 == 0) chartNumber = smallestOddDigit;
         else chartNumber = parseInt(String(parseInt(answer[received.length-3]) + parseInt(answer[received.length-2]))[0]);
     }
-    console.log(`${thisReceived} + ${chartNumber} = ${(thisReceived + chartNumber) % 10}`);
+    console.log(`MemoryV2: ${thisReceived} + ${chartNumber} = ${(thisReceived + chartNumber) % 10}`);
     answer += (thisReceived + chartNumber) % 10;
 }
 

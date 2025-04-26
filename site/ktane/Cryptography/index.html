@@ -22,7 +22,7 @@
         <br>
         <div id="display" onclick="document.querySelector('#display input').focus()">
             <div id="text"></div>
-            <input oninput="handleInput()" onfocusout="pauseStart = Date.now()" onfocus="pausedTime += Date.now() - pauseStart" placeholder="Q">
+            <input oninput="handleInput()" onfocusout="unfocusInput()" onfocus="focusInput()" placeholder="Q">
             <div id="display-timer"></div>
         </div>
         <br><br>

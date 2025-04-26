@@ -77,7 +77,7 @@ body {
     }
     #display-timer[style*="--progress: 1"],
     #display-timer.flash {
-        background-color: #e9757f;
+        background-color: #e5b0ad;
         transition: none;
     }
 }

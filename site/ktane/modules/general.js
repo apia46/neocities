@@ -10,7 +10,7 @@ let strikes;
 let lastStrike;
 
 function generateBomb() {
-    console.log("New bomb");
+    console.log("general: loading new");
 
     timeStarted = Date.now();
     strikes = 0;
@@ -52,15 +52,18 @@ function load() {
     <tbody>
         ${generalSettings()}
         ${this.edgeworkSettings?.()||""}
+        ${this.practicePoolSettings?.()||""}
         ${this.moduleSettings?.()||""}
     </tbody>`;
 
     let volumeSlider = document.querySelector("#volume");
     volumeSlider.parentElement.style.setProperty('--value', `'${volumeSlider.value}'`);
-    strikeSound.volume = parseInt(volumeSlider.value)/100;
+    strikeSound.volume = parseInt(volumeSlider.value)/10;
+    bipSound.volume = parseInt(volumeSlider.value)/10;
     volumeSlider.onchange = ()=>{
         localStorage.ktane_settings_general_volume = parseInt(volumeSlider.value);
         strikeSound.volume = parseInt(volumeSlider.value)/10;
+        bipSound.volume = parseInt(volumeSlider.value)/10;
         strikeSound.play();
     }
 
@@ -92,6 +95,7 @@ function strike() {
     setTimeout(()=>{document.body.classList.remove("strike");}, 200);
     setStrikesText();
 }
+const bipSound = new Audio('https://github.com/apia46/neocities/raw/refs/heads/main/assets/bip.wav');
 
 function resetStrikes() {
     strikes = 0;

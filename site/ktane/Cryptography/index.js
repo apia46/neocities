@@ -43,6 +43,7 @@ const MESSAGES = [
 ];
 REPLACE_AHEAD = true;
 MAX_TIME = 4000;
+MODULE_ID = "CryptModule";
 
 let message;
 let substitution;
@@ -65,12 +66,14 @@ let result;
 let progressStart;
 let pauseStart;
 let pausedTime;
+let focused;
 
 const PRACTICE_POOL_IMAGE_DIRECTORY = "Cryptography/assets";
 const PRACTICE_POOL_IMAGE_FILETYPE = "png";
 const PRACTICE_POOL_SYMBOLS = [...Array(MESSAGES.length).keys()];
 
 function moduleSetup() {
+    console.log("CryptModule: loading new");
     practicePoolSetup();
 
     pauseStart = Date.now();
@@ -79,14 +82,13 @@ function moduleSetup() {
 }
 
 function newInstance() {
-    console.log("New Cryptography");
 
     messageIndex = practicePoolQuery();
     message = MESSAGES[messageIndex];
-    console.log(message);
+    console.log(`CryptModule: ${message}`);
 
     substitution = derangement("ABCDFGHIJKLMNOPQRSTUVWXYZ".split(""));
-    console.log(substitution.join(""));
+    console.log(`CryptModule: ${substitution.join("")}`);
     substitution.splice(4,0,"E");
     ordering = [];
     colors = [];
@@ -169,7 +171,7 @@ function moduleOnload() {
 
     let displayTimer = document.querySelector("#display-timer");
     setInterval(()=>{
-        if (input === document.activeElement && result) {
+        if (focused && result) {
             let progress = Math.min((Date.now() - pausedTime - progressStart)/MAX_TIME, 1);
             displayTimer.style.setProperty('--progress', progress);
             if (progress == 1) {
@@ -219,7 +221,7 @@ function handleInput() {
     input.value = "";
 }
 function keyboardInput(char) {
-    if (char == "ENTER") {
+    if (char == "Enter") {
         if (typeof(nextFirst) == "undefined") solve();
     } else inputCharacter(char);
 }
@@ -246,7 +248,7 @@ function inputCharacter(char) {
 
     let workingRange = message.slice(index, typeof(nextFirst) == "undefined"? nextFirst : nextFirst+1);
     if ((foundIndex = workingRange.indexOf(char)) != -1) {
-        button.setAttribute("disabled", "true");
+        button.setAttribute("greyed", "true");
         progressStart = Date.now();
         pausedTime = 0;
         let newWorkingMessage = workingMessage.slice(0, index);
@@ -284,6 +286,21 @@ function inputCharacter(char) {
 function bip() {
     progressStart -= 1000;
     let displayTimer = document.querySelector("#display-timer");
+    bipSound.play();
     displayTimer.classList.add("flash");
     setTimeout(()=>{displayTimer.classList.remove("flash")}, 50);
+}
+
+function keyboardFocus() {focusInput()}
+function keyboardUnfocus() {unfocusInput()}
+
+function focusInput() {
+    pausedTime += Date.now() - pauseStart;
+    focused = true;
+    console.log(focused)
+}
+function unfocusInput() {
+    pauseStart = Date.now();
+    focused = false;
+    console.log(focused)
 }

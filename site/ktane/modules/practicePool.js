@@ -10,22 +10,32 @@ let practicePoolQueryIndex;
 let consistency;
 
 function practicePoolSetup() {
-    console.log("New practice pool");
-
-    unlearntPool = [];
-    learntPool = [];
     unlearntBag = [];
     learntBag = [];
-    practicePoolSymbolIndex = 0;
     practicePoolQueryIndex = 0;
     consistency = {};
+    
+    if (string = localStorage[`ktane_practicePool_${MODULE_ID}`]) {
+        console.log("practicePool: loading from localStorage");
 
-    for (let i = 0; i < CONCURRENT_UNLEARNTS; i++) newUnlearnt();
+        let retrieved = JSON.parse(string);
+        unlearntPool = retrieved.unlearnt;
+        learntPool = retrieved.learnt;
+        practicePoolSymbolIndex = unlearntPool.length + learntPool.length - 1;
+    } else {
+        console.log("practicePool: loading new");
 
+        unlearntPool = [];
+        learntPool = [];
+        practicePoolSymbolIndex = 0;
+
+        for (let i = 0; i < CONCURRENT_UNLEARNTS; i++) newUnlearnt();
+        practicePoolUpdateText();
+    }
     document.querySelector("#practice-pool").innerHTML = `
         <div class="symbols"></div>
         <br>
-        <button>Reset</button>
+        <button onclick="practicePoolReset()">Reset</button>
     `;
     document.querySelector("#practice-pool .symbols").innerHTML = PRACTICE_POOL_SYMBOLS.map(symbol=>`
         <div class="symbol" id="practice-pool-${symbol}">
@@ -35,8 +45,36 @@ function practicePoolSetup() {
     ).join("");
 }
 
+function practicePoolSettings() {
+    if (typeof(localStorage.ktane_settings_practicePool_concurrentUnlearnts) == "undefined") localStorage.ktane_settings_practicePool_concurrentUnlearnts = 3;
+    if (typeof(localStorage.ktane_settings_practicePool_streakRequired) == "undefined") localStorage.ktane_settings_practicePool_streakRequired = 3;
+    return `
+    <tr><th colspan="100%" class="section">Practice Pool</th></tr>
+    <tr>
+        <th><u title="The number of symbols that can be in the unlearnt pool (yellow) at the same time">Concurrent Unlearnts</u></th>
+        <td><span>1 <input id="concurrent-unlearnts" type="range" min="1" max="10" value="${localStorage.ktane_settings_practicePool_concurrentUnlearnts}" class="slider" oninput="this.parentElement.style.setProperty('--value', \`'\${this.value}'\`)"> 10</span></td>
+        <th><u title="The number of consecutive correct queries of a symbol required to count as learnt (green)">Streak Required</u></th>
+        <td><span>1 <input id="streak-required" type="range" min="1" max="10" value="${localStorage.ktane_settings_practicePool_streakRequired}" class="slider" oninput="this.parentElement.style.setProperty('--value', \`'\${this.value}'\`)"> 10</span></td>
+    </tr>
+    `
+}
+
 function practicePoolOnload() {
-    practicePoolUpdateText();
+    let concurrentUnlearntsSlider = document.querySelector("#concurrent-unlearnts");
+    concurrentUnlearntsSlider.parentElement.style.setProperty('--value', `'${concurrentUnlearntsSlider.value}'`);
+    CONCURRENT_UNLEARNTS = parseInt(concurrentUnlearntsSlider.value);
+    concurrentUnlearntsSlider.onchange = ()=>{
+        localStorage.ktane_settings_practicePool_concurrentUnlearnts = parseInt(concurrentUnlearntsSlider.value);;
+        CONCURRENT_UNLEARNTS = parseInt(concurrentUnlearntsSlider.value);
+    }
+
+    let streakRequiredSlider = document.querySelector("#streak-required");
+    streakRequiredSlider.parentElement.style.setProperty('--value', `'${streakRequiredSlider.value}'`);
+    STREAK_REQUIRED = parseInt(streakRequiredSlider.value);
+    streakRequiredSlider.onchange = ()=>{
+        localStorage.ktane_settings_practicePool_streakRequired = parseInt(streakRequiredSlider.value);;
+        STREAK_REQUIRED = parseInt(streakRequiredSlider.value);
+    }
 }
 
 function practicePoolUpdateText() {
@@ -53,9 +91,7 @@ function unlearn(symbol) {
 }
 
 function learn(symbol) {
-    console.log(unlearntPool)
     unlearntPool.splice(unlearntPool.indexOf(symbol),1);
-    console.log(unlearntPool)
     learntPool.push(symbol);
 }
 
@@ -65,15 +101,17 @@ function newUnlearnt() {
 }
 
 function practicePoolQuery() {
-    if (unlearntPool.length < CONCURRENT_UNLEARNTS) newUnlearnt();
+    if (unlearntPool.length < CONCURRENT_UNLEARNTS && PRACTICE_POOL_SYMBOLS.length >= unlearntPool.length) newUnlearnt();
     let toReturn;
-    if (practicePoolQueryIndex % 2 == 0 || !learntPool.length) {
+    if (unlearntPool.length < PRACTICE_POOL_SYMBOLS.length && (practicePoolQueryIndex % (Math.max(Math.floor(learntBag.length / 4), 2)) == 0 || !learntPool.length)) {
         // unlearnt
+        console.log("practicePool: pulling from unlearnt bag")
         if (!unlearntBag.length) [].push.apply(unlearntBag, ShuffleFisherYates(unlearntPool.slice()));
         toReturn = unlearntBag.shift();
     } else {
         // learnt
-        if (!learntBag.length) [].push.apply(learntBag, ShuffleFisherYates(unlearntPool.slice()));
+        console.log("practicePool: pulling from learnt bag")
+        if (!learntBag.length) [].push.apply(learntBag, ShuffleFisherYates(learntPool.slice()));
         toReturn = learntBag.shift();
     }
     practicePoolQueryIndex++;
@@ -95,4 +133,14 @@ function practicePoolResult(result, symbol) {
         symbolElement.classList.add("flash-bad");
         setTimeout(()=>{symbolElement.classList.remove("flash-bad")}, 250);
     }
+    localStorage[`ktane_practicePool_${MODULE_ID}`] = JSON.stringify({
+        learnt: learntPool,
+        unlearnt: unlearntPool
+    });
+}
+
+function practicePoolReset() {
+    localStorage.removeItem(`ktane_practicePool_${MODULE_ID}`);
+    generateBomb();
+    practicePoolUpdateText();
 }
