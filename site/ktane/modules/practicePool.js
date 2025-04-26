@@ -104,7 +104,7 @@ function newUnlearnt() {
 function practicePoolQuery() {
     if (unlearntPool.length < CONCURRENT_UNLEARNTS && PRACTICE_POOL_SYMBOLS.length > practicePoolSymbolIndex) newUnlearnt();
     let toReturn;
-    if (learntPool.length < PRACTICE_POOL_SYMBOLS.length && (practicePoolQueryIndex % (Math.max(Math.floor(Math.sqrt(learntBag.length) * 0.75), 2)) == 0 || !learntPool.length)) {
+    if (unlearntPool.length > 0 && (practicePoolQueryIndex % (Math.max(Math.floor(Math.sqrt(learntBag.length) * 0.75), 2)) == 0 || !learntPool.length)) {
         // unlearnt
         console.log("practicePool: pulling from unlearnt bag")
         if (!unlearntBag.length) [].push.apply(unlearntBag, ShuffleFisherYates(unlearntPool.slice()));
