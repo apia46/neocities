@@ -30,7 +30,6 @@ function practicePoolSetup() {
         practicePoolSymbolIndex = 0;
 
         for (let i = 0; i < CONCURRENT_UNLEARNTS; i++) newUnlearnt();
-        practicePoolUpdateText();
     }
     document.querySelector("#practice-pool").innerHTML = `
         <div class="symbols"></div>
@@ -43,6 +42,8 @@ function practicePoolSetup() {
             <div class="overlay"></div>
         </div>`
     ).join("");
+
+    practicePoolUpdateText();
 }
 
 function practicePoolSettings() {
