@@ -5,7 +5,6 @@ let unlearntPool;
 let learntPool;
 let unlearntBag;
 let learntBag;
-let practicePoolSymbolIndex;
 let practicePoolQueryIndex;
 let consistency;
 
@@ -21,13 +20,11 @@ function practicePoolSetup() {
         let retrieved = JSON.parse(string);
         unlearntPool = retrieved.unlearnt;
         learntPool = retrieved.learnt;
-        practicePoolSymbolIndex = unlearntPool.length + learntPool.length;
     } else {
         console.log("practicePool: loading new");
 
         unlearntPool = [];
         learntPool = [];
-        practicePoolSymbolIndex = 0;
 
         for (let i = 0; i < CONCURRENT_UNLEARNTS; i++) newUnlearnt();
     }
@@ -35,9 +32,10 @@ function practicePoolSetup() {
         <div class="symbols"></div>
         <br>
         <button onclick="practicePoolReset()">Reset</button>
+        <input type="checkbox" id="manual-edit" class="toggle-button"><label for="manual-edit">Manual Edit</label>
     `;
     document.querySelector("#practice-pool .symbols").innerHTML = PRACTICE_POOL_SYMBOLS.map(symbol=>`
-        <div class="symbol" id="practice-pool-${symbol}">
+        <div class="symbol" id="practice-pool-${symbol}" onclick="symbolClicked(${symbol})">
             <img src="../${PRACTICE_POOL_IMAGE_DIRECTORY}/${symbol}.${PRACTICE_POOL_IMAGE_FILETYPE}">
             <div class="overlay"></div>
         </div>`
@@ -52,8 +50,8 @@ function practicePoolSettings() {
     return `
     <tr><th colspan="100%" class="section">Practice Pool</th></tr>
     <tr>
-        <th><u title="The number of symbols that can be in the unlearnt pool (yellow) at the same time">Concurrent Unlearnts</u></th>
-        <td><span>1 <input id="concurrent-unlearnts" type="range" min="1" max="10" value="${localStorage.ktane_settings_practicePool_concurrentUnlearnts}" class="slider" oninput="this.parentElement.style.setProperty('--value', \`'\${this.value}'\`)"> 10</span></td>
+        <th><u title="The number of symbols that can be in the unlearnt pool (yellow) at the same time. Set this to zero to prevent new symbols from being added to the unlearnt pool.">Concurrent Unlearnts</u></th>
+        <td><span>0 <input id="concurrent-unlearnts" type="range" min="0" max="10" value="${localStorage.ktane_settings_practicePool_concurrentUnlearnts}" class="slider" oninput="this.parentElement.style.setProperty('--value', \`'\${this.value}'\`)"> 10</span></td>
         <th><u title="The number of consecutive correct queries of a symbol required to count as learnt (green)">Streak Required</u></th>
         <td><span>1 <input id="streak-required" type="range" min="1" max="10" value="${localStorage.ktane_settings_practicePool_streakRequired}" class="slider" oninput="this.parentElement.style.setProperty('--value', \`'\${this.value}'\`)"> 10</span></td>
     </tr>
@@ -97,12 +95,11 @@ function learn(symbol) {
 }
 
 function newUnlearnt() {
-    unlearntPool.push(PRACTICE_POOL_SYMBOLS[practicePoolSymbolIndex]);
-    practicePoolSymbolIndex++;
+    unlearntPool.push(PRACTICE_POOL_SYMBOLS.find(symbol=>!learntPool.includes(symbol) && !unlearntPool.includes(symbol)));
 }
 
 function practicePoolQuery() {
-    if (unlearntPool.length < CONCURRENT_UNLEARNTS && PRACTICE_POOL_SYMBOLS.length > practicePoolSymbolIndex) newUnlearnt();
+    if (unlearntPool.length < CONCURRENT_UNLEARNTS && PRACTICE_POOL_SYMBOLS.length > unlearntPool.length + learntPool.length) newUnlearnt();
     let toReturn;
     if (unlearntPool.length > 0 && (practicePoolQueryIndex % (Math.max(Math.floor(Math.sqrt(learntBag.length) * 0.75), 2)) == 0 || !learntPool.length)) {
         // unlearnt
@@ -143,5 +140,23 @@ function practicePoolResult(result, symbol) {
 function practicePoolReset() {
     localStorage.removeItem(`ktane_practicePool_${MODULE_ID}`);
     generateBomb();
+    practicePoolUpdateText();
+}
+
+function symbolClicked(symbol) {
+    if (document.querySelector("#manual-edit").checked) {
+        switch (document.querySelector(`#practice-pool-${symbol}`).getAttribute('state')) {
+            case "out-of-pool":
+                unlearntPool.push(symbol);
+            break;
+            case "unlearnt":
+                unlearntPool.splice(unlearntPool.indexOf(symbol),1);
+                learntPool.push(symbol);
+            break;
+            case "learnt":
+                learntPool.splice(learntPool.indexOf(symbol),1);
+            break;
+        }
+    }
     practicePoolUpdateText();
 }

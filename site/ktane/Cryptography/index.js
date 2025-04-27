@@ -135,7 +135,7 @@ function newInstance() {
 }
 
 function moduleSettings() {
-    if (typeof(localStorage.ktane_settings_CryptModule_replaceAhead) == "undefined") localStorage.ktane_settings_CryptModule_replaceAhead = true;
+    if (typeof(localStorage.ktane_settings_CryptModule_replaceAhead) == "undefined") localStorage.ktane_settings_CryptModule_replaceAhead = false;
     if (typeof(localStorage.ktane_settings_CryptModule_displayInput) == "undefined") localStorage.ktane_settings_CryptModule_displayInput = false;
     if (typeof(localStorage.ktane_settings_CryptModule_strikeTime) == "undefined") localStorage.ktane_settings_CryptModule_strikeTime = 2;
     if (typeof(localStorage.ktane_settings_CryptModule_penaltyTime) == "undefined") localStorage.ktane_settings_CryptModule_penaltyTime = 0;
@@ -240,6 +240,7 @@ function updateTexts() {
     input.setAttribute("placeholder", selected.innerText);
     input.className = selected.className;
 }
+window.onload = ()=>{updateTexts()}
 
 function handleInput() {
     let input = document.querySelector("#display input");

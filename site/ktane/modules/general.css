@@ -23,7 +23,9 @@ html, body {
 h2 {
     margin: 0;
 }
-button {
+
+button,
+.toggle-button + label {
     color: #0F141A;
     font-weight: bold;
     font-family: titilliumweb;
@@ -35,10 +37,19 @@ button {
     vertical-align: middle;
     border: 2px solid var(--highlight);
 }
-button:hover {
+button:hover,
+.toggle-button + label:hover {
     background-color: var(--background);
     color: var(--highlight);
 }
+.toggle-button:checked + label {
+    background-color: var(--background);
+    color: #ffffff;
+}
+.toggle-button {
+    display: none;
+}
+
 table {
     display: inline-block;
     max-width: 100vw;
@@ -204,7 +215,7 @@ input[type="number"] {
             width: 100%;
             height: 100%;
             content: " ";
-            transition: 0.5s;
+            transition: 0.4s;
         }
         .symbol[state="out-of-pool"]::after { background: #22222233; }
         .symbol[state="unlearnt"]::after { background: #ffff0033; }
@@ -223,6 +234,7 @@ input[type="number"] {
             opacity: 0;
             transition: 0.3s;
             text-shadow: 0px 2px 4px #000000;
+            pointer-events: none;
         }
         .symbol:hover img { filter: blur(2px); }
         .symbol:hover .overlay { opacity: 1; }
