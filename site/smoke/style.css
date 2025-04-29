@@ -9,7 +9,7 @@
 }
 
 body {
-    font-family: 'titilliumweb', sans-serif;
+    font-family: 'titilliumweb';
     color: #ffffff;
     font-size: 16px;
     line-height: 1.25;
@@ -36,13 +36,13 @@ body {
     h2 {
         margin: 4px 0 8px 0;
         font-size: 120%;
-        font-weight: 900;
+        font-weight: bold;
         color: #ffe6c0;
     }
     h3 {
         margin: 4px 0 4px 0;
         font-size: 116%;
-        font-weight: 900;
+        font-weight: bold;
         color: #ffe6c0;
     }
     h4 {
@@ -117,7 +117,7 @@ body {
     justify-content: space-between;
 }
 .playtime {
-    font-weight: 600;
+    font-weight: bold;
     color: #ffffff;
 }
 #about {
@@ -217,7 +217,7 @@ body {
         padding: 8px 12px 8px 12px;
         font-size: 100%;
         color: #000;
-        font-weight: 600;
+        font-weight: bold;
         display: inline-block;
         min-width: 128px;
         border: none;

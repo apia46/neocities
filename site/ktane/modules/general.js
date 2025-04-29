@@ -44,7 +44,7 @@ function load() {
     let timeDisplay = document.querySelector("#time");
     setInterval(()=>{
         timeElapsed = (Date.now() - timeStarted) / 1000;
-        timeDisplay.innerText = displayTime(timeElapsed);
+        timeDisplay.textContent = displayTime(timeElapsed);
     }, 0);
 
     /* settings */

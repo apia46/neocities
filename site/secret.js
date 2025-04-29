@@ -3,14 +3,14 @@ const switchesreversed = {"we":"i","our":"my","us":"me","plural":"non-binary","w
 
 function toggleText(on, flair=false) {
     document.querySelectorAll('o').forEach((element, i)=>{
-        if ((on?switches:switchesreversed)[element.innerText] == undefined) { return };
+        if ((on?switches:switchesreversed)[element.textContent] == undefined) { return };
         if (flair) {
             setTimeout(()=>{
-                element.innerText = (on?switches:switchesreversed)[element.innerText];
+                element.textContent = (on?switches:switchesreversed)[element.textContent];
                 element.classList.toggle('switched');
             }, 17 * i);
         } else {
-            element.innerText = (on?switches:switchesreversed)[element.innerText];
+            element.textContent = (on?switches:switchesreversed)[element.textContent];
             element.classList.toggle('switched');
         };
     });

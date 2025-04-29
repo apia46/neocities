@@ -60,6 +60,9 @@ body {
         font-size: 100px;
         margin-bottom: 10px;
     }
+    p {
+        font-family: 'spacemono';
+    }
     .dark {
         color: #55555e;
     }

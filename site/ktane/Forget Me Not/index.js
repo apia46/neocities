@@ -77,12 +77,12 @@ function moduleOnload() {
     let digitsperMinuteWithoutDisplay = document.querySelector("#stats .digits-per-minute-without");
 
     setInterval(()=>{
-        digitsDisplay.innerText = digits;
-        digitsPerStrikeDisplay.innerText = (digits/strikes).toFixed(1);
-        digitsSinceStrikeDisplay.innerText = digitsSinceStrike;
-        timeSinceStrikeDisplay.innerText = displayTime(timeElapsed - lastStrike);
-        digitsperMinuteWithDisplay.innerText = (digits/timeElapsed * 60).toFixed(1);
-        digitsperMinuteWithoutDisplay.innerText = ((Math.max(digits - 2, 0))/(Date.now() - timeAtTwo) * 60000).toFixed(1);
+        digitsDisplay.textContent = digits;
+        digitsPerStrikeDisplay.textContent = (digits/strikes).toFixed(1);
+        digitsSinceStrikeDisplay.textContent = digitsSinceStrike;
+        timeSinceStrikeDisplay.textContent = displayTime(timeElapsed - lastStrike);
+        digitsperMinuteWithDisplay.textContent = (digits/timeElapsed * 60).toFixed(1);
+        digitsperMinuteWithoutDisplay.textContent = ((Math.max(digits - 2, 0))/(Date.now() - timeAtTwo) * 60000).toFixed(1);
     }, 0);
     
     /* settings */

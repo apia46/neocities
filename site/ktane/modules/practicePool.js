@@ -29,11 +29,25 @@ function practicePoolSetup() {
         for (let i = 0; i < CONCURRENT_UNLEARNTS; i++) newUnlearnt();
     }
     document.querySelector("#practice-pool").innerHTML = `
-        <div class="symbols"></div>
-        <br>
+        <div id="practice-pool-wrapper"><div class="symbols lines"></div></div>
         <button onclick="practicePoolReset()">Reset</button>
         <input type="checkbox" id="manual-edit" class="toggle-button"><label for="manual-edit">Manual Edit</label>
+        <div id="practice-pool-display">
+            <span class="title">Display</span>
+            <div class="dimensions">
+                <input id="practice-pool-columns" type="number" min="1" value="10" pattern="[0-9]" oninput="if(this.value!==''&&!parseInt(this.value)) this.value=10">
+                <span class="height">X 10</span>
+            </div>
+            <div class="select">
+                <select oninput="practicePoolSwitchDisplay(this.value)">
+                    <option value="lines">Lines</option>
+                    <option value="square-tiling">Square Tiling</option>
+                    <option value="hexagon-tiling">Hexagonal Tiling</option>
+                </select>
+            </div>
+        </div>
     `;
+
     document.querySelector("#practice-pool .symbols").innerHTML = PRACTICE_POOL_SYMBOLS.map(symbol=>`
         <div class="symbol" id="practice-pool-${symbol}" onclick="symbolClicked(${symbol})">
             <img src="../${PRACTICE_POOL_IMAGE_DIRECTORY}/${symbol}.${PRACTICE_POOL_IMAGE_FILETYPE}">
@@ -42,6 +56,20 @@ function practicePoolSetup() {
     ).join("");
 
     practicePoolUpdateText();
+}
+function practicePoolSwitchDisplay(switchTo) {
+    document.querySelector("#practice-pool-wrapper").className = switchTo;
+    switch (switchTo) {
+        case 'lines':
+
+        break;
+        case 'square-tiling':
+
+        break;
+        case 'hexagon-tiling':
+
+        break;
+    }
 }
 
 function practicePoolSettings() {
@@ -80,7 +108,7 @@ function practicePoolUpdateText() {
     PRACTICE_POOL_SYMBOLS.forEach(symbol=>{
         let symbolElement = document.querySelector(`#practice-pool-${symbol}`);
         symbolElement.setAttribute("state", unlearntPool.includes(symbol)?"unlearnt":learntPool.includes(symbol)?"learnt":"out-of-pool");
-        symbolElement.querySelector(".overlay").innerText = `${consistency[symbol]?.length&&consistency[symbol].reduce((acc,x)=>x?acc+1:acc)+0||0}/${consistency[symbol]?.length||0}`;
+        symbolElement.querySelector(".overlay").textContent = `${consistency[symbol]?.length&&consistency[symbol].reduce((acc,x)=>x?acc+1:acc)+0||0}/${consistency[symbol]?.length||0}`;
     });
 }
 

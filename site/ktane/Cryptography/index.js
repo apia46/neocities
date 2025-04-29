@@ -237,7 +237,7 @@ function updateTexts() {
     input.style.setProperty('--width', selected.offsetWidth);
     input.style.setProperty('--x', selected.offsetLeft);
     input.style.setProperty('--y', selected.offsetTop);
-    input.setAttribute("placeholder", selected.innerText);
+    input.setAttribute("placeholder", selected.textContent);
     input.className = selected.className;
 }
 window.onload = ()=>{updateTexts()}

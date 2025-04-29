@@ -31,7 +31,6 @@ button,
     font-family: titilliumweb;
     font-size: 16px;
     background-color: var(--highlight);
-    border: 2px solid transparent;
     padding: 6px;
     transition-duration: 0.3s;
     vertical-align: middle;
@@ -193,16 +192,17 @@ input[type="number"] {
 #practice-pool {
     display: inline-block;
     .symbols {
-        display: inline-block;
         max-width: 80vw;
         image-rendering: pixelated;
         font-size: 0;
         .symbol {
             position: relative;
             display: inline-block;
+            overflow: hidden;
             margin: 2px;
             width: 48px;
             height: 48px;
+            background-color: #000000;
             img {
                 width: 48px;
                 transition: 0.3s;
@@ -213,7 +213,7 @@ input[type="number"] {
             left: 0;
             top: 0;
             width: 100%;
-            height: 100%;
+            height: 101%;
             content: " ";
             transition: 0.4s;
         }
@@ -242,4 +242,99 @@ input[type="number"] {
             background: none;
         }
     }
+    #practice-pool-wrapper.square-tiling .symbols {
+        display: grid;
+        grid-template-columns: repeat(7, 52px);
+    }
+    /* https://css-tricks.com/hexagons-and-beyond-flexible-responsive-grid-patterns-sans-media-queries/ really cool. thank you somuch */
+    #practice-pool-wrapper.hexagon-tiling {
+        text-align: left;
+        display: flex;
+        --s: 55.425625841208145px;
+        --m: 4px;
+        --f: calc(var(--s) * 0.8660254038 + var(--m)); /* the height of two rows */
+        margin-bottom: calc(var(--s) * 0.4330127019 + 20px);
+        .symbols {
+            .symbol {
+                text-align: center;
+                width: var(--s);
+                margin-top: calc(var(--m) * 0.5); /* applied twice since touching two rows down */
+                margin-right: calc(var(--s) * 0.5 + var(--m) * 0.8660254038);
+                margin-bottom: calc(var(--s) * -0.4330127019);
+                height: calc(var(--s) * 0.8660254038); /* sqrt.75 */
+                clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+                img { margin-bottom: -70%; }
+            }
+        }
+        .symbols::before {
+            content: "";
+            width: calc(var(--s) * 0.75 + var(--m) * 0.8660254038);
+            float: left;
+            height: 120%; 
+            shape-outside: repeating-linear-gradient(#0000 0 calc(var(--f) - 20px), #000 0 calc(var(--f) - 10px), #0000 0 var(--f));
+            /* background: repeating-linear-gradient(#fff 0 calc(var(--f) - 20px), #f00 0 calc(var(--f) - 10px), #fff 0 var(--f)); */
+        }
+    }
+}
+#practice-pool-display {
+    display: inline-block;
+    color: #0F141A;
+    font-weight: bold;
+    font-family: titilliumweb;
+    font-size: 16px;
+    background-color: var(--highlight);
+    padding: 6px;
+    transition-duration: 0.3s;
+    vertical-align: middle;
+    border: 2px solid var(--highlight);
+    .dimensions, .select {
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    .dimensions {
+        width: 82px;
+        overflow: hidden;
+        white-space: nowrap;
+        vertical-align: top;
+    }
+    .select {
+        --width: 40px;
+        width: var(--width);
+    }
+    select {
+        border: 2px solid var(--highlight);
+        border-radius: 8px;
+        background: var(--background);
+        color: #ffffff;
+        width: var(--width);
+        height: 26px;
+        padding: 1px;
+        transition: 0.5s;
+    }
+    .select::after {
+        border-radius: 8px;
+        font-family: fontawesome;
+        color: #ffffff;
+        background: var(--background);
+        position: absolute;
+        width: calc(var(--width) - 20px);
+        margin-right: 20px;
+        height: 19px;
+        padding: 2px 1px 1px 1px;
+        left: 0;
+        top: 2px;
+        content: ' ';
+        line-height: normal;
+        pointer-events: none;
+        transition: 0.5s;
+    }
+    .select:has(option[value="lines"]:checked)::after { content: '\f039' }
+    .select:has(option[value="square-tiling"]:checked)::after { content: '\f0c8' }
+    .select:has(option[value="hexagon-tiling"]:checked)::after { content: '\f312' }
+    .dimensions:has(+.select option[value="lines"]:checked) {
+        width: 0px;
+        pointer-events: none;
+    }
+    .select:has(option[value="lines"]:checked) { --width: 122px }
 }
