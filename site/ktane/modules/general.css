@@ -191,8 +191,13 @@ input[type="number"] {
 /* PRACTICE POOL */
 #practice-pool {
     display: inline-block;
-    .symbols {
+    #practice-pool-wrapper {
+        --columns: 10;
+        margin-bottom: 8px;
         max-width: 80vw;
+        overflow: auto;
+    }
+    .symbols {
         image-rendering: pixelated;
         font-size: 0;
         .symbol {
@@ -244,23 +249,32 @@ input[type="number"] {
     }
     #practice-pool-wrapper.square-tiling .symbols {
         display: grid;
-        grid-template-columns: repeat(7, 52px);
+        grid-template-columns: repeat(var(--columns), 52px);
+        justify-content: center;
     }
-    /* https://css-tricks.com/hexagons-and-beyond-flexible-responsive-grid-patterns-sans-media-queries/ really cool. thank you somuch */
+    /* https://css-tricks.com/hexagons-and-beyond-flexible-responsive-grid-patterns-sans-media-queries/ really cool. thank you somuch. */
+    /* i dont understand this anymore youre on your own sorry */
     #practice-pool-wrapper.hexagon-tiling {
         text-align: left;
-        display: flex;
-        --s: 55.425625841208145px;
+        display: grid;
+        --s: 55.425625841208145px; /* so that height is 48px */
         --m: 4px;
         --f: calc(var(--s) * 0.8660254038 + var(--m)); /* the height of two rows */
-        margin-bottom: calc(var(--s) * 0.4330127019 + 20px);
+        grid-template-columns: calc(var(--s) * 0.75 + var(--m) * 0.8660254038)  repeat(var(--columns), calc(var(--s) * 0.75 + var(--m) * 0.8660254038));
+        height: calc(var(--rows) * (var(--s) * 0.8660254038 + calc(var(--m))));
+        justify-content: center;
         .symbols {
+            max-width: none;
+            grid-column: 1/-1;
             .symbol {
+                --gap-between: calc(var(--s) * 0.5 + var(--m) * 1.73205080757);
                 text-align: center;
                 width: var(--s);
+                margin-left: 0px;
                 margin-top: calc(var(--m) * 0.5); /* applied twice since touching two rows down */
-                margin-right: calc(var(--s) * 0.5 + var(--m) * 0.8660254038);
+                margin-right: calc(var(--gap-between) * 0.5);
                 margin-bottom: calc(var(--s) * -0.4330127019);
+                margin-left: calc(var(--gap-between) * 0.5);
                 height: calc(var(--s) * 0.8660254038); /* sqrt.75 */
                 clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
                 img { margin-bottom: -70%; }
@@ -270,7 +284,7 @@ input[type="number"] {
             content: "";
             width: calc(var(--s) * 0.75 + var(--m) * 0.8660254038);
             float: left;
-            height: 120%; 
+            height: 100%; 
             shape-outside: repeating-linear-gradient(#0000 0 calc(var(--f) - 20px), #000 0 calc(var(--f) - 10px), #0000 0 var(--f));
             /* background: repeating-linear-gradient(#fff 0 calc(var(--f) - 20px), #f00 0 calc(var(--f) - 10px), #fff 0 var(--f)); */
         }

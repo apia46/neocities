@@ -8,6 +8,8 @@ let learntBag;
 let practicePoolQueryIndex;
 let consistency;
 
+let practicePoolColumns;
+
 function practicePoolSetup() {
     unlearntBag = [];
     learntBag = [];
@@ -35,8 +37,8 @@ function practicePoolSetup() {
         <div id="practice-pool-display">
             <span class="title">Display</span>
             <div class="dimensions">
-                <input id="practice-pool-columns" type="number" min="1" value="10" pattern="[0-9]" oninput="if(this.value!==''&&!parseInt(this.value)) this.value=10">
-                <span class="height">X 10</span>
+                <input id="practice-pool-columns" type="number" min="3" value="10" pattern="[0-9]" oninput="practicePoolChangeDimensions();">
+                <span class="height"></span>
             </div>
             <div class="select">
                 <select oninput="practicePoolSwitchDisplay(this.value)">
@@ -55,21 +57,32 @@ function practicePoolSetup() {
         </div>`
     ).join("");
 
+    practicePoolColumns = 10;
+    
+    practicePoolUpdateGridSizing();
     practicePoolUpdateText();
 }
-function practicePoolSwitchDisplay(switchTo) {
-    document.querySelector("#practice-pool-wrapper").className = switchTo;
-    switch (switchTo) {
-        case 'lines':
-
+function practicePoolSwitchDisplay() {
+    document.querySelector("#practice-pool-wrapper").className = document.querySelector('#practice-pool-display select').value;
+    practicePoolUpdateGridSizing();
+}
+function practicePoolChangeDimensions() {
+    let value = document.querySelector('#practice-pool-columns').value;
+    if (!value || value < 3) document.querySelector('#practice-pool-columns').value = 10;
+    document.querySelector('#practice-pool-columns').value = Math.floor(document.querySelector('#practice-pool-columns').value);
+    practicePoolColumns = document.querySelector('#practice-pool-columns').value;
+    practicePoolUpdateGridSizing();
+}
+function practicePoolUpdateGridSizing() {
+    let rows;
+    switch (document.querySelector("#practice-pool-wrapper").className) {
+        case "hexagon-tiling": rows = 1 + Math.floor(PRACTICE_POOL_SYMBOLS.length / practicePoolColumns) + (PRACTICE_POOL_SYMBOLS.length % practicePoolColumns > Math.floor(practicePoolColumns/2) ? 0.5 : 0);
         break;
-        case 'square-tiling':
-
-        break;
-        case 'hexagon-tiling':
-
-        break;
+        default: rows = Math.ceil(PRACTICE_POOL_SYMBOLS.length / practicePoolColumns);
     }
+    document.querySelector('#practice-pool-wrapper').style.setProperty('--columns', practicePoolColumns);
+    document.querySelector('#practice-pool-wrapper').style.setProperty('--rows', rows);
+    document.querySelector('#practice-pool-display .height').textContent = `× ${Math.ceil(rows)}`;
 }
 
 function practicePoolSettings() {
