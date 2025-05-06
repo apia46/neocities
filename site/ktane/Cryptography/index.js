@@ -46,6 +46,8 @@ STRIKE_TIME = 4000;
 PENALTY_TIME = 1000;
 MODULE_ID = "CryptModule";
 
+let practicePool;
+
 let message;
 let substitution;
 let ordering;
@@ -69,13 +71,12 @@ let pauseStart;
 let pausedTime;
 let focused;
 
-const PRACTICE_POOL_IMAGE_DIRECTORY = "Cryptography/assets";
-const PRACTICE_POOL_IMAGE_FILETYPE = "png";
-const PRACTICE_POOL_SYMBOLS = [...Array(MESSAGES.length).keys()];
-
 function moduleSetup() {
     console.log("CryptModule: loading new");
-    practicePoolSetup();
+    console.log(MODULE_ID)
+
+    practicePool = new PracticePool("pool", [...Array(MESSAGES.length).keys()], "Cryptography/assets", "png");
+    practicePool.setup();
 
     pauseStart = Date.now();
 
@@ -84,7 +85,7 @@ function moduleSetup() {
 
 function newInstance() {
 
-    messageIndex = practicePoolQuery();
+    messageIndex = practicePool.query();
     message = MESSAGES[messageIndex];
     console.log(`CryptModule: ${message}`);
 
@@ -254,7 +255,7 @@ function keyboardInput(char) {
 }
 
 function solve() {
-    practicePoolResult(result, messageIndex);
+    practicePool.result(result, messageIndex);
     newInstance();
 }
 
