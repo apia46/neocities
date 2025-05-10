@@ -1,3 +1,5 @@
+const MODULE_ID = "MemoryV2";
+
 const LOOKAHEADVISIBLE = 7; // remember to set this in css too!
 const LOOKBEHINDVISIBLE = 7; // remember to set this in css too!
 CHECKBEHIND = -2;

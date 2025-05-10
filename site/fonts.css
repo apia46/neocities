@@ -64,4 +64,9 @@
     src: url('assets/fonts/FontAwesome6Modified.ttf') format('truetype');
     font-weight: 900;
 }
-.fontawesome { font-family: 'fontawesome' }
+.fontawesome { font-family: 'fontawesome' !important }
+
+@font-face {
+    font-family: 'arial';
+    src: url('assets/fonts/Arial-Modified.ttf') format('truetype');
+}

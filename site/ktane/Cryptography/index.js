@@ -1,3 +1,5 @@
+MODULE_ID = "CryptModule";
+
 const MESSAGES = [
     "SCROOGE KNEW HE WAS DEAD",
     "OF COURSE HE DID",
@@ -44,7 +46,6 @@ const MESSAGES = [
 REPLACE_AHEAD = true;
 STRIKE_TIME = 4000;
 PENALTY_TIME = 1000;
-MODULE_ID = "CryptModule";
 
 let practicePool;
 
@@ -73,9 +74,8 @@ let focused;
 
 function moduleSetup() {
     console.log("CryptModule: loading new");
-    console.log(MODULE_ID)
 
-    practicePool = new PracticePool("pool", [...Array(MESSAGES.length).keys()], "Cryptography/assets", "png");
+    practicePool = new PracticePool("phrases", [...Array(MESSAGES.length).keys()], "Cryptography/assets", "png");
     practicePool.setup();
 
     pauseStart = Date.now();
@@ -84,7 +84,6 @@ function moduleSetup() {
 }
 
 function newInstance() {
-
     messageIndex = practicePool.query();
     message = MESSAGES[messageIndex];
     console.log(`CryptModule: ${message}`);
@@ -208,9 +207,7 @@ function moduleOnload() {
         }
     }, 0);
 
-    updateTexts();
-
-    practicePoolOnload();
+    practicePoolsOnload();
 }
 
 function updateTexts() {

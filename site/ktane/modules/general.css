@@ -3,11 +3,13 @@ a:visited { color: #ff00ff; }
 u { text-decoration-style: dashed; }
 body.strike {
     --highlight: #e9757f;
+    --inbetween: #ad5a61;
     --background: #1d1112;
 }
 
 body {
     --highlight: #929292;
+    --inbetween: #585858;
     --background: #0F0F0F;
     background-color: var(--background);
     font-family: spacemono;
@@ -26,18 +28,18 @@ h2 {
 
 button,
 .toggle-button + label {
-    color: #0F141A;
+    color: var(--background);
     font-weight: bold;
     font-family: titilliumweb;
     font-size: 16px;
     background-color: var(--highlight);
     padding: 6px;
-    transition-duration: 0.3s;
     vertical-align: middle;
     border: 2px solid var(--highlight);
 }
 button:hover,
 .toggle-button + label:hover {
+    transition: 0.3s;
     background-color: var(--background);
     color: var(--highlight);
 }
@@ -188,11 +190,44 @@ input[type="number"] {
     }
 }
 
-/* PRACTICE POOL */
-#practice-pool {
+/* PRACTICE POOLS */
+#practice-pool-selector {
     display: inline-block;
-    #practice-pool-wrapper {
+    padding: 0px 64px;
+    margin: 8px;
+    margin-bottom: 4px;
+    border-bottom: 2px solid var(--highlight);
+    input { display: none }
+    input:checked + label {
+        color: var(--highlight);
+        background-color: var(--background);
+    }
+
+    label {
+        color: var(--inbetween);
+        font-weight: bold;
+        font-family: titilliumweb;
+        font-size: 16px;
+        padding: 2px 8px 2px 8px;
+        margin: 0px 4px;
+        vertical-align: middle;
+        border: 2px solid var(--highlight);
+        border-bottom: none;
+    }
+    label:hover {
+        transition: border 0s, color 0.3s;
+        color: #ffffff;
+    }
+}
+.practice-pool.hidden { display: none }
+
+.practice-pool {
+    display: inline-block;
+
+    .practice-pool-wrapper {
         --columns: 10;
+        --cell-width: 48px;
+        --cell-height: 48px;
         margin-bottom: 8px;
         max-width: 80vw;
         overflow: auto;
@@ -205,11 +240,12 @@ input[type="number"] {
             display: inline-block;
             overflow: hidden;
             margin: 2px;
-            width: 48px;
-            height: 48px;
+            width: var(--cell-width);
+            height: var(--cell-height);
             background-color: #000000;
             img {
-                width: 48px;
+                width: var(--cell-width);
+                height: var(--cell-height);
                 transition: 0.3s;
             }
         }
@@ -247,14 +283,14 @@ input[type="number"] {
             background: none;
         }
     }
-    #practice-pool-wrapper.square-tiling .symbols {
+    .practice-pool-wrapper[value=square-tiling] .symbols {
         display: grid;
-        grid-template-columns: repeat(var(--columns), 52px);
+        grid-template-columns: repeat(var(--columns), calc(var(--cell-width) + 4px));
         justify-content: center;
     }
     /* https://css-tricks.com/hexagons-and-beyond-flexible-responsive-grid-patterns-sans-media-queries/ really cool. thank you somuch. */
     /* i dont understand this anymore youre on your own sorry */
-    #practice-pool-wrapper.hexagon-tiling {
+    .practice-pool-wrapper[value=hexagon-tiling] {
         text-align: left;
         display: grid;
         --s: 55.425625841208145px; /* so that height is 48px */
@@ -290,7 +326,7 @@ input[type="number"] {
         }
     }
 }
-#practice-pool-display {
+.practice-pool-display {
     display: inline-block;
     color: #0F141A;
     font-weight: bold;
@@ -298,13 +334,12 @@ input[type="number"] {
     font-size: 16px;
     background-color: var(--highlight);
     padding: 6px;
-    transition-duration: 0.3s;
     vertical-align: middle;
     border: 2px solid var(--highlight);
     .dimensions, .select {
         display: inline-block;
         position: relative;
-        transition: 0.5s;
+        transition: width 0.5s;
     }
     .dimensions {
         width: 82px;
@@ -324,7 +359,7 @@ input[type="number"] {
         width: var(--width);
         height: 26px;
         padding: 1px;
-        transition: 0.5s;
+        transition: width 0.5s;
     }
     .select::after {
         border-radius: 8px;

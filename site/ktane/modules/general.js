@@ -39,8 +39,6 @@ function load() {
         </div>
         <button onclick="generateBomb()">New Bomb</button>`
 
-    generateBomb();
-
     let timeDisplay = document.querySelector("#time");
     setInterval(()=>{
         timeElapsed = (Date.now() - timeStarted) / 1000;
@@ -52,7 +50,7 @@ function load() {
     <tbody>
         ${generalSettings()}
         ${this.edgeworkSettings?.()||""}
-        ${this.practicePoolSettings?.()||""}
+        ${this.practicePoolsSettings?.()||""}
         ${this.moduleSettings?.()||""}
     </tbody>`;
 
@@ -70,6 +68,8 @@ function load() {
     /* call */
     this.edgeworkOnload?.();
     this.moduleOnload?.();
+
+    generateBomb();
 }
 
 function displayTime(value) {
@@ -117,5 +117,10 @@ function ShuffleFisherYates(array)
         array[index] = array[i];
         array[i] = value;
     }
+    return array;
+}
+
+function spliced(array, start, deleteCount) {
+    array.splice(start, deleteCount);
     return array;
 }
