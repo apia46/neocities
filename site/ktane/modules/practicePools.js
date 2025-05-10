@@ -125,7 +125,7 @@ const PracticePool = class {
     
         this.columns = 10;
 
-        if (document.querySelector("#practice-pool-selector")) {
+        if (document.querySelector("#practice-pool-selector") && !document.querySelector(`#pool-${this.ID}`)) {
             document.querySelector("#practice-pool-selector").innerHTML += `<input
                 type="radio" name="selected-pool" id="pool-${this.ID}" onclick="selectPracticePool('${this.ID}')"><label for="pool-${this.ID}">${this.ID.toUpperCase()}</label
             >`;
