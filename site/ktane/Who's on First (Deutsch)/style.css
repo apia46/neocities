@@ -1,9 +1,9 @@
-#buttons button {
-    font-size: 32px;
-    line-height: 43px;
-}
 body {
     --highlight: #79afb9;
     --inbetween: #587e8d;
     --background: #101214;
+}
+#buttons button {
+    font-size: 32px;
+    line-height: 43px;
 }

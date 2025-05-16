@@ -1,0 +1,20 @@
+body {
+    --highlight: #8db0d6;
+    --inbetween: #5d7394;
+    --background: #191920;
+}
+#module {
+    rotate: 180deg;
+    .wrapper.bottom {
+        margin: 0;
+    }
+    .wrapper.top {
+        margin-top: 8px;
+    }
+    #mode {
+        rotate: 180deg;
+    }
+}
+#buttons button.down {
+    transform: translateY(-4px);
+}
