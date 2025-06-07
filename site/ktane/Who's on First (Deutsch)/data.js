@@ -37,4 +37,4 @@ const WORDS = {
     "SO’N":     ["ZÄH", "WARTE", "ZEHEN", "CN", "SOHN", "10", "SO EIN", "CEE", 'SO’N', "ZEH", "OH GOTT", "MOMENT", "ZEHN", "C"],
     "ZEHEN":    ["CN", "MOMENT", "ZEH", "CEE", "10", "WARTE", "C", "OH GOTT", 'SO EIN', "SOHN", "ZEHEN", "SO’N", "ZÄH", "ZEHN"],
 }
-const DIRECTORY = "Who's On First (Deutsch)";
+const DIRECTORY = "Who's on First (Deutsch)";

@@ -37,4 +37,4 @@ const WORDS = {
     "SURE":       ["YOU ARE", "DONE", "LIKE", "YOU’RE", "YOU", "HOLD", "UH HUH", "UR", 'SURE', "U", "WHATQ", "NEXT", "YOUR", "UH UH"],
     "LIKE":       ["YOU’RE", "NEXT", "U", "UR", "HOLD", "DONE", "UH UH", "WHATQ", 'UH HUH', "YOU", "LIKE", "SURE", "YOU ARE", "YOUR"],
 }
-const DIRECTORY = "Who's On First";
+const DIRECTORY = "Who's on First";
