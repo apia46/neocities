@@ -166,12 +166,33 @@ body {
     font-family: spacemono;
     text-align: center;
     --scroll-range: 0;
-    #friends {
-        animation: marquee 10s linear infinite;
-        position: relative;
+    feDisplacementMap {
+        scale: 300;
+    }
+    #friendswrapper {
+        filter: url(#warp);
+        width: 100vw;
         left: -50px;
-        display: inline-block;
-        white-space: nowrap;
+        position: relative;
+        height: 30vw;
+        font-size: 0;
+        margin-bottom: -10vw;
+        #friends {
+            animation: marquee 10s linear infinite;
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+            a {
+                margin: 0px 0.5vw;
+                font-size: 20vw;
+            }
+            img {
+                height: 2vw;
+                position: relative;
+                vertical-align: top;
+                top: 15vw;
+            }
+        }
     }
     #scroll {
         padding-top: calc(100vh - 192px);

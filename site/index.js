@@ -12,8 +12,8 @@ window.onload = ()=>{
 
     const wrapper = document.querySelector("#wrapper");
     wrapper.addEventListener('scroll', scrolldo);
-    window.addEventListener("resize", scrolldo);
-    scrolldo();
+    window.addEventListener("resize", resizeDo);
+    resizeDo();
 }
 
 function eyeAnim(){
@@ -21,6 +21,11 @@ function eyeAnim(){
     redposition %= 120;
     document.querySelector("#red").style.backgroundPositionX = `${redposition}vw`;
     setTimeout(eyeAnim, 100*Math.pow(2,1/(scrollRange+0.3)));
+}
+
+function resizeDo() {
+    scrolldo();
+    warpEffectDisplacement.setAttribute("scale", window.innerWidth*0.2);
 }
 
 function scrolldo(){

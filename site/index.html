@@ -48,23 +48,34 @@
                 <img id="forest" src="assets/forest.png">
             </div>
             <div id="body">
-                <div id="friends">
-                    <a href="https://apia46.neocities.org"><img src="assets/8831/apiary.gif"></a>
-                    <a href="https://corru.observer"><img src="assets/8831/corru.gif"></a>
-                    <a href="https://cosmicnyan.github.io"><img src="assets/8831/cosmics_epic_site.gif"></a>
-                    <a href="https://vangare.neocities.org"><img src="assets/8831/vangare.gif"></a>
-                    <a href="https://omnicrumb.neocities.org"><img src="assets/8831/omn88x31.gif"></a>
-                    <a href="https://actualzyra.nekoweb.org"><img src="assets/8831/zyra88x31.png"></a>
-                    <a href="https://cryogenicspeed.neocities.org"><img src="assets/8831/cryo_button.gif"></a>
-                    <a href="https://genseot.github.io"><img src="assets/8831/genseot.png"></a>
-                    <a href="https://noobogonis.neocities.org"><img src="assets/8831/noobogonis8831.png"></a>
-                    <a href="https://star-station-73.neocities.org"><img src="assets/8831/kira.gif"></a>
-                    <a href="https://thecoolkat.github.io/coolkat"><img src="assets/8831/ckstuff.gif"></a>
+                <svg width="0" height="0">
+                    <defs>
+                        <filter id="warp" color-interpolation-filters="sRGB" primitiveUnits="userSpaceOnUse">
+                        <feImage href="assets/filter.png" result="dispMap" width="100vw" height="100vw" x="0" y="0"/>
+                        <feDisplacementMap in="SourceGraphic" in2="dispMap" id="warpEffectDisplacement"
+                            xChannelSelector="R" yChannelSelector="B"
+                            x="0" y="0"
+                            />
+                        </filter>
+                    </defs>
+                </svg>
+                <div id="friendswrapper">
+                    <div id="friends">
+                        <a href="https://apia46.neocities.org"><img src="assets/8831/apiary.gif"></a>
+                        <a href="https://corru.observer"><img src="assets/8831/corru.gif"></a>
+                        <a href="https://cosmicnyan.github.io"><img src="assets/8831/cosmics_epic_site.gif"></a>
+                        <a href="https://vangare.neocities.org"><img src="assets/8831/vangare.gif"></a>
+                        <a href="https://omnicrumb.neocities.org"><img src="assets/8831/omn88x31.gif"></a>
+                        <a href="https://actualzyra.nekoweb.org"><img src="assets/8831/zyra88x31.png"></a>
+                        <a href="https://cryogenicspeed.neocities.org"><img src="assets/8831/cryo_button.gif"></a>
+                        <a href="https://genseot.github.io"><img src="assets/8831/genseot.png"></a>
+                        <a href="https://noobogonis.neocities.org"><img src="assets/8831/noobogonis8831.png"></a>
+                        <a href="https://star-station-73.neocities.org"><img src="assets/8831/kira.gif"></a>
+                        <a href="https://thecoolkat.github.io/coolkat"><img src="assets/8831/ckstuff.gif"></a>
+                    </div>
                 </div>
                 <script>
-                    let friends = document.querySelector('#friends');
-                    friends.childNodes.forEach((child)=>{friends.appendChild(child.cloneNode(true))});
-                    friends.childNodes.forEach((child)=>{friends.appendChild(child.cloneNode(true))});
+                    for(let i=0;i<2;i++)friends.childNodes.forEach((child)=>{if (child.nodeName != "svg") friends.appendChild(child.cloneNode(true))});
                 </script>
                 <p>so many friends!</p>
                 <div id="scroll">
