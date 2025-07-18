@@ -52,6 +52,9 @@
   text-shadow: none;
   width: calc(100% - 30px);
 }
+#okidoia .webring-info.notfound::after {
+    content: 'This site has not yet been subsumed into the Okidoia. You should go ask Vekoa about it or something';
+}
 
 #okidoia .webring-next {
   text-align: left;

@@ -5,7 +5,11 @@ body {
     font-family: spacemono;
     text-align: center;
 
-    a { color: #00ffff; }
+    a {
+        color: #00ffff;
+        text-decoration: underline;
+        cursor: pointer;
+    }
     a:visited { color: #ff00ff; }
 
     #info {

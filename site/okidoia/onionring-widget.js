@@ -30,7 +30,7 @@ if (thisIndex == null) {
   tag.insertAdjacentHTML('afterbegin', `
 <table>
   <tr>
-    <td>This site has not yet been subsumed into the Okidoia. You should go ask Vekoa about it or something.</td>
+    <td class="webring-info notfound"><span>This site has not yet been subsumed into the Okidoia. You should go ask Vekoa about it or something</span></td>
   </tr>
 </table>
   `);
