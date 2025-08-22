@@ -14,6 +14,12 @@ window.onload = ()=>{
     wrapper.addEventListener('scroll', scrolldo);
     window.addEventListener("resize", resizeDo);
     resizeDo();
+
+	fetch("https://state.corru.network/").then(response => response.json()).then(status => {
+		let element = document.createElement("p");
+		element.innerHTML += "<a href="/"><button>Open in browser</button></a>";
+		if (status.code == -2) header.insertBefore(element, document.querySelector("p.dark"));
+	});
 }
 
 function eyeAnim(){
