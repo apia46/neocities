@@ -16,7 +16,6 @@ window.onload = ()=>{
     resizeDo();
 
 	fetch("https://state.corru.network/").then(response => response.json()).then(status => {
-		console.log(status);
 		let element = document.createElement("p");
 		element.innerHTML = "<a href=\"/\"><button>Open in browser</button></a>";
 		if (status.code == -2) header.insertBefore(element, document.querySelector("p.dark"));
