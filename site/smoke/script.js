@@ -2,14 +2,6 @@ var indexes = {pyanodons: 5};
 var maxIndexes = {pyanodons: 5};
 var focused = "pyanodons";
 
-window.onload = ()=>{
-    for (var index in indexes) {
-        if (Object.prototype.hasOwnProperty.call(indexes, index)) {
-            changeIndex(index);
-        }
-    }
-}
-
 function goBack(id){
     if (indexes[id] > 0) {
         indexes[id] -= 1;

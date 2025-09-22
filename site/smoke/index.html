@@ -127,6 +127,13 @@
                 </p>
             </div>
         </div>
+		<script>
+			for (var index in indexes) {
+				if (Object.prototype.hasOwnProperty.call(indexes, index)) {
+					changeIndex(index);
+				}
+			}
+		</script>
         <script>
             if(localStorage.getItem('secret3')) {
                 document.querySelector('#secret').classList.add('revealed');
