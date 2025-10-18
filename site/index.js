@@ -7,7 +7,7 @@ var timer2 = false;
 var maxhorizscroll = window.innerWidth * 4;
 var stopscroll = false;
 
-window.onload = ()=>{
+function initialise() {
     eyeAnim();
 
     const wrapper = document.querySelector("#wrapper");
