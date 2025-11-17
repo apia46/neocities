@@ -41,6 +41,7 @@ window.onload = ()=>{
         button.checked = false;
         button.addEventListener("click", selected);
     });
+    voter.addEventListener("input", selected);
     confirmed.setAttribute("disabled", "true");
     confirmed.addEventListener("click", ()=>{
         var index;
@@ -85,7 +86,8 @@ function setResult() {
 }
 
 function selected() {
-    confirmed.removeAttribute("disabled");
+    if (voter.value && buttons.some(button=>button.checked)) confirmed.removeAttribute("disabled");
+    else confirmed.setAttribute("disabled", "true");
 }
 
 function questionSet() {
