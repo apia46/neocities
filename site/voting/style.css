@@ -1,0 +1,145 @@
+body {
+    background-color: #091119;
+    color: #ffffff;
+    font-family: renogare;
+    font-size: 24px;
+}
+
+button, label {
+    border: transparent;
+    border-radius: 3px;
+    padding: 2px;
+    min-width: 18px;
+    min-height: 18px;
+    font-family: titilliumweb;
+    font-weight: bold;
+    background-color: #777888;
+}
+button:hover, label:hover {
+    background-color: #999aaa;
+}
+button:active, label:active {
+    background-color: #cccddd;
+}
+
+.center {
+    position: absolute;
+    left: 0;
+    top: 30vh;
+    width: 100vw;
+    text-align: center;
+}
+
+#hidden {
+    overflow: hidden;
+    max-width: 90vw;
+    opacity: 0;
+    top: -100px;
+    position: absolute;
+}
+
+#question {
+    font-size: 24px;
+    min-width: 200px;
+    max-width: calc(80vw - 200px);
+    --length: 200;
+    width: calc(var(--length) * 1px);
+}
+input[type=text] {
+    background: none;
+    border: none;
+    outline: none !important;
+    border-bottom: 2px solid #556889;
+    color: #ffffff;
+    font-family: renogare;
+    transition: border 0.3s;
+}
+input[type=text]:focus {
+    border-bottom: 2px solid #b0c3e6;
+}
+#question[disabled] {
+    border-bottom: 2px solid #091119;
+}
+
+#submit {
+    transition: opacity 0.3s;
+}
+body.questionSet {
+    #submit {
+        opacity: 0;
+    }
+    #voteButtons {
+        opacity: 1;
+    }
+    #question {
+        min-width: 0;
+    }
+}
+
+#voteButtons {
+    margin-top: 16px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    input[type=radio] {
+        display: none;
+    }
+    input:checked + label {
+        color: #ffffff;
+    }
+    label {
+        font-size: 18px;
+        transition: color 0.3s;
+        color: #091119;
+    }
+    #yea + label { background-color:#50e0d4; }
+    #yea + label:hover { background-color:#7bf5eb; }
+    #yea + label:active { background-color:#dcfffc; }
+    #nay + label { background-color:#ec903a; }
+    #nay + label:hover { background-color:#fcb572; }
+    #nay + label:active { background-color:#ffd3a9; }
+    #veto + label { background-color:#dd6666; }
+    #veto + label:hover { background-color:#e93131; }
+    #veto + label:active { background-color:#ff0000; }
+    button {
+        margin-top: 8px;
+        margin-bottom: 24px;
+        font-size: 16px;
+        margin-left: 8px;
+        --buttonCol: #4ece6e;
+        background-color: var(--buttonCol);
+        border: solid 2px transparent;
+        transition: 0.3s;
+    }
+    button[disabled] {
+        background-color: #556889;
+        color: #091119;
+    }
+    button:not([disabled]):hover {
+        background-color: #091119;
+        color: var(--buttonCol);
+        border: solid 2px var(--buttonCol);
+    }
+}
+#voter {
+    text-align: center;
+    font-size: 18px;
+    width: 150px;
+}
+table {
+    display: inline-table;
+    font-family: titilliumweb;
+    font-size: 18px;
+    border-collapse: collapse;
+    border-style: hidden;
+    th {
+        min-width: 150px;
+        border: 2px solid #556889;
+    }
+    td {
+        padding: 0px 20px;
+        font-size: 16px;
+    }
+}
+#votercount {
+    font-size: 16px;
+}

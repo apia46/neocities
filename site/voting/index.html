@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<title>Voting</title>
+        <link href="style.css" rel="stylesheet">
+        <link href="/fonts.css" rel="stylesheet">
+        <script src="voting.js"></script>
+	</head>
+	<body>
+        <div id="hidden">
+            <p id="questionlength"></p>
+        </div>
+        <div class="center">
+            <span>Vote:</span>
+            <input type="text" id="question"> <button id="submit" class="fontawesome">&#xf00c;</button>
+            <div id="voteButtons">
+                <input type="radio" name="voteButtons" id="yea"><label for="yea">Yea</label></button>
+                <input type="radio" name="voteButtons" id="nay"><label for="nay">Nay</label></button>
+                <input type="radio" name="voteButtons" id="abstain"><label for="abstain">Abstain</label></button>
+                <input type="radio" name="voteButtons" id="veto"><label for="veto">Veto</label></button><br>
+                <input type="text" id="voter" placeholder="voter name"><button id="confirmed" disabled="true">Confirm</button><br>
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="color:#50e0d4">Yea</th><th style="color:#ec903a">Nay</th><th style="color:#999aaa">Abstain</th>
+                    </tr>
+                    </thead>
+                    <tbody id="results">
+
+                    </tbody>
+                </table>
+                <p id="votercount">0 voters</p>
+                <p id="result"></p>
+                <button style="--buttonCol:#dd6666;" onclick="clearVotes()">Clear</button>
+            </div>
+        </div>
+	</body>
+</html>
