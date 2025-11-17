@@ -28,11 +28,13 @@ window.onload = ()=>{
     buttons = [yea, nay, abstain, veto];
     questionlength.innerText = question.value;
     question.style.setProperty("--length", questionlength.offsetWidth);
-    question.addEventListener("input", event=>{
+    question.addEventListener("input", ()=>{
         questionlength.innerText = question.value;
-        if (event.key === "Enter") questionSet();
         question.style.setProperty("--length", questionlength.offsetWidth);
     });
+    question.addEventListener("keydown", event=>{
+        if (event.key === "Enter") questionSet();
+    })
     submit.addEventListener("click", questionSet);
     buttons.forEach(button=>{
         button.checked = false;
