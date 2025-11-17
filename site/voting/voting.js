@@ -6,6 +6,7 @@ var storage = {
     rows:[0,0,0],
     rowsMax:0,
     vetoed:false,
+    vetoer:"",
     numVoters:0,
 }
 window.onload = ()=>{
@@ -46,7 +47,9 @@ window.onload = ()=>{
         storage.numVoters += 1;
         buttons.forEach((button,i)=>{if (button.checked) index = i});
         if (index == 3) {
+            storage.vetoer = voter.value;
             storage.vetoed = true;
+            storage.numVoters -= 1;
         } else {
             storage.rows[index] += 1;
             if (storage.rows[index] > storage.rowsMax) {
@@ -67,7 +70,7 @@ window.onload = ()=>{
 function setResult() {
     votercount.innerText = `${storage.numVoters} voters`;
     if (storage.vetoed) {
-        result.innerHTML = `<span class="fontawesome">&#xf05e;</span><span id="vetotext"> Vetoed by ${voter.value}!`;
+        result.innerHTML = `<span class="fontawesome">&#xf05e;</span><span id="vetotext"> Vetoed by ${storage.vetoer}!`;
         result.style.setProperty("color","#dd6666");
     } else if (storage.rows[0] > storage.rows[1]) {
         result.innerHTML = `<span class="fontawesome">&#xf00c;</span><span id="vetotext"> Yea (+${storage.rows[0]-storage.rows[1]})`;
