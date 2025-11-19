@@ -27,8 +27,9 @@ for (let i = 0; i < 4096; i++) {
 }
 console.log(chords);
 
+const notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+const noteSynonyms = ["B#", "Db", "D", "Eb", "Fb", "E#", "Gb", "G", "Ab", "A", "Bb", "Cb"];
 function describe(chord, root=0) {
-    const notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     let result = [];
     for (let p = 0; p < 12; p++) {
         if (chord & 1 << p) {
@@ -36,4 +37,17 @@ function describe(chord, root=0) {
         }
     }
     return result.join(", ")
+}
+
+function find(noteNames) {
+    let result = 0;
+    noteNames.forEach(noteName=>{result += 1 << value(noteName)});
+    let syns = synonyms(result);
+    return [syns[0], syns.findIndex(s=>s==result)];
+}
+
+function value(noteName) {
+    let result = notes.findIndex(n=>n==noteName);
+    if (result == -1) result = noteSynonyms.findIndex(n=>n==noteName);
+    return result;
 }
