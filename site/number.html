@@ -8,11 +8,45 @@
 	</head>
 	<body>
         <p id="number">200</p>
-        <button onclick="number2()" id="numberButton">That's not the number</button>
+        <button onclick="nextNumber()" id="numberButton">That's not the number</button>
         <script>
-            function number2() {
-                numberButton.remove()
-                number.innerText = "Sorry, 665"
+            var numberiter = 0
+            function nextNumber() {
+                switch (numberiter) {
+                    case 0:
+                        number.innerText = "Sorry, 665";
+                        numberButton.innerText = "Still not right";
+                        break;
+                    case 1:
+                        number.innerText = "Ummmmm is it 4?";
+                        numberButton.innerText = "Nope";
+                        break;
+                    case 2:
+                        number.innerText = "65?";
+                        numberButton.innerText = "Try again";
+                        break;
+                    case 3:
+                        number.innerText = "205.7?";
+                        numberButton.innerText = "They are integers";
+                        break;
+                    case 4:
+                        number.innerText = "-39?";
+                        numberButton.innerText = "Positive integers";
+                        break;
+                    case 5:
+                        number.innerText = "840?";
+                        numberButton.innerText = "Close, keep going";
+                        break;
+                    case 6:
+                        number.innerText = "Ooh okay, 841?";
+                        numberButton.innerText = "Yup";
+                        break;
+                    case 7:
+                        number.innerText = "841";
+                        numberButton.remove()
+                        break;
+                }
+                numberiter++;
             }
         </script>
 	</body>
