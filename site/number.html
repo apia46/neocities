@@ -1,1 +1,19 @@
-200
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<title>Number</title>
+        <link href="/fonts.css" rel="stylesheet">
+	</head>
+	<body>
+        <p id="number">200</p>
+        <button onclick="number2()" id="numberButton">That's not the number</button>
+        <script>
+            function number2() {
+                numberButton.remove()
+                number.innerText = "Sorry, 665"
+            }
+        </script>
+	</body>
+</html>
