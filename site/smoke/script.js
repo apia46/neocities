@@ -1,5 +1,5 @@
-var indexes = {pyanodons: 10};
-var maxIndexes = {pyanodons: 10};
+var indexes = {pyanodons: 11};
+var maxIndexes = {pyanodons: 11};
 var focused = "pyanodons";
 
 function goBack(id){
