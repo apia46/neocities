@@ -12,7 +12,8 @@ var sitesOkidoia = [
     'https://omnicrumb.neocities.org',
     'https://puffinthefish.neocities.org',
     'https://genseot.github.io',
-    'https://noobogonis.neocities.org'
+    'https://noobogonis.neocities.org',
+	'https://newmoonwastaken.neocities.org/'
 ];
 
 /* the unique ID of the widget. two things to note:
