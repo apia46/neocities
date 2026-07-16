@@ -190,6 +190,9 @@ body {
                 vertical-align: top;
                 top: 15vw;
             }
+            img.incoherent { display: none; }
+            &.incoherent img.incoherent { display: inline; }
+            &.incoherent img.coherent { display: none; }
         }
     }
     #scroll {
